@@ -42,3 +42,10 @@ export const esc = (s: string) =>
 /** "1:12" or "not yet known". */
 export const ratioLabel = (k: Kindergarten, t: Dict) => (k.teacherStudentRatio == null ? t.unknown : `1:${k.teacherStudentRatio}`);
 export const ratioFull = (k: Kindergarten, t: Dict) => (k.teacherStudentRatio == null ? t.unknown : t.nisbahFull(k.teacherStudentRatio));
+
+/** Folder-tab text: "SWASTA · ISLAMIK" / "GOVERNMENT". */
+export const tabLabel = (k: Kindergarten, t: Dict) => {
+  const base = k.type === "government" ? t.typeKerajaan : t.typeSwasta;
+  const mod = { none: "", montessori: t.modMontessori, waldorf: t.modWaldorf, islamic: t.modIslamik }[k.modifier];
+  return (mod ? `${base} · ${mod}` : base).toUpperCase();
+};

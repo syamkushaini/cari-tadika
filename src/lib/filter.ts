@@ -1,3 +1,4 @@
+import type { Dict } from "@/content/i18n";
 import { annualCost } from "./cost";
 import { km, type LatLng } from "./geo";
 import { statusOf, stats, type Stats } from "./scoring";
@@ -14,6 +15,20 @@ export const DEFAULT_FILTERS: Filters = {
   q: "", maxDist: 10, maxBudget: 999999, sort: "score",
   onlyReg: false, hideMajor: true, onlyTrial: false, needTransport: false,
 };
+
+export type FilterChip = { key: keyof Filters; label: string; clear: Partial<Filters> };
+
+/** Removable chips for every filter that differs from "show everything" (hide-major counts: it is on by default). */
+export function activeFilterChips(f: Filters, t: Dict): FilterChip[] {
+  const chips: FilterChip[] = [];
+  if (f.hideMajor) chips.push({ key: "hideMajor", label: t.hideMajor, clear: { hideMajor: false } });
+  if (f.maxDist !== ANY_DISTANCE) chips.push({ key: "maxDist", label: t.withinKm(f.maxDist), clear: { maxDist: ANY_DISTANCE } });
+  if (f.maxBudget !== DEFAULT_FILTERS.maxBudget) chips.push({ key: "maxBudget", label: t.budgetChip(f.maxBudget.toLocaleString("en-MY")), clear: { maxBudget: DEFAULT_FILTERS.maxBudget } });
+  if (f.onlyReg) chips.push({ key: "onlyReg", label: t.onlyReg, clear: { onlyReg: false } });
+  if (f.onlyTrial) chips.push({ key: "onlyTrial", label: t.onlyTrial, clear: { onlyTrial: false } });
+  if (f.needTransport) chips.push({ key: "needTransport", label: t.needTrans, clear: { needTransport: false } });
+  return chips;
+}
 
 export type Row = { k: Kindergarten; d: number; st: Stats };
 

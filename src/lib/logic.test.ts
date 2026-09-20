@@ -2,12 +2,12 @@ import { describe, expect, it } from "vitest";
 import { I18N } from "@/content/i18n";
 import { CRITERIA } from "@/content/criteria";
 import { SAMPLE_KINDERGARTENS as ALL, DEFAULT_CENTRE } from "@/data/seed";
-import { annualCost, costLines, isPartialCost } from "./cost";
+import { annualCost, costLines, isPartialCost, rmTotal } from "./cost";
 import { buildReal } from "@/data/real";
-import { fmtTime } from "./format";
+import { fmtTime, tabLabel } from "./format";
 import { km } from "./geo";
 import { stats, stampIsPass } from "./scoring";
-import { ANY_DISTANCE, DEFAULT_FILTERS, search } from "./filter";
+import { activeFilterChips, ANY_DISTANCE, DEFAULT_FILTERS, search } from "./filter";
 import { buildCompare } from "./compare";
 import { geocode } from "./geocode";
 
@@ -184,5 +184,21 @@ describe("geocode", () => {
   });
   it("throws on HTTP errors", async () => {
     await expect(geocode("x", (async () => ({ ok: false, status: 429 })) as unknown as typeof fetch)).rejects.toThrow("429");
+  });
+});
+
+describe("filter chips & labels", () => {
+  it("lists active filters, incl. hide-major and distance, and clearing removes them", () => {
+    const chips = activeFilterChips(DEFAULT_FILTERS, I18N.en);
+    expect(chips.map((c) => c.key)).toEqual(["hideMajor", "maxDist"]);
+    const cleared = { ...DEFAULT_FILTERS, ...chips[1].clear };
+    expect(activeFilterChips(cleared, I18N.en).map((c) => c.key)).toEqual(["hideMajor"]);
+    expect(activeFilterChips({ ...DEFAULT_FILTERS, maxDist: ANY_DISTANCE, hideMajor: false, needTransport: true }, I18N.ms).map((c) => c.label)).toEqual(["Perlu transport"]);
+  });
+  it("marks partial totals with + and unknown as text", () => {
+    const [k] = buildReal([{ placeId: "p9", name: "X", area: "", address: null, lat: 6, lng: 100, phone: null, hoursOpen: null, hoursClose: null, fetchedAt: "" }], { p9: { monthlyFee: 300 } });
+    expect(rmTotal(k, annualCost(k, false), I18N.en)).toBe("RM 3,600+");
+    expect(rmTotal({ ...k, monthlyFee: null }, null, I18N.en)).toBe("Not yet known");
+    expect(tabLabel({ ...k, type: "private", modifier: "islamic" }, I18N.en)).toBe("PRIVATE · ISLAMIC");
   });
 });

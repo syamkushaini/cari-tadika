@@ -1,14 +1,14 @@
 import { Pressable, Text, View } from "react-native";
 import { CRITERIA } from "@/content/criteria";
 import type { Dict } from "@/content/i18n";
-import { rmOr } from "@/lib/cost";
+import { rmTotal } from "@/lib/cost";
 import { fmtKm } from "@/lib/geo";
-import { ratioLabel, tagTypeLabel } from "@/lib/format";
+import { ratioLabel, tabLabel } from "@/lib/format";
 import { statusOf } from "@/lib/scoring";
 import type { Row } from "@/lib/filter";
-import type { Lang, Override } from "@/lib/types";
-import { font, useColors } from "./theme";
-import { Btn, Stamp, tap } from "./ui";
+import type { Lang, Override, Status } from "@/lib/types";
+import { folder, font, useColors } from "./theme";
+import { Btn, Icon, ICONS, Stamp, tap, Unk } from "./ui";
 
 export function Card({ row, annual, lang, t, ov, compared, onOpen, onToggleCompare }: {
   row: Row; annual: number | null; lang: Lang; t: Dict; ov?: Override; compared: boolean;
@@ -17,50 +17,72 @@ export function Card({ row, annual, lang, t, ov, compared, onOpen, onToggleCompa
   const c = useColors();
   const { k, d, st } = row;
   const hasMine = !!ov?.statuses && Object.keys(ov.statuses).length > 0;
-  const Tag = ({ text, fg, bg }: { text: string; fg: string; bg: string }) => (
-    <View style={{ backgroundColor: bg, borderColor: fg, borderWidth: 1, borderRadius: 3, paddingHorizontal: 8, paddingVertical: 3 }}>
-      <Text style={{ fontFamily: font.sansSemi, fontSize: 12, color: fg }}>{text}</Text>
+  const statuses = CRITERIA.map((cr) => statusOf(k, cr.k, ov));
+  const stripAria = `${t.skorLbl}: ${statuses.filter((s) => s === "ok").length} ${t.statusY}, ${statuses.filter((s) => s === "flag").length} ${t.statusN}, ${statuses.filter((s) => s === "unsure").length} ${t.statusQ}`;
+
+  const Chip = ({ text, fg, bg, line }: { text: string; fg: string; bg: string; line?: string }) => (
+    <View style={{ minHeight: 30, justifyContent: "center", paddingHorizontal: 10, borderTopLeftRadius: 15, borderTopRightRadius: 15, borderBottomRightRadius: 15, borderBottomLeftRadius: 4,
+      backgroundColor: bg, borderWidth: 1.5, borderColor: line ?? "transparent" }}>
+      <Text style={{ fontFamily: font.sansSemi, fontSize: 13, color: fg }}>{text}</Text>
     </View>
   );
+  const Field = ({ label, value, mono = true }: { label: string; value: string | null; mono?: boolean }) => (
+    <View style={{ width: "47.5%" }}>
+      <Text style={{ fontFamily: font.sansSemi, fontSize: 12, letterSpacing: 1.1, color: c.muted, marginBottom: 6 }}>{label.toUpperCase()}</Text>
+      <View style={{ paddingBottom: 4, borderBottomWidth: 1.5, borderStyle: value ? "dotted" : "dashed", borderBottomColor: c.line }}>
+        {value ? <Text style={{ fontFamily: mono ? font.monoMed : font.sansMed, fontSize: 15, color: c.ink }}>{value}</Text> : <Unk t={t} />}
+      </View>
+    </View>
+  );
+  const box = (s: Status, i: number) => {
+    const crit = CRITERIA[i].major;
+    const m = { ok: { bg: c.accentSoft, fg: c.accent, bd: c.accent, sym: "✓", st: "solid" }, flag: { bg: c.flagBg, fg: c.flag, bd: c.flag, sym: "✕", st: "solid" }, unsure: { bg: "transparent", fg: c.unk, bd: c.line, sym: "?", st: "dashed" } }[s];
+    return (
+      <View key={i} style={{ width: 27, height: 27, alignItems: "center", justifyContent: "center", borderRadius: 3, borderWidth: 1.5, borderBottomWidth: crit ? 4 : 1.5,
+        borderStyle: m.st as "solid" | "dashed", backgroundColor: m.bg, borderColor: m.bd }}>
+        <Text style={{ fontFamily: font.mono, fontSize: 13, color: m.fg }}>{m.sym}</Text>
+      </View>
+    );
+  };
+
   return (
-    <View style={{ marginTop: 10, backgroundColor: c.surface, borderRadius: 12, borderTopLeftRadius: 3, borderBottomLeftRadius: 3,
-      borderWidth: 1, borderColor: st.major ? c.flag : c.line, padding: 16, flexDirection: "row", gap: 14,
-      shadowColor: "#141E1B", shadowOpacity: 0.15, shadowRadius: 12, shadowOffset: { width: 0, height: 6 } }}>
-      <View style={{ position: "absolute", top: -10, left: 16, backgroundColor: c.kraft, borderRadius: 3, paddingHorizontal: 9, paddingVertical: 3 }}>
-        <Text style={{ fontFamily: font.sansBold, fontSize: 10, letterSpacing: 0.4, color: c.kraftInk }}>{tagTypeLabel(k, t)}</Text>
+    <View style={{ marginTop: 28, backgroundColor: c.surface, ...folder(4, 18), borderWidth: 1.5, borderColor: st.major ? c.flag : c.line, padding: 16, gap: 12,
+      shadowColor: "#1B2A26", shadowOpacity: 0.25, shadowRadius: 8, shadowOffset: { width: 0, height: 6 }, elevation: 3 }}>
+      <View style={{ position: "absolute", top: -26, left: 14, height: 26, paddingHorizontal: 12, justifyContent: "center", backgroundColor: c.kraft, borderTopLeftRadius: 6, borderTopRightRadius: 6 }}>
+        <Text style={{ fontFamily: font.sansSemi, fontSize: 12, letterSpacing: 1.2, color: c.kraftInk }}>{tabLabel(k, t)}</Text>
       </View>
       {st.major && (
-        <View style={{ position: "absolute", top: 14, right: -1, backgroundColor: c.flag, borderTopLeftRadius: 5, borderBottomLeftRadius: 5, paddingLeft: 12, paddingRight: 10, paddingVertical: 4 }}>
-          <Text style={{ fontFamily: font.sansBold, fontSize: 9.5, letterSpacing: 0.4, color: c.surface }}>{t.flaggedRibbon}</Text>
+        <View style={{ position: "absolute", top: -26, right: 18, height: 34, paddingHorizontal: 12, paddingBottom: 6, justifyContent: "center", backgroundColor: c.ribbon,
+          borderBottomLeftRadius: 2, borderBottomRightRadius: 2 }}>
+          <Text style={{ fontFamily: font.sansBold, fontSize: 12, letterSpacing: 1, color: "#FFFFFF" }}>{t.flaggedRibbon}</Text>
         </View>
       )}
-      <View style={{ paddingTop: 8 }}><Stamp st={st} t={t} /></View>
-      <View style={{ flex: 1, gap: 10 }}>
-        <Text accessibilityRole="header" style={{ fontFamily: font.serif, fontSize: 20, color: c.ink, paddingRight: st.major ? 70 : 0 }}>{k.name}</Text>
-        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8, columnGap: 16 }}>
-          {[[t.kawasan, k.area || "–"], [t.jarak, fmtKm(d)], [t.kosTahun, rmOr(annual, t)], [t.nisbah, ratioLabel(k, t)]].map(([l, v]) => (
-            <View key={l}>
-              <Text style={{ fontFamily: font.sansSemi, fontSize: 10.5, color: c.muted }}>{l}</Text>
-              <Text style={{ fontFamily: font.mono, fontSize: 13.5, color: c.ink }}>{v}</Text>
-            </View>
-          ))}
-        </View>
-        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 6 }}>
-          {CRITERIA.map((cr) => statusOf(k, cr.k, ov) === "flag" && <Tag key={cr.k} text={`✕ ${cr[lang].short}`} fg={c.flag} bg={c.flagBg} />)}
-          {st.q > 0 && <Tag text={t.belumSemak(st.q)} fg={c.unk} bg={c.unkBg} />}
-          {!st.n && !st.q && <Tag text={t.noFlag} fg={c.accent} bg={c.accentSoft} />}
-          {hasMine && <Tag text={t.adaSemakan} fg={c.muted} bg={c.surface2} />}
-        </View>
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-          <Btn primary small label={t.bukaFail} onPress={onOpen} />
-          <Pressable accessibilityRole="checkbox" accessibilityState={{ checked: compared }} onPress={() => { tap(); onToggleCompare(); }}
-            style={{ minHeight: 44, flexDirection: "row", alignItems: "center", gap: 7 }}>
-            <View style={{ width: 20, height: 20, borderRadius: 3, borderWidth: 1.5, borderColor: compared ? c.accent : c.ink, backgroundColor: compared ? c.accent : "transparent", alignItems: "center", justifyContent: "center" }}>
-              {compared && <Text style={{ color: c.accentInk, fontSize: 12, lineHeight: 14 }}>✓</Text>}
-            </View>
-            <Text style={{ fontFamily: font.sansSemi, fontSize: 14, color: c.muted }}>{t.banding}</Text>
-          </Pressable>
-        </View>
+      <View style={{ flexDirection: "row", gap: 12, alignItems: "flex-start", justifyContent: "space-between" }}>
+        <Text accessibilityRole="header" style={{ flex: 1, paddingTop: 4, fontFamily: font.serif, fontSize: 20, lineHeight: 24, color: c.ink }}>{k.name}</Text>
+        <Stamp st={st} t={t} />
+      </View>
+      <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", rowGap: 12 }}>
+        <Field label={t.kawasan} value={k.area || null} mono={false} />
+        <Field label={t.jarak} value={fmtKm(d)} />
+        <Field label={t.kosTahun} value={annual == null ? null : rmTotal(k, annual, t)} />
+        <Field label={t.nisbah} value={k.teacherStudentRatio == null ? null : ratioLabel(k, t)} />
+      </View>
+      <View accessible accessibilityRole="image" accessibilityLabel={stripAria} style={{ flexDirection: "row", gap: 4 }}>{statuses.map(box)}</View>
+      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 6 }}>
+        {CRITERIA.map((cr) => statusOf(k, cr.k, ov) === "flag" && <Chip key={cr.k} text={`✕ ${cr[lang].short}`} fg={c.flag} bg={c.flagBg} line={c.flag} />)}
+        {st.q > 0 && <Chip text={t.belumSemak(st.q)} fg={c.unk} bg={c.unkBg} />}
+        {!st.n && !st.q && <Chip text={t.noFlag} fg={c.accent} bg={c.accentSoft} />}
+        {hasMine && <Chip text={t.adaSemakan} fg={c.muted} bg={c.surface2} line={c.line} />}
+      </View>
+      <View style={{ flexDirection: "row", gap: 8, alignItems: "stretch" }}>
+        <Btn primary label={t.bukaFail} onPress={onOpen} style={{ flex: 1 }} icon={<Icon d={ICONS.arrow} size={16} color={c.surface} sw={2.2} />} />
+        <Pressable accessibilityRole="checkbox" accessibilityState={{ checked: compared }} accessibilityLabel={`${t.banding} ${k.name}`} onPress={() => { tap(); onToggleCompare(); }}
+          style={{ minHeight: 44, flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 12, ...folder(4, 12), borderWidth: 1.5, borderColor: c.line, backgroundColor: c.surface2 }}>
+          <View style={{ width: 22, height: 22, borderRadius: 4, borderWidth: 1.5, borderColor: compared ? c.accent : c.ink, backgroundColor: compared ? c.accent : "transparent", alignItems: "center", justifyContent: "center" }}>
+            {compared && <Text style={{ color: c.accentInk, fontSize: 13, lineHeight: 15 }}>✓</Text>}
+          </View>
+          <Text style={{ fontFamily: font.sansSemi, fontSize: 14, color: c.ink }}>{t.banding}</Text>
+        </Pressable>
       </View>
     </View>
   );

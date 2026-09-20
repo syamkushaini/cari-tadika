@@ -2,13 +2,13 @@ import * as Haptics from "expo-haptics";
 import { Linking, Pressable, Text, TextInput, View } from "react-native";
 import { CRITERIA } from "@/content/criteria";
 import type { Dict } from "@/content/i18n";
-import { annualCost, costLines, isPartialCost, rm, rmOr } from "@/lib/cost";
-import { currLabel, hoursLabel, ratioFull, typeLabel } from "@/lib/format";
+import { annualCost, costLines, isPartialCost, rm, rmTotal } from "@/lib/cost";
+import { currLabel, hoursLabel, ratioLabel, tabLabel } from "@/lib/format";
 import { fmtKm, km, type LatLng } from "@/lib/geo";
 import { stats, statusOf } from "@/lib/scoring";
 import type { Kindergarten, Lang, Override, Status } from "@/lib/types";
-import { font, useColors } from "./theme";
-import { Btn, Sheet, tap } from "./ui";
+import { folder, font, useColors } from "./theme";
+import { Btn, Icon, ICONS, Sheet, tap, Unk } from "./ui";
 
 const STATUSES: Status[] = ["ok", "flag", "unsure"];
 
@@ -18,14 +18,25 @@ export function DetailSheet({ k, lang, t, loc, ov, withTransport, compared, onCl
   onSetNote: (id: string, note: string) => void; onReset: (id: string) => void; onToggleCompare: (id: string) => void;
 }) {
   const c = useColors();
-  const label: Record<Status, string> = { ok: t.statusY, flag: t.statusN, unsure: t.statusQ };
+  const label: Record<Status, string> = { ok: `✓ ${t.statusY}`, flag: `✕ ${t.statusN}`, unsure: `? ${t.statusQ}` };
   const colorOf = (s: Status) => ({ ok: c.accent, flag: c.flag, unsure: c.unk })[s];
   const st = k ? stats(k, ov) : null;
-  const annual = k ? annualCost(k, withTransport) : 0;
-  const Title = ({ a, b }: { a: string; b?: string }) => (
-    <View style={{ gap: 2 }}>
-      <Text accessibilityRole="header" style={{ fontFamily: font.serif, fontSize: 17, color: c.ink }}>{a}</Text>
-      {b ? <Text style={{ fontFamily: font.sans, fontSize: 12, color: c.muted }}>{b}</Text> : null}
+  const annual = k ? annualCost(k, withTransport) : null;
+  const H3 = ({ children }: { children: string }) => <Text accessibilityRole="header" style={{ fontFamily: font.serif, fontSize: 20, color: c.ink }}>{children}</Text>;
+  const Lab = ({ children }: { children: string }) => <Text style={{ fontFamily: font.sansSemi, fontSize: 12, letterSpacing: 1.1, color: c.muted }}>{children.toUpperCase()}</Text>;
+  const Fact = ({ l, v, mono = true, i }: { l: string; v: string | null; mono?: boolean; i: number }) => (
+    <View style={{ width: "50%", padding: 12, borderBottomWidth: i < 4 ? 1 : 0, borderStyle: "dotted", borderBottomColor: c.line, borderRightWidth: i % 2 === 0 ? 1 : 0, borderRightColor: c.line }}>
+      <Lab>{l}</Lab>
+      <View style={{ marginTop: 8 }}>{v ? <Text style={{ fontFamily: mono ? font.monoMed : font.sansMed, fontSize: mono ? 17 : 16, color: c.ink }}>{v}</Text> : <Unk t={t} />}</View>
+    </View>
+  );
+  const Leader = ({ l, note, v, unknown, total, muted }: { l: string; note?: string; v: string; unknown?: boolean; total?: boolean; muted?: boolean }) => (
+    <View style={{ flexDirection: "row", alignItems: "baseline", gap: 8, ...(total ? { borderTopWidth: 2, borderTopColor: c.ink, paddingTop: 12, marginTop: 4 } : {}) }}>
+      <Text style={{ flexShrink: 1, fontFamily: total ? font.sansSemi : font.sans, fontSize: 15, color: muted ? c.muted : c.ink }}>
+        {l}{note ? <Text style={{ fontSize: 13, color: c.muted }}>  {note}</Text> : null}
+      </Text>
+      <View style={{ flex: 1, minWidth: 12, borderBottomWidth: 2, borderStyle: "dotted", borderBottomColor: c.line, transform: [{ translateY: -4 }] }} />
+      {unknown ? <Unk t={t} /> : <Text style={{ fontFamily: total ? font.mono : font.monoMed, fontSize: total ? 19 : 15, color: c.ink }}>{v}</Text>}
     </View>
   );
 
@@ -33,84 +44,98 @@ export function DetailSheet({ k, lang, t, loc, ov, withTransport, compared, onCl
     <Sheet visible={!!k} onClose={onClose} title={k?.name ?? ""} closeLabel={t.tutup}>
       {k && st && (
         <>
-          <Text style={{ fontFamily: font.sans, fontSize: 14, color: c.muted, marginTop: -8 }}>
-            {k.area ? `${k.area} · ` : ""}{typeLabel(k, t)} · <Text style={{ fontFamily: font.mono, color: c.ink }}>{fmtKm(km(loc, k))}</Text> {t.dariAnda}
-          </Text>
-          <View style={{ flexDirection: "row", flexWrap: "wrap", borderWidth: 1, borderColor: c.line, borderRadius: 6, overflow: "hidden" }}>
-            {[
-              [t.skorLbl, `${st.y}/9 ${t.lulus}${st.major ? ` · ${t.kritikal}` : ""}`],
-              [t.yuran, k.monthlyFee == null ? t.unknown : `${rm(k.monthlyFee)} ${t.perBulan}`],
-              [t.kosSetahun, rmOr(annual, t)],
-              [t.nisbah, ratioFull(k, t)],
-              [t.kurikulum, currLabel(k.curriculumCode, t)],
-              [t.waktu, hoursLabel(k, lang, t)],
-            ].map(([l, v]) => (
-              <View key={l} style={{ width: "50%", padding: 10, borderWidth: 0.5, borderColor: c.line }}>
-                <Text style={{ fontFamily: font.sansSemi, fontSize: 11, color: c.muted }}>{l}</Text>
-                <Text style={{ fontFamily: font.mono, fontSize: 13.5, color: c.ink }}>{v}</Text>
-              </View>
-            ))}
-          </View>
-          <View style={{ flexDirection: "row", gap: 10, flexWrap: "wrap" }}>
-            {k.phone && <Btn small label={`${t.call} · ${k.phone}`} onPress={() => Linking.openURL(`tel:${k.phone!.replace(/[^+\d]/g, "")}`)} />}
-            <Btn small label={t.googleMaps} onPress={() => Linking.openURL(`http://maps.apple.com/?ll=${k.lat},${k.lng}&q=${encodeURIComponent(k.name)}`)} />
-            <Btn small label={t.eprasekolah} onPress={() => Linking.openURL("https://eprasekolah.moe.gov.my/")} />
+          <View style={{ gap: 8, marginTop: -8 }}>
+            <View style={{ alignSelf: "flex-start", paddingHorizontal: 10, paddingVertical: 6, backgroundColor: c.kraft, borderTopLeftRadius: 6, borderTopRightRadius: 6 }}>
+              <Text style={{ fontFamily: font.sansSemi, fontSize: 12, letterSpacing: 1.1, color: c.kraftInk }}>{tabLabel(k, t)}</Text>
+            </View>
+            <Text style={{ fontFamily: font.sans, fontSize: 14, color: c.muted }}>
+              {k.area ? `${k.area} · ` : ""}<Text style={{ fontFamily: font.mono, color: c.ink }}>{fmtKm(km(loc, k))}</Text> {t.dariAnda}
+            </Text>
           </View>
 
-          <Title a={t.anggaranKos} b={withTransport ? t.termasukTrans : t.tanpaTrans} />
-          <View style={{ borderTopWidth: 2, borderTopColor: c.ink }}>
-            {costLines(k, withTransport, t).map((l) => (
-              <View key={l.label} style={{ flexDirection: "row", justifyContent: "space-between", gap: 12, paddingVertical: 8, borderBottomWidth: 1, borderStyle: "dotted", borderBottomColor: c.line, opacity: l.off ? 0.5 : 1 }}>
-                <Text style={{ flex: 1, fontFamily: font.sans, fontSize: 13.5, color: c.muted }}>{l.label}</Text>
-                <Text style={{ fontFamily: font.mono, fontSize: 13.5, color: c.ink }}>{l.off ? "–" : rmOr(l.value, t)}</Text>
-              </View>
-            ))}
-            <View style={{ flexDirection: "row", justifyContent: "space-between", paddingTop: 10, borderTopWidth: 1.5, borderTopColor: c.ink, marginTop: 2 }}>
-              <Text style={{ fontFamily: font.serif, fontSize: 15, color: c.ink }}>{t.jumlahSetahun}</Text>
-              <Text style={{ fontFamily: font.monoBold, fontSize: 16, color: c.ink }}>{rmOr(annual, t)}</Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap", backgroundColor: c.surface, borderWidth: 1.5, borderColor: c.line, ...folder(4, 16), overflow: "hidden" }}>
+            <Fact i={0} l={t.skorLbl} v={`${st.y}/9`} />
+            <Fact i={1} l={t.yuran} v={k.monthlyFee == null ? null : rm(k.monthlyFee)} />
+            <Fact i={2} l={t.kosSetahun} v={annual == null ? null : rmTotal(k, annual, t)} />
+            <Fact i={3} l={t.nisbah} v={k.teacherStudentRatio == null ? null : ratioLabel(k, t)} />
+            <Fact i={4} l={t.kurikulum} v={currLabel(k.curriculumCode, t)} mono={false} />
+            <Fact i={5} l={t.waktu} v={k.hoursOpen ? hoursLabel(k, lang, t) : null} />
+          </View>
+
+          <View style={{ gap: 8 }}>
+            <View style={{ flexDirection: "row", gap: 8 }}>
+              {k.phone && <Btn label={t.call} onPress={() => Linking.openURL(`tel:${k.phone!.replace(/[^+\d]/g, "")}`)} style={{ flex: 1 }} icon={<Icon d={ICONS.phone} color={c.ink} sw={1.8} />} />}
+              <Btn label={t.googleMaps} onPress={() => Linking.openURL(`http://maps.apple.com/?ll=${k.lat},${k.lng}&q=${encodeURIComponent(k.name)}`)} style={{ flex: 1 }} icon={<Icon d={ICONS.pin} color={c.ink} sw={1.8} />} />
+            </View>
+            <Btn label={t.eprasekolah} onPress={() => Linking.openURL("https://eprasekolah.moe.gov.my/")} icon={<Icon d={ICONS.ext} size={16} color={c.ink} sw={2.2} />} />
+          </View>
+
+          <View style={{ gap: 12 }}>
+            <H3>{t.anggaranKos}</H3>
+            <View style={{ backgroundColor: c.surface, borderWidth: 1.5, borderColor: c.line, ...folder(4, 16), padding: 16, gap: 10 }}>
+              {costLines(k, withTransport, t).map((l) => (
+                <Leader key={l.label} l={l.label} v={l.off ? "–" : l.value == null ? "" : rm(l.value)} unknown={!l.off && l.value == null} />
+              ))}
+              <Leader total l={t.jumlahSetahun} v={rmTotal(k, annual, t)} unknown={annual == null} />
+              {annual != null && <Leader muted l={t.avgLabel} v={rm(annual / k.billableMonths) + (isPartialCost(k) ? "+" : "")} />}
+              {(isPartialCost(k) || annual == null) && (
+                <View accessibilityRole="alert" style={{ flexDirection: "row", gap: 10, alignItems: "flex-start", backgroundColor: c.unkBg, ...folder(4, 12), padding: 12 }}>
+                  <Icon d={ICONS.warn} color={c.unk} />
+                  <Text style={{ flex: 1, fontFamily: font.sansMed, fontSize: 13.5, lineHeight: 19, color: c.unk }}>{annual == null ? t.noVerdictData : t.costPartial}</Text>
+                </View>
+              )}
             </View>
           </View>
-          <Text style={{ fontFamily: font.sans, fontSize: 12, color: c.muted, marginTop: -8 }}>{annual == null ? t.noVerdictData : t.purataSebulan(rm(annual / k.billableMonths))}{isPartialCost(k) ? ` ${t.costPartial}` : ""}</Text>
 
-          <Title a={t.failSemakan} b={t.tekanKemaskini} />
-          <View style={{ gap: 9 }}>
+          <View style={{ gap: 12 }}>
+            <View style={{ gap: 6 }}>
+              <H3>{t.failSemakan}</H3>
+              <Text style={{ fontFamily: font.sans, fontSize: 14, lineHeight: 20, color: c.muted }}>{t.ckIntro}</Text>
+            </View>
             {CRITERIA.map((cr, i) => {
               const v = statusOf(k, cr.k, ov);
               const mine = !!ov?.statuses?.[cr.k];
               return (
-                <View key={cr.k} style={{ borderWidth: 1, borderColor: c.line, borderLeftWidth: 4, borderLeftColor: colorOf(v), borderRadius: 8, padding: 12, gap: 8 }}>
-                  <Text style={{ fontFamily: font.sansSemi, fontSize: 14.5, color: c.ink }}>
-                    {i + 1}. {cr[lang].t}{cr.major ? <Text style={{ fontFamily: font.monoBold, fontSize: 10, color: c.flag }}>  {t.criticalTag}</Text> : null}
-                  </Text>
-                  <View accessibilityRole="radiogroup" style={{ flexDirection: "row", borderWidth: 1.5, borderColor: c.ink, borderRadius: 6, overflow: "hidden" }}>
+                <View key={cr.k} style={{ backgroundColor: c.surface, ...folder(4, 16), borderWidth: 1.5, borderColor: v === "flag" ? c.flag : c.line, borderLeftWidth: 7, borderLeftColor: colorOf(v), padding: 14, gap: 12 }}>
+                  <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+                    <View style={{ width: 28, height: 28, borderRadius: 14, borderWidth: 1.5, borderColor: c.ink, alignItems: "center", justifyContent: "center" }}>
+                      <Text style={{ fontFamily: font.mono, fontSize: 13, color: c.ink }}>{i + 1}</Text>
+                    </View>
+                    <Text style={{ flex: 1, fontFamily: font.serif, fontSize: 16, lineHeight: 20, color: c.ink }}>{cr[lang].t}</Text>
+                    {cr.major && <View style={{ backgroundColor: c.ink, borderRadius: 3, paddingHorizontal: 6, paddingVertical: 3 }}><Text style={{ fontFamily: font.sansBold, fontSize: 11, letterSpacing: 1.1, color: c.surface }}>{t.criticalTag}</Text></View>}
+                  </View>
+                  <View accessibilityRole="radiogroup" accessibilityLabel={cr[lang].t} style={{ flexDirection: "row", borderWidth: 1.5, borderColor: c.line, ...folder(4, 12), overflow: "hidden", backgroundColor: c.surface2 }}>
                     {STATUSES.map((o, j) => {
                       const on = v === o;
+                      const bg = on ? { ok: c.accent, flag: c.flag, unsure: c.unkBg }[o] : "transparent";
+                      const fg = on ? { ok: c.accentInk, flag: c.flagInk, unsure: c.unk }[o] : c.ink;
                       return (
                         <Pressable key={o} accessibilityRole="radio" accessibilityState={{ selected: on }} accessibilityLabel={`${cr[lang].t}: ${label[o]}`}
                           onPress={() => { Haptics.selectionAsync().catch(() => {}); onSetStatus(k, cr.k, o); }}
-                          style={{ flex: 1, minHeight: 44, alignItems: "center", justifyContent: "center", borderLeftWidth: j ? 1.5 : 0, borderLeftColor: c.ink, backgroundColor: on ? colorOf(o) : "transparent" }}>
-                          <Text style={{ fontFamily: font.monoBold, fontSize: 12, color: on ? (o === "ok" ? c.accentInk : c.surface) : c.muted }}>{label[o]}</Text>
+                          style={{ flex: 1, minHeight: 44, alignItems: "center", justifyContent: "center", borderLeftWidth: j ? 1 : 0, borderLeftColor: c.line, backgroundColor: bg,
+                            ...(on && o === "unsure" ? { borderWidth: 2, borderColor: c.unk } : {}) }}>
+                          <Text adjustsFontSizeToFit numberOfLines={1} style={{ fontFamily: on ? font.sansSemi : font.sansMed, fontSize: 13.5, color: fg, paddingHorizontal: 2 }}>{label[o]}</Text>
                         </Pressable>
                       );
                     })}
                   </View>
-                  <Text style={{ fontFamily: font.sans, fontSize: 13, color: c.muted }}>{cr[lang].tip}</Text>
-                  <Text style={{ fontFamily: font.mono, fontSize: 11, color: c.muted }}>
-                    {mine ? t.semakanAnda : t.dataAsal}{cr.k === "ratio" && k.teacherStudentRatio != null ? ` · ${t.ratioWord} 1:${k.teacherStudentRatio}` : ""}
+                  <Text style={{ fontFamily: font.sans, fontSize: 14, lineHeight: 20, color: c.muted }}>{cr[lang].tip}</Text>
+                  <Text style={{ fontFamily: font.sansMed, fontSize: 12.5, color: c.muted }}>
+                    {t.srcLabel} {mine ? t.semakanAnda : t.dataAsal}{cr.k === "ratio" && k.teacherStudentRatio != null ? ` · ${t.ratioWord} 1:${k.teacherStudentRatio}` : ""}
                   </Text>
                 </View>
               );
             })}
           </View>
 
-          <View style={{ gap: 6 }}>
-            <Text style={{ fontFamily: font.sansSemi, fontSize: 12, color: c.muted }}>{t.notaLawatan}</Text>
-            <TextInput multiline value={ov?.note ?? ""} onChangeText={(s) => onSetNote(k.id, s)} placeholder={t.notaPlaceholder} placeholderTextColor={c.muted}
-              style={{ minHeight: 120, borderWidth: 1.5, borderColor: c.line, borderRadius: 6, padding: 12, fontFamily: font.sans, fontSize: 16, lineHeight: 24, color: c.ink, textAlignVertical: "top" }} />
+          <View style={{ gap: 8 }}>
+            <H3>{t.notaLawatan}</H3>
+            <TextInput multiline value={ov?.note ?? ""} onChangeText={(s) => onSetNote(k.id, s)} placeholder={t.notaPlaceholder} placeholderTextColor={c.muted} accessibilityLabel={t.notaLawatan}
+              style={{ minHeight: 150, borderWidth: 1.5, borderColor: c.line, ...folder(4, 16), backgroundColor: c.surface, padding: 14, fontFamily: font.sans, fontSize: 16, lineHeight: 32, color: c.ink, textAlignVertical: "top" }} />
           </View>
-          <View style={{ flexDirection: "row", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
-            <Btn small label={t.setSemula} onPress={() => onReset(k.id)} />
-            <Btn small primary={compared} label={compared ? `✓ ${t.tambahBanding}` : t.tambahBanding} onPress={() => { tap(); onToggleCompare(k.id); }} />
+          <View style={{ gap: 8 }}>
+            <Btn primary label={compared ? `✓ ${t.tambahBanding}` : t.tambahBanding} onPress={() => { tap(); onToggleCompare(k.id); }} />
+            <Btn label={t.setSemula} onPress={() => onReset(k.id)} />
           </View>
         </>
       )}

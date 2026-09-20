@@ -5,6 +5,10 @@ export const rm = (n: number) => "RM " + Math.round(n).toLocaleString("en-MY");
 /** Money that may be unknown. */
 export const rmOr = (n: number | null, t: Dict) => (n == null ? t.unknown : rm(n));
 
+/** Annual total as text; a trailing "+" marks a partial total (some add-ons unknown). */
+export const rmTotal = (k: Kindergarten, n: number | null, t: Dict) =>
+  n == null ? t.unknown : rm(n) + (isPartialCost(k) ? "+" : "");
+
 export type CostLine = { label: string; value: number | null; off: boolean };
 
 /** Line-item breakdown. Transport is only counted when requested AND offered. */
