@@ -7,6 +7,7 @@ import { DEFAULT_CENTRE } from "@/data/seed";
 import { annualCost } from "@/lib/cost";
 import { ANY_DISTANCE, DEFAULT_FILTERS, search, type Filters, type SortKey } from "@/lib/filter";
 import { typeLabel } from "@/lib/format";
+import { geocode, type Place } from "@/lib/geocode";
 import { useOverrides } from "@/lib/overrides";
 import type { Kindergarten, Lang } from "@/lib/types";
 import { CompareDialog } from "./CompareDialog";
@@ -32,12 +33,32 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
 
   const [loc, setLoc] = useState(DEFAULT_CENTRE);
   const [usingCurrent, setUsingCurrent] = useState(false);
+  // Typed location: query text, matches to choose from, and the label of the one chosen.
+  const [locQuery, setLocQuery] = useState("");
+  const [locMatches, setLocMatches] = useState<Place[]>([]);
+  const [locState, setLocState] = useState<"idle" | "loading" | "none" | "error">("idle");
+  const [customLabel, setCustomLabel] = useState<string | null>(null);
+  const originName = customLabel ?? (usingCurrent ? t.currentLoc : t.defaultLoc);
+  const applyOrigin = (p: { lat: number; lng: number }, label: string | null, gps: boolean) => {
+    setLoc({ lat: p.lat, lng: p.lng }); setShown(PAGE); setCustomLabel(label); setUsingCurrent(gps);
+  };
+  const findLocation = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!locQuery.trim()) return;
+    setLocState("loading"); setLocMatches([]);
+    try {
+      const r = await geocode(locQuery);
+      setLocMatches(r);
+      setLocState(r.length ? "idle" : "none");
+      if (r.length === 1) { applyOrigin(r[0], r[0].label, false); setLocMatches([]); }
+    } catch { setLocState("error"); }
+  };
   const [locBtn, setLocBtn] = useState<LocBtn>("useLoc");
   const useMyLocation = () => {
     if (!navigator.geolocation) return setLocBtn("locUnsupported");
     setLocBtn("locating");
     navigator.geolocation.getCurrentPosition(
-      (p) => { setLoc({ lat: p.coords.latitude, lng: p.coords.longitude }); setShown(PAGE); setUsingCurrent(true); setLocBtn("locUpdate"); },
+      (p) => { applyOrigin({ lat: p.coords.latitude, lng: p.coords.longitude }, null, true); setLocBtn("locUpdate"); },
       () => setLocBtn("locBlocked"),
       { timeout: 10000 },
     );
@@ -87,12 +108,38 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
 
         <section className="controls" aria-label={t.filtersAria}>
           <div className="loc">
-            <div className="loc-label">{t.distFrom} <b>{usingCurrent ? t.currentLoc : t.defaultLoc}</b></div>
+            <div className="loc-label">{t.distFrom} <b>{originName}</b></div>
             <button className="btn small" type="button" onClick={useMyLocation}>
               <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M12 21s7-6.8 7-12.4A7 7 0 1 0 5 8.6C5 14.2 12 21 12 21Z" /><circle cx="12" cy="8.6" r="2.4" /></svg>
               <span>{t[locBtn]}</span>
             </button>
           </div>
+          <form className="loc-form" onSubmit={findLocation}>
+            <div className="field q">
+              <label htmlFor="locq">{t.locInputLabel}</label>
+              <div className="loc-row">
+                <input id="locq" type="search" value={locQuery} placeholder={t.locInputPlaceholder} enterKeyHint="search"
+                  onChange={(e) => setLocQuery(e.target.value)} />
+                <button className="btn small" type="submit" disabled={locState === "loading"}>{locState === "loading" ? t.locSearching : t.locSearch}</button>
+              </div>
+            </div>
+            <div aria-live="polite">
+              {locState === "none" && <p className="src">{t.locNone}</p>}
+              {locState === "error" && <p className="src">{t.locError}</p>}
+              {locMatches.length > 1 && (
+                <div className="loc-results" role="group" aria-label={t.locPick}>
+                  <p className="src">{t.locPick}</p>
+                  {locMatches.map((m) => (
+                    <button key={`${m.lat},${m.lng}`} type="button" className="btn small loc-pick"
+                      onClick={() => { applyOrigin(m, m.label, false); setLocMatches([]); }}>{m.label}</button>
+                  ))}
+                </div>
+              )}
+              {(customLabel || usingCurrent) && (
+                <button className="btn small" type="button" onClick={() => { applyOrigin(DEFAULT_CENTRE, null, false); setLocQuery(""); setLocBtn("useLoc"); }}>{t.locDefaultBtn}</button>
+              )}
+            </div>
+          </form>
           <div className="filters">
             <div className="field q"><label htmlFor="q">{t.qLabel}</label>
               <input id="q" type="search" value={f.q} placeholder={t.qPlaceholder} onChange={(e) => set("q", e.target.value)} /></div>

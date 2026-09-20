@@ -206,3 +206,10 @@ td.win{background:var(--accent-soft)}
   .file{transition:box-shadow .15s, transform .15s}
   .file:hover{transform:translateY(-1px)}
 }
+
+/* typed location */
+.loc-form{display:grid;gap:8px}
+.loc-row{display:flex;gap:10px;align-items:flex-end}
+.loc-row input{flex:1;min-width:0}
+.loc-results{display:grid;gap:6px}
+.loc-pick{justify-content:flex-start;text-align:left;font-weight:500}

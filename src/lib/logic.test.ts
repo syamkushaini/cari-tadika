@@ -9,6 +9,7 @@ import { km } from "./geo";
 import { stats, stampIsPass } from "./scoring";
 import { ANY_DISTANCE, DEFAULT_FILTERS, search } from "./filter";
 import { buildCompare } from "./compare";
+import { geocode } from "./geocode";
 
 const by = (id: string) => ALL.find((k) => k.id === id)!;
 
@@ -160,5 +161,28 @@ describe("distance 'All'", () => {
     const { rows } = search([far], { ...DEFAULT_FILTERS, maxDist: ANY_DISTANCE }, DEFAULT_CENTRE, {}, () => "");
     expect(rows).toHaveLength(1);
     expect(rows[0].d).toBeGreaterThan(1000);
+  });
+});
+
+describe("geocode", () => {
+  const ok = (body: unknown) => (async () => ({ ok: true, status: 200, json: async () => body })) as unknown as typeof fetch;
+  it("returns short labels and numeric coordinates, restricted to Malaysia", async () => {
+    let seen = "";
+    const f = (async (u: string) => { seen = u; return { ok: true, status: 200, json: async () => [
+      { lat: "6.1962529", lon: "100.4087329", display_name: "Kolej Tentera Udara Alor Setar, Kampung Titi Gajah, Kota Setar, Kedah, Malaysia" },
+    ] }; }) as unknown as typeof fetch;
+    const r = await geocode("KTU", f);
+    expect(seen).toContain("countrycodes=my");
+    expect(r).toEqual([{ label: "Kolej Tentera Udara Alor Setar, Kampung Titi Gajah, Kota Setar", lat: 6.1962529, lng: 100.4087329 }]);
+  });
+  it("skips empty queries without a network call, dedupes labels, and drops bad coordinates", async () => {
+    await expect(geocode("  ", (() => { throw new Error("no network"); }) as unknown as typeof fetch)).resolves.toEqual([]);
+    const r = await geocode("x", ok([
+      { lat: "1", lon: "2", display_name: "A, B" }, { lat: "3", lon: "4", display_name: "A, B" }, { lat: "nope", lon: "4", display_name: "C" },
+    ]));
+    expect(r).toHaveLength(1);
+  });
+  it("throws on HTTP errors", async () => {
+    await expect(geocode("x", (async () => ({ ok: false, status: 429 })) as unknown as typeof fetch)).rejects.toThrow("429");
   });
 });
