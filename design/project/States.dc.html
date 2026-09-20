@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Cari Tadika, Keadaan</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=Spectral:wght@500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+.ct{--bg:#E2DDCC;--rule:rgba(27,42,38,.07);--sf:#FBFAF4;--sf2:#EEE8D6;--ink:#1B2A26;--mu:#47524B;--ln:#9C8F68;--gr:#1F6E43;--grbg:#DCE8DB;--rd:#AC3324;--rdbg:#F3DCD4;--oc:#6E5216;--ocbg:#EFE1BC;--kr:#8A5E38;--krt:#FFFFFF;--ib:#1B2A26;--ibt:#FBFAF4;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background-color:var(--bg);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 27px,var(--rule) 27px,var(--rule) 28px)}
+.ct.dk{--bg:#141E1A;--rule:rgba(231,236,230,.05);--sf:#1D2B26;--sf2:#263630;--ink:#E7ECE6;--mu:#A9B5AB;--ln:#728578;--gr:#5FC98F;--grbg:#1F3A2E;--rd:#F0917F;--rdbg:#3E2521;--oc:#E4C36B;--ocbg:#3B3218;--kr:#D6A96A;--krt:#1B1408;--ib:#E7ECE6;--ibt:#141E1A}
+.ct *{box-sizing:border-box}
+.ct h1,.ct h2,.ct p,.ct ul{margin:0;padding:0}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.lab{font:600 12px/1.3 'IBM Plex Sans',system-ui,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--mu)}
+.h2{font:700 20px/1.2 'Spectral',Georgia,serif}
+.sp{position:relative;margin-top:22px;background:var(--sf);border:1.5px solid var(--ln);border-radius:4px 16px 16px 4px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.cap{position:absolute;left:14px;top:-22px;height:24px;padding:0 10px;display:flex;align-items:center;background:var(--kr);color:var(--krt);font:600 12px/1 'IBM Plex Sans',system-ui,sans-serif;letter-spacing:.08em;border-radius:6px 6px 0 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:4px 12px 12px 4px;font:600 15px/1 'IBM Plex Sans',system-ui,sans-serif;text-decoration:none;cursor:pointer;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
+.btn.ink{background:var(--ib);color:var(--ibt);border-color:var(--ib)}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.btn:focus-visible,.inp:focus-visible,.res:focus-visible{outline:3px solid var(--oc);outline-offset:2px}
+.inp{flex:1;min-width:0;min-height:44px;padding:0 12px;font:400 16px/1 'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background:var(--sf);border:1.5px solid var(--ln);border-radius:4px 12px 12px 4px}
+.msg{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:4px 12px 12px 4px;border:1.5px solid var(--ln);background:var(--sf2);font-size:14px;line-height:1.45}
+.msg.warn{background:var(--ocbg);border-color:transparent}
+.msg.err{background:var(--rdbg);border-color:var(--rd)}
+.msg svg{flex:none;margin-top:1px}
+.msg.warn svg{color:var(--oc)}.msg.err svg{color:var(--rd)}
+.res{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:52px;padding:6px 14px;background:var(--sf);border:1.5px solid var(--ln);border-radius:4px 12px 12px 4px;color:var(--ink);font:500 15px/1.3 'IBM Plex Sans',system-ui,sans-serif;text-align:left;cursor:pointer}
+.res small{display:block;font-weight:400;font-size:13px;color:var(--mu)}
+.empty{border:2px dashed var(--ln);border-radius:4px 16px 16px 4px;padding:28px 20px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;background:transparent}
+.bar{background:var(--sf);border:1.5px solid var(--ln);border-radius:4px 16px 16px 4px;padding:12px 16px;display:flex;flex-direction:column;gap:10px}
+.bar .sel{font-size:14px;line-height:1.35;color:var(--mu)}
+.bar .sel b{color:var(--ink);font-weight:600}
+.verdict{position:relative;background:var(--sf);border:2px solid var(--ink);border-radius:4px 18px 18px 4px;padding:20px 16px 16px;display:flex;flex-direction:column;gap:10px}
+.spin{animation:sp 0.9s linear infinite}
+@keyframes sp { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.btn,.res{transition:background-color .15s ease,color .15s ease,border-color .15s ease}
+@media (prefers-reduced-motion: reduce) { .ct *, .ct *::before, .ct *::after { transition: none !important; animation: none !important; } }
+</style>
+</helmet>
+<div class="ct {{themeClass}}" style="width: 390px; height: 2380px;">
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 20px 16px 40px;">
+
+<h1 style="font: 700 26px/1.1 'Spectral', Georgia, serif;">{{t.h1}}</h1>
+<p style="font-size: 14px; line-height: 1.45; color: var(--mu);">{{t.intro}}</p>
+
+<h2 class="h2" style="margin-top: 18px;">{{t.hOrigin}}</h2>
+
+<section class="sp" aria-label="{{t.capLoad}}">
+<div class="cap">{{t.capLoad}}</div>
+<button type="button" class="btn" disabled="" aria-busy="true">
+<svg class="spin" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path></svg>{{t.loading}}</button>
+<p role="status" style="font-size: 14px; color: var(--mu);">{{t.loadingSub}}</p>
+</section>
+
+<section class="sp" aria-label="{{t.capBlocked}}">
+<div class="cap">{{t.capBlocked}}</div>
+<button type="button" class="btn">{{t.useLoc}}</button>
+<div class="msg warn" role="alert">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><path d="M12 10v4.5M12 17.2v.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg>
+<span>{{t.blocked}}</span></div>
+<a class="btn" href="#">{{t.settings}}</a>
+</section>
+
+<section class="sp" aria-label="{{t.capUnsup}}">
+<div class="cap">{{t.capUnsup}}</div>
+<button type="button" class="btn" disabled="">{{t.useLoc}}</button>
+<div class="msg" role="note">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle><path d="M12 11v5M12 7.8v.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg>
+<span>{{t.unsup}}</span></div>
+</section>
+
+<section class="sp" aria-label="{{t.capMulti}}">
+<div class="cap">{{t.capMulti}}</div>
+<div style="display: flex; gap: 8px;"><input class="inp" type="text" value="Anak Bukit" aria-label="{{t.typeLoc}}"><button type="button" class="btn ink">{{t.findLoc}}</button></div>
+<p style="font-size: 14px; color: var(--mu);">{{t.pick}}</p>
+<ul style="list-style: none; display: flex; flex-direction: column; gap: 6px;">
+<li><button type="button" class="res"><span>Anak Bukit<small>Alor Setar, Kedah</small></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></li>
+<li><button type="button" class="res"><span>Anak Bukit<small>Kubang Pasu, Kedah</small></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></li>
+<li><button type="button" class="res"><span>Anak Bukit<small>Padang Terap, Kedah</small></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></li>
+</ul>
+</section>
+
+<section class="sp" aria-label="{{t.capNone}}">
+<div class="cap">{{t.capNone}}</div>
+<div style="display: flex; gap: 8px;"><input class="inp" type="text" value="Taman Xyz" aria-label="{{t.typeLoc}}"><button type="button" class="btn ink">{{t.findLoc}}</button></div>
+<div class="msg" role="status">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle><path d="M12 11v5M12 7.8v.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg>
+<span>{{t.none}}</span></div>
+<button type="button" class="btn txt" style="border-color: transparent; text-decoration: underline; text-underline-offset: 3px; justify-content: flex-start; padding-left: 0;">{{t.dflt}}</button>
+</section>
+
+<section class="sp" aria-label="{{t.capErr}}">
+<div class="cap">{{t.capErr}}</div>
+<div style="display: flex; gap: 8px;"><input class="inp" type="text" value="Anak Bukit" aria-label="{{t.typeLoc}}"><button type="button" class="btn ink">{{t.findLoc}}</button></div>
+<div class="msg err" role="alert">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle><path d="m9 9 6 6M15 9l-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg>
+<span>{{t.err}}</span></div>
+<button type="button" class="btn">{{t.retry}}</button>
+</section>
+
+<h2 class="h2" style="margin-top: 34px;">{{t.hList}}</h2>
+<section class="sp" aria-label="{{t.capEmpty}}">
+<div class="cap">{{t.capEmpty}}</div>
+<div class="empty">
+<svg width="40" height="40" viewBox="0 0 44 44" fill="none" aria-hidden="true" style="color: var(--mu);"><circle cx="22" cy="22" r="20" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"></circle><path d="M12.5 23 22 14.5 31.5 23M15 21.5V31h14v-9.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"></path></svg>
+<p style="font: 600 17px/1.35 'Spectral', Georgia, serif; text-wrap: balance;">{{t.empty}}</p>
+<button type="button" class="btn ink">{{t.clearF}}</button>
+</div>
+</section>
+
+<h2 class="h2" style="margin-top: 34px;">{{t.hBar}}</h2>
+<section class="sp" aria-label="{{t.capMax}}">
+<div class="cap">{{t.capMax}}</div>
+<div class="bar">
+<div class="sel"><b>{{t.three}}</b> Kemas Taman Bakti, Permata Ilmu, Nur Hidayah</div>
+<div class="sel" role="alert" style="color: var(--rd); font-weight: 600;">{{t.max3}}</div>
+<div style="display: flex; gap: 8px;"><button type="button" class="btn">{{t.clear}}</button><a class="btn ink" href="Compare.dc.html" style="flex: 1;">{{t.compare}} (3)</a></div>
+</div>
+</section>
+<section class="sp" aria-label="{{t.capOne}}">
+<div class="cap">{{t.capOne}}</div>
+<div class="bar">
+<div class="sel"><b>{{t.one}}</b> Kemas Taman Bakti</div>
+<div class="sel">{{t.needTwo}}</div>
+<div style="display: flex; gap: 8px;"><button type="button" class="btn">{{t.clear}}</button><button type="button" class="btn ink" disabled="" style="flex: 1;">{{t.compare}} (1)</button></div>
+</div>
+</section>
+
+<h2 class="h2" style="margin-top: 34px;">{{t.hVerdict}}</h2>
+<section class="sp" style="border: 0; padding: 0; background: transparent;" aria-label="{{t.capAll}}">
+<div class="cap" style="left: 14px;">{{t.capAll}}</div>
+<div class="verdict" style="margin-top: 0;">
+<p style="font-size: 15.5px; line-height: 1.5;"><b>{{t.allCrit}}</b></p>
+<p style="font-size: 14px; line-height: 1.5; color: var(--mu);">{{t.allCritSub}}</p>
+<a class="btn ink" href="Home.dc.html" style="align-self: flex-start;">{{t.backList}}</a>
+</div>
+</section>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Rupa"},"lang":{"editor":"enum","options":["ms","en"],"default":"ms","section":"Bahasa"},"$preview":{"width":390,"height":2380}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = (this.props.theme ?? 'light') === 'dark';
+    const en = (this.props.lang ?? 'ms') === 'en';
+    const T = (m, e) => (en ? e : m);
+    return {
+      themeClass: dark ? 'dk' : '',
+      t: {
+        h1: T('Keadaan skrin', 'Screen states'),
+        intro: T('Semua keadaan selain paparan biasa: lokasi, senarai kosong, bar banding dan keputusan tanpa pilihan selamat.', 'Every state beyond the normal view: location, empty list, compare bar, and a verdict with no safe option.'),
+        hOrigin: T('Blok lokasi asal', 'Starting location block'),
+        capLoad: T('MEMUAT', 'LOADING'), capBlocked: T('DISEKAT', 'BLOCKED'), capUnsup: T('TIDAK DISOKONG', 'UNSUPPORTED'),
+        capMulti: T('BANYAK PADANAN', 'SEVERAL MATCHES'), capNone: T('TIADA PADANAN', 'NOT FOUND'), capErr: T('RALAT', 'ERROR'),
+        loading: T('Mencari lokasi anda...', 'Finding your location...'),
+        loadingSub: T('Sila tunggu sebentar. Anda juga boleh menaip lokasi.', 'Please wait a moment. You can also type a location.'),
+        useLoc: T('Guna lokasi saya', 'Use my location'),
+        blocked: T('Akses lokasi disekat. Benarkan lokasi dalam Tetapan, atau taip lokasi di bawah.', 'Location access is blocked. Allow location in Settings, or type a location below.'),
+        settings: T('Buka Tetapan', 'Open Settings'),
+        unsup: T('Peranti ini tidak menyokong lokasi. Taip lokasi untuk meneruskan.', 'This device does not support location. Type a location to continue.'),
+        typeLoc: T('Taip lokasi', 'Type a location'), findLoc: T('Cari lokasi', 'Find location'),
+        pick: T('3 tempat dijumpai. Ketik satu untuk digunakan.', '3 places found. Tap one to use it.'),
+        none: T('Lokasi "Taman Xyz" tidak dijumpai. Cuba nama bandar atau taman yang lain.', 'Location "Taman Xyz" was not found. Try a different town or neighbourhood name.'),
+        dflt: T('Guna lokasi lalai', 'Use default location'),
+        err: T('Carian gagal. Semak sambungan internet anda dan cuba lagi.', 'Search failed. Check your internet connection and try again.'),
+        retry: T('Cuba lagi', 'Try again'),
+        hList: T('Senarai kosong', 'Empty list'), capEmpty: T('TIADA HASIL', 'NO RESULTS'),
+        empty: T('Tiada tadika yang sepadan. Cuba lebarkan jarak atau kosongkan satu penapis.', 'No kindergartens match. Try widening the distance or clearing a filter.'),
+        clearF: T('Kosongkan penapis', 'Clear filters'),
+        hBar: T('Bar banding', 'Compare bar'), capMax: T('HAD 3 DICAPAI', 'LIMIT OF 3 REACHED'), capOne: T('BARU 1 DIPILIH', 'ONLY 1 SELECTED'),
+        three: T('3 dipilih:', '3 selected:'), one: T('1 dipilih:', '1 selected:'), max3: T('Maksimum 3 tadika', 'Maximum 3 kindergartens'),
+        needTwo: T('Pilih sekurang-kurangnya 2 untuk membanding.', 'Pick at least 2 to compare.'),
+        clear: T('Kosongkan', 'Clear'), compare: T('Banding', 'Compare'),
+        hVerdict: T('Keputusan banding', 'Compare verdict'), capAll: T('SEMUA BENDERA MERAH UTAMA', 'ALL MAJOR RED FLAGS'),
+        allCrit: T('Semua pilihan ada bendera merah utama. Pertimbangkan tadika lain.', 'All options have a major red flag. Consider other kindergartens.'),
+        allCritSub: T('Lawati sendiri dan minta sesi percubaan sebelum mendaftar mana-mana tadika.', 'Visit in person and ask for a trial session before enrolling anywhere.'),
+        backList: T('Kembali ke senarai', 'Back to the list')
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

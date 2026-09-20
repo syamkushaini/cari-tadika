@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Cari Tadika, Utama</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=Spectral:wght@500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+.ct{--bg:#E2DDCC;--rule:rgba(27,42,38,.07);--sf:#FBFAF4;--sf2:#EEE8D6;--ink:#1B2A26;--mu:#47524B;--ln:#9C8F68;--gr:#1F6E43;--grbg:#DCE8DB;--rd:#AC3324;--rdbg:#F3DCD4;--oc:#6E5216;--ocbg:#EFE1BC;--kr:#8A5E38;--krt:#FFFFFF;--rib:#AC3324;--ib:#1B2A26;--ibt:#FBFAF4;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background-color:var(--bg);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 27px,var(--rule) 27px,var(--rule) 28px)}
+.ct.dk{--bg:#141E1A;--rule:rgba(231,236,230,.05);--sf:#1D2B26;--sf2:#263630;--ink:#E7ECE6;--mu:#A9B5AB;--ln:#728578;--gr:#5FC98F;--grbg:#1F3A2E;--rd:#F0917F;--rdbg:#3E2521;--oc:#E4C36B;--ocbg:#3B3218;--kr:#D6A96A;--krt:#1B1408;--rib:#C4432F;--ib:#E7ECE6;--ibt:#141E1A}
+.ct *{box-sizing:border-box}
+.ct h1,.ct h2,.ct p{margin:0}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:4px 12px 12px 4px;font:600 15px/1 'IBM Plex Sans',system-ui,sans-serif;text-decoration:none;cursor:pointer;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
+.btn.ink{background:var(--ib);color:var(--ibt);border-color:var(--ib)}
+.btn.txt{border-color:transparent;text-decoration:underline;text-underline-offset:3px}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn:focus-visible,.cmp:focus-within,.inp:focus-visible,summary:focus-visible,.fchip:focus-visible{outline:3px solid var(--oc);outline-offset:2px}
+.lab{font:600 12px/1 'IBM Plex Sans',system-ui,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--mu)}
+.inp{flex:1;min-width:0;min-height:44px;padding:0 12px;font:400 16px/1 'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background:var(--sf);border:1.5px solid var(--ln);border-radius:4px 12px 12px 4px}
+.inp::placeholder{color:var(--mu)}
+.card{position:relative;margin-top:26px;background:var(--sf);border:1.5px solid var(--ln);border-radius:4px 18px 18px 4px;padding:16px;box-shadow:0 1px 0 var(--ln),0 8px 16px -8px rgba(27,42,38,.35);display:flex;flex-direction:column;gap:12px}
+.card.flag{border-color:var(--rd)}
+.tab{position:absolute;left:14px;top:-25px;height:26px;padding:0 12px;display:flex;align-items:center;background:var(--kr);color:var(--krt);font:600 12px/1 'IBM Plex Sans',system-ui,sans-serif;letter-spacing:.1em;border-radius:6px 6px 0 0}
+.rib{position:absolute;right:18px;top:-25px;height:34px;padding:0 12px 6px 12px;display:flex;align-items:center;background:var(--rib);color:#fff;font:700 12px/1 'IBM Plex Sans',system-ui,sans-serif;letter-spacing:.08em;clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%)}
+.head{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.name{font:600 20px/1.2 'Spectral',Georgia,serif;padding-top:4px;flex:1;min-width:0}
+.stamp{flex:none;width:72px;height:72px;border-radius:50%;border:2.5px dashed currentColor;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-7deg);box-shadow:inset 0 0 0 3px var(--sf),inset 0 0 0 4px currentColor}
+.stamp .sc{font:600 20px/1 'IBM Plex Mono',ui-monospace,monospace}
+.stamp .sw{font:700 11px/1 'IBM Plex Sans',system-ui,sans-serif;letter-spacing:.14em;margin-top:5px}
+.stamp.ok{color:var(--gr)}.stamp.warn{color:var(--oc)}.stamp.bad{color:var(--rd)}
+.ledger{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px}
+.lab2{margin-bottom:6px}
+.val{font:500 15px/1.25 'IBM Plex Mono',ui-monospace,monospace;padding-bottom:4px;border-bottom:1.5px dotted var(--ln)}
+.val.txt{font-family:'IBM Plex Sans',system-ui,sans-serif;font-weight:500}
+.val.unk{font:italic 400 13.5px/1.25 'IBM Plex Sans',system-ui,sans-serif;color:var(--mu);border-bottom:1.5px dashed var(--ln)}
+.strip{display:flex;gap:4px}
+.bx{width:27px;height:27px;display:flex;align-items:center;justify-content:center;font:600 13px/1 'IBM Plex Mono',ui-monospace,monospace;border-radius:3px;border:1.5px solid}
+.bx.o{background:var(--grbg);color:var(--gr);border-color:var(--gr)}
+.bx.x{background:var(--rdbg);color:var(--rd);border-color:var(--rd)}
+.bx.u{background:transparent;color:var(--oc);border:1.5px dashed var(--ln)}
+.bx.crit{border-bottom-width:4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;min-height:30px;padding:0 10px;border-radius:15px 15px 15px 4px;font:600 13px/1 'IBM Plex Sans',system-ui,sans-serif;border:1.5px solid}
+.chip.rd{background:var(--rdbg);color:var(--rd);border-color:var(--rd)}
+.chip.oc{background:var(--ocbg);color:var(--oc);border-color:transparent}
+.chip.gr{background:var(--grbg);color:var(--gr);border-color:transparent}
+.chip.gy{background:var(--sf2);color:var(--mu);border-color:var(--ln)}
+.acts{display:flex;gap:8px;align-items:stretch}
+.go{flex:1}
+.cmp{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;border:1.5px solid var(--ln);border-radius:4px 12px 12px 4px;font:600 14px/1 'IBM Plex Sans',system-ui,sans-serif;background:var(--sf2);cursor:pointer}
+.cmp input{width:22px;height:22px;margin:0;accent-color:var(--gr)}
+.fchip{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px 0 14px;border-radius:20px 20px 20px 4px;background:var(--sf2);border:1.5px solid var(--ln);color:var(--ink);font:500 13px/1 'IBM Plex Sans',system-ui,sans-serif;cursor:pointer}
+.seg2{display:inline-flex;border:1.5px solid var(--ink);border-radius:4px 12px 12px 4px;overflow:hidden}
+.seg2 button{min-width:48px;min-height:44px;border:0;background:transparent;color:var(--ink);font:600 14px/1 'IBM Plex Sans',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer}
+.seg2 button[aria-pressed="true"]{background:var(--ib);color:var(--ibt)}
+.guide{background:var(--sf);border:1.5px solid var(--ln);border-radius:4px 14px 14px 4px}
+.guide summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:0 14px;font:600 15px/1.3 'Spectral',Georgia,serif;cursor:pointer;list-style:none}
+.guide summary::-webkit-details-marker{display:none}
+.guide .gb{padding:0 14px 14px;font-size:14px;line-height:1.5;color:var(--mu)}
+.guide ol{margin:8px 0 0;padding-left:22px;color:var(--ink)}
+.bar{position:absolute;left:0;right:0;bottom:0;padding:12px 16px 34px;background:var(--sf);border-top:1.5px solid var(--ln);box-shadow:0 -8px 20px -10px rgba(27,42,38,.4);display:flex;flex-direction:column;gap:10px}
+.bar .sel{font-size:14px;line-height:1.35;color:var(--mu);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar .sel b{color:var(--ink);font-weight:600}
+.bar .row{display:flex;gap:8px}
+.btn,.seg2 button,.fchip,.cmp{transition:background-color .15s ease,color .15s ease,border-color .15s ease,transform .1s ease}
+.btn:active,.fchip:active{transform:scale(.98)}
+@media (prefers-reduced-motion: reduce) { .ct *, .ct *::before, .ct *::after { transition: none !important; animation: none !important; } }
+</style>
+</helmet>
+<div class="ct {{themeClass}}" style="width: 390px; height: 2600px; position: relative;">
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 16px 16px 0;">
+
+<header style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+<div style="display: flex; align-items: center; gap: 10px;">
+<svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true" style="color: var(--ink); flex: none;">
+<circle cx="22" cy="22" r="20" stroke="currentColor" stroke-width="2"></circle>
+<circle cx="22" cy="22" r="16.5" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2.6"></circle>
+<path d="M12.5 23 22 14.5 31.5 23M15 21.5V31h14v-9.5M19.5 31v-6h5v6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"></path>
+</svg>
+<h1 style="font: 700 27px/1 'Spectral', Georgia, serif; letter-spacing: -0.01em;">Cari Tadika</h1>
+</div>
+<div class="seg2" role="group" aria-label="{{t.aLang}}">
+<button type="button" aria-pressed="{{msOn}}" aria-label="Bahasa Melayu" onClick="{{setMs}}">MS</button>
+<button type="button" aria-pressed="{{enOn}}" aria-label="English" onClick="{{setEn}}">EN</button>
+</div>
+</header>
+
+<p style="font-size: 15px; line-height: 1.5; color: var(--mu); text-wrap: pretty;">{{t.lede}}</p>
+
+<section aria-label="{{t.aOrigin}}" style="background: var(--sf); border: 1.5px solid var(--ln); border-radius: 4px 14px 14px 4px; padding: 14px; display: flex; flex-direction: column; gap: 12px;">
+<div>
+<div class="lab">{{t.measured}}</div>
+<div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="flex: none;"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z" stroke="currentColor" stroke-width="1.8"></path><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.8"></circle></svg>
+<span style="font: 600 18px/1.2 'Spectral', Georgia, serif;">Alor Setar, Kedah</span>
+<span style="font-size: 13px; color: var(--mu);">{{t.dflt}}</span>
+</div>
+</div>
+<button type="button" class="btn" style="width: 100%;">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+{{t.useLoc}}
+</button>
+<form style="display: flex; flex-direction: column; gap: 6px;" action="#" onsubmit="return false">
+<label for="loc" class="lab">{{t.typeLoc}}</label>
+<div style="display: flex; gap: 8px;">
+<input id="loc" class="inp" type="text" placeholder="{{t.locPh}}">
+<button type="submit" class="btn ink">{{t.findLoc}}</button>
+</div>
+</form>
+</section>
+
+<div style="display: flex; gap: 8px;">
+<div style="position: relative; flex: 1; display: flex;">
+<label for="q" class="sr">{{t.search}}</label>
+<input id="q" class="inp" type="search" placeholder="{{t.search}}" style="padding-left: 40px;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="position: absolute; left: 12px; top: 12px; color: var(--mu);"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+</div>
+<a class="btn" href="Filters.dc.html" aria-label="{{filterAria}}">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h9M17 7h3M4 17h3M11 17h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><circle cx="15" cy="7" r="2.2" stroke="currentColor" stroke-width="2"></circle><circle cx="9" cy="17" r="2.2" stroke="currentColor" stroke-width="2"></circle></svg>
+{{t.filters}}
+<span class="mono" style="display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; border-radius: 11px; background: var(--ib); color: var(--ibt); font-size: 12px; font-weight: 600;">{{filterCount}}</span>
+</a>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 8px;">
+<sc-for list="{{fchips}}" as="fc" hint-placeholder-count="2">
+<button type="button" class="fchip" aria-label="{{fc.aria}}">
+{{fc.t}}
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path></svg>
+</button>
+</sc-for>
+</div>
+
+<p aria-live="polite" style="font-size: 14px; line-height: 1.4; color: var(--mu);"><b class="mono" style="color: var(--ink);">{{found}}</b>{{t.foundSfx}}<b class="mono" style="color: var(--ink);">{{hidden}}</b>{{t.hiddenSfx}}</p>
+
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="4">
+<article class="card {{c.flagCls}}" aria-label="{{c.name}}">
+<div class="tab">{{c.tab}}</div>
+<sc-if value="{{c.flagged}}" hint-placeholder-val="{{ false }}"><div class="rib">{{t.ribbon}}</div></sc-if>
+<div class="head">
+<h2 class="name">{{c.name}}</h2>
+<div class="stamp {{c.stampCls}}" role="img" aria-label="{{c.stampAria}}"><span class="sc">{{c.score}}</span><span class="sw">{{c.word}}</span></div>
+</div>
+<div class="ledger">
+<sc-for list="{{c.fields}}" as="f" hint-placeholder-count="4">
+<div><div class="lab lab2">{{f.lab}}</div><div class="val {{f.cls}}">{{f.t}}</div></div>
+</sc-for>
+</div>
+<div class="strip" role="img" aria-label="{{c.stripAria}}">
+<sc-for list="{{c.strip}}" as="b" hint-placeholder-count="9"><span class="bx {{b.cls}}">{{b.sym}}</span></sc-for>
+</div>
+<div class="chips">
+<sc-for list="{{c.chips}}" as="ch" hint-placeholder-count="2"><span class="chip {{ch.cls}}">{{ch.t}}</span></sc-for>
+</div>
+<div class="acts">
+<a class="btn ink go" href="Detail.dc.html" aria-label="{{c.openAria}}">{{t.openFile}}
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+<label class="cmp"><input type="checkbox" checked="{{c.checked}}" onChange="{{c.toggle}}" aria-label="{{c.cmpAria}}"><span>{{t.compare}}</span></label>
+</div>
+</article>
+</sc-for>
+
+<details class="guide" style="margin-top: 8px;">
+<summary>{{t.guide}}
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</summary>
+<div class="gb">
+<p>{{t.credit}}</p>
+<ol>
+<sc-for list="{{criteria}}" as="k" hint-placeholder-count="9"><li>{{k.t}}</li></sc-for>
+</ol>
+</div>
+</details>
+
+<p style="font-size: 13px; line-height: 1.4; color: var(--mu); padding-bottom: 8px;">{{t.osm}}</p>
+</div>
+
+<sc-if value="{{hasSel}}" hint-placeholder-val="{{ true }}">
+<div class="bar" role="region" aria-label="Bar perbandingan">
+<div class="sel"><b>{{selLine}}</b> {{selText}}</div>
+<sc-if value="{{maxWarn}}" hint-placeholder-val="{{ false }}"><div class="sel" style="color: var(--rd); font-weight: 600;">{{t.max3}}</div></sc-if>
+<div class="row">
+<button type="button" class="btn" onClick="{{clearSel}}">{{t.clear}}</button>
+<sc-if value="{{canCompare}}" hint-placeholder-val="{{ true }}"><a class="btn ink" href="Compare.dc.html" style="flex: 1;">{{compareLabel}}</a></sc-if>
+<sc-if value="{{cantCompare}}" hint-placeholder-val="{{ false }}"><button type="button" class="btn ink" disabled="" style="flex: 1;">{{compareLabel}}</button></sc-if>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Rupa"},"lang":{"editor":"enum","options":["ms","en"],"default":"ms","section":"Bahasa"},"showFlagged":{"editor":"boolean","default":false,"section":"Data"},"$preview":{"width":390,"height":2600}}'>
+class Component extends DCLogic {
+  state = { sel: { kemas: true, permata: true }, maxWarn: false, lang: null };
+  renderVals() {
+    const dark = (this.props.theme ?? 'light') === 'dark';
+    const flagged = this.props.showFlagged ?? false;
+    const lang = this.state.lang || this.props.lang || 'ms';
+    const en = lang === 'en';
+    const T = (m, e) => (en ? e : m);
+    const sel = this.state.sel;
+    const ids = Object.keys(sel).filter((k) => sel[k]);
+    const CR = en
+      ? ['Registered with KPM', 'Teacher-to-student ratio', 'Clear curriculum', 'Safety measures', 'Clean and orderly', 'Offers a trial session', 'Assessment records', 'Teachers do not change often', 'Food menu provided']
+      : ['Berdaftar dengan KPM', 'Nisbah guru-murid', 'Kurikulum jelas', 'Langkah keselamatan', 'Bersih dan teratur', 'Tawarkan sesi percubaan', 'Rekod penilaian', 'Guru tidak kerap bertukar', 'Menu makanan disediakan'];
+    const strip = (s) => s.split('').map((k, i) => ({
+      cls: (k === 'o' ? 'o' : k === 'x' ? 'x' : 'u') + (i === 0 || i === 3 ? ' crit' : ''),
+      sym: k === 'o' ? '✓' : k === 'x' ? '✕' : '?'
+    }));
+    const stripAria = (s) => {
+      const n = (c) => s.split('').filter((k) => k === c).length;
+      return T('Semakan: ', 'Checks: ') + n('o') + ' ok, ' + n('x') + ' red flag, ' + n('u') + T(' belum pasti', ' unsure');
+    };
+    const U = T('Belum diketahui', 'Not yet known');
+    const fld = (a, d, c, r) => [
+      { lab: T('Kawasan', 'Area'), t: a || U, cls: a ? 'txt' : 'unk' },
+      { lab: T('Jarak', 'Distance'), t: d || U, cls: d ? '' : 'unk' },
+      { lab: T('Kos / tahun', 'Cost / year'), t: c || U, cls: c ? '' : 'unk' },
+      { lab: T('Nisbah', 'Ratio'), t: r || U, cls: r ? '' : 'unk' }
+    ];
+    const GOV = T('KERAJAAN', 'GOVERNMENT');
+    const PRV = T('SWASTA', 'PRIVATE');
+    const PRVI = T('SWASTA · ISLAMIK', 'PRIVATE · ISLAMIC');
+    const notes = { cls: 'gy', t: T('Ada catatan anda', 'Has your notes') };
+    const unch = (n) => ({ cls: 'oc', t: n + T(' belum disemak', ' unchecked') });
+    const defs = [
+      { id: 'kemas', short: 'Kemas Taman Bakti', name: 'Tadika Kemas Taman Bakti', tab: GOV, f: fld('Taman Uda', '1.8 km', 'RM 810', '1:12'), s: 'oooooxooo', n: 8, pass: true, cls: 'ok', chips: [{ cls: 'rd', t: T('✕ Tiada sesi percubaan', '✕ No trial session') }, notes] },
+      { id: 'permata', short: 'Permata Ilmu', name: 'Tadika Permata Ilmu', tab: PRVI, f: fld('Anak Bukit', '2.6 km', 'RM 4,110+', '1:12'), s: 'oooooouuu', n: 6, cls: 'warn', chips: [unch(3), notes] },
+      { id: 'cemerlang', short: 'Cemerlang', name: 'Tadika dan Taska Cemerlang', tab: PRV, f: fld('Jalan Langgar', '4.1 km', 'RM 2,400+', '1:22'), s: 'xxouououu', n: 3, cls: 'bad', flagged: true, chips: [{ cls: 'rd', t: T('✕ Tidak berdaftar dengan KPM', '✕ Not registered with KPM') }, { cls: 'rd', t: T('✕ Nisbah melebihi 1:15', '✕ Ratio above 1:15') }, unch(4)] },
+      { id: 'hidayah', short: 'Nur Hidayah', name: 'Tadika Islam Nur Hidayah', tab: PRVI, f: fld('Simpang Kuala', '3.4 km', null, null), s: 'ouuuuuuuu', n: 1, cls: 'warn', chips: [unch(8)] },
+      { id: 'bestari', short: 'Bestari Aman', name: 'Tadika Bestari Aman', tab: PRV, f: fld(null, '4.7 km', null, null), s: 'uuuuuuuuu', n: 0, cls: 'warn', chips: [unch(9)] }
+    ];
+    const order = flagged ? ['kemas', 'permata', 'cemerlang', 'hidayah'] : ['kemas', 'permata', 'hidayah', 'bestari'];
+    const list = order.map((id) => defs.find((d) => d.id === id));
+    const cards = list.map((d) => ({
+      name: d.name,
+      tab: d.tab,
+      flagged: !!d.flagged,
+      flagCls: d.flagged ? 'flag' : '',
+      stampCls: d.cls,
+      score: d.n + '/9',
+      word: d.pass ? T('LULUS', 'PASS') : T('SEMAK', 'CHECK'),
+      stampAria: d.flagged
+        ? T('Skor ' + d.n + ' daripada 9, ada bendera merah utama', 'Score ' + d.n + ' out of 9, has a major red flag')
+        : T('Skor ' + d.n + ' daripada 9, ' + (d.pass ? 'lulus' : 'perlu semakan'), 'Score ' + d.n + ' out of 9, ' + (d.pass ? 'pass' : 'needs checking')),
+      fields: d.f,
+      strip: strip(d.s),
+      stripAria: stripAria(d.s),
+      chips: d.chips,
+      openAria: T('Buka fail dan semak ', 'Open file and review ') + d.name,
+      cmpAria: T('Banding ', 'Compare ') + d.name,
+      checked: !!sel[d.id],
+      toggle: () => {
+        const s = Object.assign({}, this.state.sel);
+        if (s[d.id]) { delete s[d.id]; this.setState({ sel: s, maxWarn: false }); return; }
+        if (Object.keys(s).filter((k) => s[k]).length >= 3) { this.setState({ maxWarn: true }); return; }
+        s[d.id] = true;
+        this.setState({ sel: s, maxWarn: false });
+      }
+    }));
+    const nameOf = (id) => (defs.find((d) => d.id === id) || {}).short;
+    const fchips = [{ t: T('Dalam 10 km', 'Within 10 km'), aria: T('Buang penapis dalam 10 km', 'Remove filter within 10 km') }];
+    if (!flagged) fchips.unshift({ t: T('Sembunyi bendera merah utama', 'Hide major red flags'), aria: T('Buang penapis sembunyi bendera merah utama', 'Remove filter hide major red flags') });
+    const fc = fchips.length;
+    const t = {
+      aLang: T('Bahasa', 'Language'),
+      lede: T('Cari tadika berhampiran, semak fail 9 tanda bahaya, dan banding sebelah-menyebelah sebelum daftar anak.', 'Find nearby kindergartens, check each against a 9-point red-flag list, and compare them side by side before you enrol.'),
+      aOrigin: T('Lokasi asal', 'Starting location'),
+      measured: T('Jarak diukur dari', 'Distance measured from'),
+      dflt: T('(lalai)', '(default)'),
+      useLoc: T('Guna lokasi saya', 'Use my location'),
+      typeLoc: T('Taip lokasi', 'Type a location'),
+      locPh: T('cth. Anak Bukit', 'e.g. Anak Bukit'),
+      findLoc: T('Cari lokasi', 'Find location'),
+      search: T('Cari nama atau kawasan', 'Search name or area'),
+      filters: T('Tapis', 'Filters'),
+      foundSfx: T(' tadika dijumpai · ', ' kindergartens found · '),
+      hiddenSfx: T(' disembunyikan kerana bendera merah utama', ' hidden for a major red flag'),
+      ribbon: T('SEMAK SEGERA', 'REVIEW NOW'),
+      openFile: T('Buka fail & semak', 'Open file & review'),
+      compare: T('Banding', 'Compare'),
+      guide: T('9 tanda bahaya semasa memilih tadika', '9 red flags when choosing a kindergarten'),
+      credit: T('Sumber panduan: [KREDIT SUMBER]', 'Guide source: [SOURCE CREDIT]'),
+      osm: T('Data lokasi © penyumbang OpenStreetMap (ODbL)', 'Location data © OpenStreetMap contributors (ODbL)'),
+      max3: T('Maksimum 3 tadika', 'Maximum 3 kindergartens'),
+      clear: T('Kosongkan', 'Clear')
+    };
+    return {
+      t: t,
+      themeClass: dark ? 'dk' : '',
+      msOn: en ? 'false' : 'true',
+      enOn: en ? 'true' : 'false',
+      setMs: () => this.setState({ lang: 'ms' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      filterCount: String(fc),
+      filterAria: T('Tapis, ', 'Filters, ') + fc + T(' aktif', ' active'),
+      fchips: fchips,
+      found: flagged ? '45' : '42',
+      hidden: flagged ? '0' : '3',
+      cards: cards,
+      criteria: CR.map((x) => ({ t: x })),
+      hasSel: ids.length > 0,
+      selLine: ids.length + T(' dipilih:', ' selected:'),
+      selText: ids.map(nameOf).join(', '),
+      maxWarn: this.state.maxWarn,
+      canCompare: ids.length >= 2,
+      cantCompare: ids.length < 2,
+      compareLabel: T('Banding', 'Compare') + ' (' + ids.length + ')',
+      clearSel: () => this.setState({ sel: {}, maxWarn: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

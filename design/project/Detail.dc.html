@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Cari Tadika, Fail Tadika</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=Spectral:wght@500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+.ct{--bg:#E2DDCC;--rule:rgba(27,42,38,.07);--sf:#FBFAF4;--sf2:#EEE8D6;--ink:#1B2A26;--mu:#47524B;--ln:#9C8F68;--gr:#1F6E43;--grbg:#DCE8DB;--grfg:#FFFFFF;--rd:#AC3324;--rdbg:#F3DCD4;--rdfg:#FFFFFF;--oc:#6E5216;--ocbg:#EFE1BC;--kr:#8A5E38;--krt:#FFFFFF;--ib:#1B2A26;--ibt:#FBFAF4;--scrim:#8C8779;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background:var(--scrim)}
+.ct.dk{--bg:#141E1A;--rule:rgba(231,236,230,.05);--sf:#1D2B26;--sf2:#263630;--ink:#E7ECE6;--mu:#A9B5AB;--ln:#728578;--gr:#5FC98F;--grbg:#1F3A2E;--grfg:#0E1F17;--rd:#F0917F;--rdbg:#3E2521;--rdfg:#2B0F0A;--oc:#E4C36B;--ocbg:#3B3218;--kr:#D6A96A;--krt:#1B1408;--ib:#E7ECE6;--ibt:#141E1A;--scrim:#070B09}
+.ct *{box-sizing:border-box}
+.ct h1,.ct h2,.ct h3,.ct p{margin:0}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.sheet{margin-top:52px;border-radius:22px 22px 0 0;background-color:var(--bg);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 27px,var(--rule) 27px,var(--rule) 28px);padding:0 16px 40px;display:flex;flex-direction:column;gap:20px;box-shadow:0 -10px 30px rgba(0,0,0,.25)}
+.grab{width:40px;height:5px;border-radius:3px;background:var(--ln);margin:8px auto 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:4px 12px 12px 4px;font:600 15px/1 'IBM Plex Sans',system-ui,sans-serif;text-decoration:none;cursor:pointer;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
+.btn.ink{background:var(--ib);color:var(--ibt);border-color:var(--ib)}
+.btn:focus-visible,.so:focus-visible,textarea:focus-visible{outline:3px solid var(--oc);outline-offset:2px}
+.lab{font:600 12px/1 'IBM Plex Sans',system-ui,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--mu)}
+.h3{font:600 20px/1.2 'Spectral',Georgia,serif}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;background:var(--sf);border:1.5px solid var(--ln);border-radius:4px 16px 16px 4px;overflow:hidden}
+.fc{padding:12px 14px;border-bottom:1px dotted var(--ln)}
+.fc:nth-child(odd){border-right:1px dotted var(--ln)}
+.fc:nth-last-child(-n+2){border-bottom:0}
+.fv{margin-top:8px;font:500 17px/1.2 'IBM Plex Mono',ui-monospace,monospace}
+.fv.unk,.unk{font:italic 400 13.5px/1.25 'IBM Plex Sans',system-ui,sans-serif;color:var(--mu)}
+.fv.unk{padding-top:2px}
+.receipt{background:var(--sf);border:1.5px solid var(--ln);border-radius:4px 16px 16px 4px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.ln{display:flex;align-items:baseline;gap:8px;font-size:15px;line-height:1.3}
+.dots{flex:1;min-width:12px;border-bottom:2px dotted var(--ln);transform:translateY(-4px)}
+.amt{font:500 15px/1.3 'IBM Plex Mono',ui-monospace,monospace}
+.amt.unk{font:italic 400 13.5px/1.3 'IBM Plex Sans',system-ui,sans-serif;color:var(--mu);border-bottom:1.5px dashed var(--ln)}
+.tot{border-top:2px solid var(--ink);padding-top:12px;margin-top:4px}
+.tot .amt{font-weight:600;font-size:19px}
+.warn{display:flex;gap:10px;align-items:flex-start;background:var(--ocbg);color:var(--oc);border-radius:4px 12px 12px 4px;padding:10px 12px;font-size:13.5px;line-height:1.4;font-weight:500}
+.ck{background:var(--sf);border:1.5px solid var(--ln);border-left-width:7px;border-radius:4px 16px 16px 4px;padding:14px;display:flex;flex-direction:column;gap:12px}
+.ck.s-o{border-left-color:var(--gr)}
+.ck.s-x{border-left-color:var(--rd);border-color:var(--rd)}
+.ck.s-u{border-left-color:var(--oc);border-left-style:dashed}
+.no{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font:600 13px/1 'IBM Plex Mono',ui-monospace,monospace}
+.crit{display:inline-block;padding:3px 6px;border-radius:3px;background:var(--ib);color:var(--ibt);font:700 11px/1 'IBM Plex Sans',system-ui,sans-serif;letter-spacing:.1em}
+.segc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1.5px solid var(--ln);border-radius:4px 12px 12px 4px;overflow:hidden;background:var(--sf2)}
+.so{min-height:44px;border:0;border-right:1px solid var(--ln);background:transparent;color:var(--ink);font:500 13.5px/1.1 'IBM Plex Sans',system-ui,sans-serif;cursor:pointer;padding:0 4px}
+.so:last-child{border-right:0}
+.so.on.o{background:var(--gr);color:var(--grfg);font-weight:600}
+.so.on.x{background:var(--rd);color:var(--rdfg);font-weight:600}
+.so.on.u{background:var(--ocbg);color:var(--oc);font-weight:600;box-shadow:inset 0 0 0 2px var(--oc)}
+.tip{font-size:14px;line-height:1.45;color:var(--mu);text-wrap:pretty}
+.src{font:500 12.5px/1 'IBM Plex Sans',system-ui,sans-serif;color:var(--mu);letter-spacing:.02em}
+.notes{width:100%;min-height:150px;resize:vertical;padding:36px 14px 0;border:1.5px solid var(--ln);border-radius:4px 16px 16px 4px;background-color:var(--sf);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--ln) 31px,var(--ln) 32px);background-position:0 0;color:var(--ink);font:400 16px/32px 'IBM Plex Sans',system-ui,sans-serif}
+.btn,.so{transition:background-color .15s ease,color .15s ease,border-color .15s ease}
+@media (prefers-reduced-motion: reduce) { .ct *, .ct *::before, .ct *::after { transition: none !important; animation: none !important; } }
+</style>
+</helmet>
+<div class="ct {{themeClass}}" style="width: 390px; height: 3120px;">
+<div class="sheet" role="dialog" aria-label="{{t.dlg}}">
+<div class="grab"></div>
+
+<header style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;">
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 4px;">
+<div style="display: flex; gap: 6px;"><span class="lab" style="background: var(--kr); color: var(--krt); padding: 6px 10px; border-radius: 6px 6px 0 0;">{{t.tab}}</span></div>
+<h1 style="font: 700 28px/1.1 'Spectral', Georgia, serif;">Tadika Permata Ilmu</h1>
+<p style="font-size: 14px; color: var(--mu);">{{t.sub1}}<span class="mono">2.6 km</span>{{t.sub2}}</p>
+</div>
+<a class="btn" href="Home.dc.html" aria-label="{{t.close}}" style="border-color: transparent; min-width: 44px; padding: 0;">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path></svg>
+</a>
+</header>
+
+<section class="facts" aria-label="{{t.facts}}">
+<div class="fc"><div class="lab">{{t.score}}</div><div class="fv">{{score}}</div></div>
+<div class="fc"><div class="lab">{{t.monthly}}</div><div class="fv">RM 320</div></div>
+<div class="fc"><div class="lab">{{t.yearly}}</div><div class="fv">RM 4,110+</div></div>
+<div class="fc"><div class="lab">{{t.ratio}}</div><div class="fv">1:12</div></div>
+<div class="fc"><div class="lab">{{t.curr}}</div><div class="fv" style="font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 16px;">KSPK</div></div>
+<div class="fc"><div class="lab">{{t.hours}}</div><div class="fv unk">{{t.unk}}</div></div>
+</section>
+
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<div style="display: flex; gap: 8px;">
+<a class="btn" href="tel:" style="flex: 1;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>{{t.call}}</a>
+<a class="btn" href="https://maps.apple.com/" style="flex: 1;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z" stroke="currentColor" stroke-width="1.8"></path><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.8"></circle></svg>{{t.maps}}</a>
+</div>
+<a class="btn" href="#">{{t.epras}}
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+</div>
+
+<section style="display: flex; flex-direction: column; gap: 12px;" aria-labelledby="h-kos">
+<h2 class="h3" id="h-kos">{{t.costH}}</h2>
+<div class="receipt">
+<div class="ln"><span>{{t.reg}} <span style="color: var(--mu); font-size: 13px;">{{t.once}}</span></span><span class="dots"></span><span class="amt">RM 150</span></div>
+<div class="ln"><span>{{t.fee}} <span class="mono" style="font-size: 13.5px;">RM 320 × 12</span></span><span class="dots"></span><span class="amt">RM 3,840</span></div>
+<div class="ln"><span>{{t.books}}</span><span class="dots"></span><span class="amt">RM 120</span></div>
+<div class="ln"><span>{{t.uniform}}</span><span class="dots"></span><span class="amt unk">{{t.unk}}</span></div>
+<div class="ln"><span>{{t.acts}}</span><span class="dots"></span><span class="amt unk">{{t.unk}}</span></div>
+<div class="ln tot"><span style="font-weight: 600;">{{t.total}}</span><span class="dots"></span><span class="amt">RM 4,110+</span></div>
+<div class="ln"><span style="color: var(--mu);">{{t.avg}}</span><span class="dots"></span><span class="amt">RM 343+</span></div>
+<div class="warn" role="note">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="flex: none; margin-top: 1px;"><path d="M12 3 2.5 20h19L12 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><path d="M12 10v4.5M12 17.2v.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg>
+<span>{{t.partial}}</span>
+</div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 12px;" aria-labelledby="h-ck">
+<div>
+<h2 class="h3" id="h-ck">{{t.ckH}}</h2>
+<p class="tip" style="margin-top: 6px;">{{t.ckTip}}</p>
+</div>
+<sc-for list="{{items}}" as="it" hint-placeholder-count="9">
+<article class="ck {{it.cls}}" aria-label="{{it.aria}}">
+<div style="display: flex; align-items: center; gap: 10px;">
+<span class="no">{{it.n}}</span>
+<h3 style="font: 600 16px/1.25 'Spectral', Georgia, serif; flex: 1;">{{it.name}}</h3>
+<sc-if value="{{it.critical}}" hint-placeholder-val="{{ false }}"><span class="crit">{{t.crit}}</span></sc-if>
+</div>
+<div class="segc" role="radiogroup" aria-label="{{it.name}}">
+<sc-for list="{{it.opts}}" as="o" hint-placeholder-count="3"><button type="button" role="radio" aria-checked="{{o.aria}}" class="so {{o.cls}}" onClick="{{o.pick}}">{{o.t}}</button></sc-for>
+</div>
+<p class="tip">{{it.tip}}</p>
+<p class="src">{{it.src}}</p>
+</article>
+</sc-for>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 8px;">
+<label class="h3" for="nota">{{t.notes}}</label>
+<textarea id="nota" class="notes">Guru mesra. Tandas bersih. Perlu tanya tentang menu bulanan.</textarea>
+</section>
+
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<button type="button" class="btn ink" style="width: 100%;">{{t.add}}</button>
+<button type="button" class="btn" style="width: 100%;" onClick="{{reset}}">{{t.resetB}}</button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Rupa"},"lang":{"editor":"enum","options":["ms","en"],"default":"ms","section":"Bahasa"},"$preview":{"width":390,"height":3120}}'>
+class Component extends DCLogic {
+  state = { st: 'oooooouuu', src: 'bbuuuubbb' };
+  renderVals() {
+    const dark = (this.props.theme ?? 'light') === 'dark';
+    const en = (this.props.lang ?? 'ms') === 'en';
+    const T = (m, e) => (en ? e : m);
+    const CR = en ? [
+      ['Registered with KPM', 'Check the name and registration number on the KPM ePrasekolah portal. Ask to see the registration certificate.', true],
+      ['Teacher-to-student ratio', 'KPM recommends up to 1:15. Count teachers and children in one class during your visit.', false],
+      ['Clear curriculum', 'Ask to see the learning plan. A clear curriculum says what is taught at each age.', false],
+      ['Safety measures', 'Check the fence, exits, CCTV, the list of people allowed to collect your child, and emergency procedures.', true],
+      ['Clean and orderly', 'Look at the toilets, kitchen and play area. Smells, rubbish and broken equipment are warning signs.', false],
+      ['Offers a trial session', 'A confident kindergarten usually lets your child try a day or a week.', false],
+      ['Assessment records', 'Ask how your child\'s progress is recorded and shared with parents.', false],
+      ['Teachers do not change often', 'Ask how long current teachers have served. Frequent changes unsettle children.', false],
+      ['Food menu provided', 'Ask for the monthly menu. Ask about allergies and halal food.', false]
+    ] : [
+      ['Berdaftar dengan KPM', 'Semak nama dan nombor pendaftaran di portal ePrasekolah KPM. Minta lihat sijil pendaftaran.', true],
+      ['Nisbah guru-murid', 'KPM mengesyorkan sehingga 1:15. Kira bilangan guru dan murid dalam satu kelas semasa lawatan.', false],
+      ['Kurikulum jelas', 'Minta lihat rancangan pembelajaran. Kurikulum yang jelas menyatakan apa yang diajar mengikut umur.', false],
+      ['Langkah keselamatan', 'Periksa pagar, pintu keluar, CCTV, senarai orang yang dibenarkan mengambil anak, dan prosedur kecemasan.', true],
+      ['Bersih dan teratur', 'Lihat tandas, dapur dan ruang bermain. Bau, sampah dan peralatan rosak ialah petanda.', false],
+      ['Tawarkan sesi percubaan', 'Tadika yang yakin biasanya membenarkan anak mencuba sehari atau seminggu.', false],
+      ['Rekod penilaian', 'Tanya bagaimana kemajuan anak dicatat dan dikongsi dengan ibu bapa.', false],
+      ['Guru tidak kerap bertukar', 'Tanya berapa lama guru sedia ada berkhidmat. Pertukaran yang kerap menjejaskan kestabilan anak.', false],
+      ['Menu makanan disediakan', 'Minta menu bulanan. Tanya tentang alahan dan makanan halal.', false]
+    ];
+    const s = this.state;
+    const set = (i, v) => {
+      const st = s.st.split(''); st[i] = v;
+      const sr = s.src.split(''); sr[i] = 'u';
+      this.setState({ st: st.join(''), src: sr.join('') });
+    };
+    const ok = s.st.split('').filter((k) => k === 'o').length;
+    const items = CR.map((c, i) => {
+      const k = s.st[i];
+      const lab = k === 'o' ? 'ok' : k === 'x' ? 'red flag' : T('belum pasti', 'unsure');
+      return {
+        n: String(i + 1),
+        name: c[0],
+        tip: c[1],
+        critical: c[2],
+        cls: k === 'o' ? 's-o' : k === 'x' ? 's-x' : 's-u',
+        aria: (i + 1) + '. ' + c[0] + (c[2] ? T(', kritikal', ', critical') : '') + ', status ' + lab,
+        src: s.src[i] === 'u' ? T('Sumber: Semakan anda', 'Source: Your check') : T('Sumber: Data asas', 'Source: Base data'),
+        opts: [
+          { t: '✓ Ok', v: 'o', cls: 'o' },
+          { t: '✕ Red flag', v: 'x', cls: 'x' },
+          { t: T('? Belum pasti', '? Unsure'), v: 'u', cls: 'u' }
+        ].map((o) => ({ t: o.t, aria: k === o.v ? 'true' : 'false', cls: o.cls + (k === o.v ? ' on' : ''), pick: () => set(i, o.v) }))
+      };
+    });
+    return {
+      themeClass: dark ? 'dk' : '',
+      t: {
+        dlg: T('Fail tadika', 'Kindergarten file'), tab: T('SWASTA · ISLAMIK', 'PRIVATE · ISLAMIC'),
+        sub1: T('Anak Bukit · Swasta · ', 'Anak Bukit · Private · '), sub2: T(' dari anda', ' from you'),
+        close: T('Tutup', 'Close'), facts: T('Fakta ringkas', 'Key facts'), score: T('Skor', 'Score'),
+        monthly: T('Yuran bulanan', 'Monthly fee'), yearly: T('Kos / tahun', 'Cost / year'), ratio: T('Nisbah', 'Ratio'),
+        curr: T('Kurikulum', 'Curriculum'), hours: T('Waktu', 'Hours'), unk: T('Belum diketahui', 'Not yet known'),
+        call: T('Hubungi', 'Call'), maps: T('Buka di Peta', 'Open in Maps'), epras: T('Semak di ePrasekolah (KPM)', 'Check on ePrasekolah (KPM)'),
+        costH: T('Anggaran kos setahun', 'Estimated yearly cost'), reg: T('Pendaftaran', 'Registration'), once: T('(sekali sahaja)', '(one-time)'),
+        fee: T('Yuran', 'Fee'), books: T('Buku', 'Books'), uniform: T('Pakaian seragam', 'Uniform'), acts: T('Aktiviti dan insurans', 'Activities and insurance'),
+        total: T('Jumlah setahun', 'Total per year'), avg: T('Purata sebulan', 'Monthly average'),
+        partial: T('Jumlah ini separa. Ia mungkin lebih rendah daripada kos sebenar.', 'This total is partial. It may be lower than the real figure.'),
+        ckH: T('Senarai semak 9 tanda bahaya', '9 red-flag checklist'),
+        ckTip: T('Tetapkan selepas anda melawat sendiri. Tiada yang lulus secara lalai.', 'Set these after you visit in person. Nothing passes by default.'),
+        crit: T('KRITIKAL', 'CRITICAL'), notes: T('Catatan lawatan', 'Visit notes'),
+        add: T('Tambah ke perbandingan', 'Add to comparison'), resetB: T('Tetap semula ke data asas', 'Reset to base data')
+      },
+      score: ok + '/9',
+      items: items,
+      reset: () => this.setState({ st: 'oouuuuuuu', src: 'bbbbbbbbb' })
+    };
+  }
+}
+</script>
+</body>
+</html>

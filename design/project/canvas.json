@@ -1,0 +1,79 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Compare.dc.html": {
+      "h": 2560,
+      "title": "4 Banding (helaian)",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "Detail.dc.html": {
+      "h": 3120,
+      "is_interactive": true,
+      "title": "3 Fail tadika (helaian)",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "Filters.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "2 Tapis (helaian)",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "Home.dc.html": {
+      "h": 2600,
+      "is_interactive": true,
+      "title": "1 Utama (cerah)",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "HomeDark.dc.html": {
+      "h": 2600,
+      "title": "5 Utama (gelap, bendera merah dipaparkan)",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "States.dc.html": {
+      "h": 2380,
+      "title": "6 Keadaan (lokasi, kosong, bar, keputusan)",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-09-20T09:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "t1": {
+      "kind": "title1",
+      "maxW": 2740,
+      "text": "Cari Tadika, iPhone",
+      "w": 240,
+      "x": 0,
+      "y": -280
+    }
+  },
+  "order": [
+    "Home.dc.html",
+    "Filters.dc.html",
+    "Detail.dc.html",
+    "Compare.dc.html",
+    "HomeDark.dc.html",
+    "States.dc.html"
+  ],
+  "pages": [],
+  "title": "Cari Tadika"
+}

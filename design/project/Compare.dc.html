@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Cari Tadika, Banding</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=Spectral:wght@500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+.ct{--bg:#E2DDCC;--rule:rgba(27,42,38,.07);--sf:#FBFAF4;--sf2:#EEE8D6;--ink:#1B2A26;--mu:#47524B;--ln:#9C8F68;--gr:#1F6E43;--grbg:#DCE8DB;--rd:#AC3324;--rdbg:#F3DCD4;--oc:#6E5216;--ocbg:#EFE1BC;--kr:#8A5E38;--krt:#FFFFFF;--ib:#1B2A26;--ibt:#FBFAF4;--scrim:#8C8779;font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background:var(--scrim)}
+.ct.dk{--bg:#141E1A;--rule:rgba(231,236,230,.05);--sf:#1D2B26;--sf2:#263630;--ink:#E7ECE6;--mu:#A9B5AB;--ln:#728578;--gr:#5FC98F;--grbg:#1F3A2E;--rd:#F0917F;--rdbg:#3E2521;--oc:#E4C36B;--ocbg:#3B3218;--kr:#D6A96A;--krt:#1B1408;--ib:#E7ECE6;--ibt:#141E1A;--scrim:#070B09}
+.ct *{box-sizing:border-box}
+.ct h1,.ct h2,.ct p{margin:0}
+.sheet{margin-top:52px;border-radius:22px 22px 0 0;background-color:var(--bg);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 27px,var(--rule) 27px,var(--rule) 28px);padding:0 16px 48px;display:flex;flex-direction:column;gap:18px;box-shadow:0 -10px 30px rgba(0,0,0,.25)}
+.grab{width:40px;height:5px;border-radius:3px;background:var(--ln);margin:8px auto 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:4px 12px 12px 4px;font:600 15px/1 'IBM Plex Sans',system-ui,sans-serif;text-decoration:none;cursor:pointer;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
+.btn:focus-visible{outline:3px solid var(--oc);outline-offset:2px}
+.lab{font:600 12px/1.3 'IBM Plex Sans',system-ui,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--mu)}
+.h3{font:600 20px/1.2 'Spectral',Georgia,serif}
+.verdict{position:relative;margin-top:14px;background:var(--sf);border:2px solid var(--ink);border-radius:4px 18px 18px 4px;padding:20px 16px 16px;display:flex;flex-direction:column;gap:10px}
+.vtab{position:absolute;left:14px;top:-14px;height:26px;padding:0 12px;display:flex;align-items:center;background:var(--kr);color:var(--krt);font:600 12px/1 'IBM Plex Sans',system-ui,sans-serif;letter-spacing:.1em;border-radius:6px 6px 0 0}
+.vtxt{font-size:15.5px;line-height:1.5;text-wrap:pretty}
+.diff{display:flex;align-items:baseline;gap:8px;border-top:1.5px dotted var(--ln);padding-top:10px;font-size:14px}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.hd{background:var(--sf2);border:1.5px solid var(--ln);border-radius:4px 12px 12px 4px;padding:10px;display:flex;flex-direction:column;gap:6px;min-height:92px}
+.hd b{font:600 14.5px/1.2 'Spectral',Georgia,serif}
+.hd span{font-size:12.5px;line-height:1.3;color:var(--mu)}
+.blk{display:flex;flex-direction:column;gap:6px}
+.c{min-height:44px;padding:8px 8px;background:var(--sf);border:1.5px solid var(--ln);border-radius:4px 10px 10px 4px;font:500 14px/1.25 'IBM Plex Mono',ui-monospace,monospace;display:flex;align-items:center}
+.c.best{background:var(--grbg);border-color:var(--gr);color:var(--gr);font-weight:600}
+.c.unk{font:italic 400 13px/1.25 'IBM Plex Sans',system-ui,sans-serif;color:var(--mu);border-style:dashed;background:transparent}
+.c.bad{color:var(--rd);border-color:var(--rd);background:var(--rdbg);font-weight:600}
+.c.txt{font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:13px;font-weight:400;line-height:1.35}
+.c.pill{justify-content:center;font:600 12.5px/1.1 'IBM Plex Sans',system-ui,sans-serif;text-align:center}
+.c.o{background:var(--grbg);color:var(--gr);border-color:var(--gr)}
+.c.x{background:var(--rdbg);color:var(--rd);border-color:var(--rd)}
+.c.u{background:transparent;color:var(--oc);border:1.5px dashed var(--ln)}
+.tagk{display:inline-block;margin-left:6px;padding:2px 6px;border-radius:3px;background:var(--ib);color:var(--ibt);font:700 11px/1 'IBM Plex Sans',system-ui,sans-serif;letter-spacing:.1em;vertical-align:middle}
+.leg{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:13px;color:var(--mu);line-height:1.3}
+@media (prefers-reduced-motion: reduce) { .ct *, .ct *::before, .ct *::after { transition: none !important; animation: none !important; } }
+</style>
+</helmet>
+<div class="ct {{themeClass}}" style="width: 390px; height: 2560px;">
+<div class="sheet" role="dialog" aria-label="{{t.title}}">
+<div class="grab"></div>
+<header style="display: flex; align-items: center; justify-content: space-between; padding-left: 0;">
+<h1 style="font: 700 26px/1 'Spectral', Georgia, serif;">{{t.title}}</h1>
+<a class="btn" href="Home.dc.html" aria-label="{{t.close}}" style="border-color: transparent; min-width: 44px; padding: 0;">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path></svg>
+</a>
+</header>
+
+<section class="verdict" aria-label="{{t.verdictA}}">
+<div class="vtab">{{t.verdict}}</div>
+<p class="vtxt"><b>{{t.v1b}}</b> {{t.v1}}</p>
+<p class="vtxt" style="font-size: 14px; color: var(--mu);">{{t.v2}}</p>
+<div class="diff"><span style="color: var(--mu);">{{t.diff}}</span><span style="flex: 1; border-bottom: 2px dotted var(--ln); transform: translateY(-4px);"></span><b style="font: 600 16px/1 'IBM Plex Mono', ui-monospace, monospace;">RM 3,300+</b></div>
+</section>
+
+<div class="leg" aria-label="{{t.legA}}">
+<span><b style="color: var(--gr);">✓</b> {{t.leg1}}</span>
+<span><b style="color: var(--oc);">?</b> {{t.leg2}}</span>
+<span><i>{{t.unk}}</i> {{t.leg3}}</span>
+<span><span class="mono" style="font-family: 'IBM Plex Mono', monospace;">+</span> {{t.leg4}}</span>
+</div>
+
+<div class="cols" role="row">
+<sc-for list="{{heads}}" as="h" hint-placeholder-count="3"><div class="hd"><b>{{h.name}}</b><span>{{h.sub}}</span></div></sc-for>
+</div>
+
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="10">
+<div class="blk"><div class="lab">{{r.lab}}</div>
+<div class="cols"><sc-for list="{{r.cells}}" as="c" hint-placeholder-count="3"><div class="c {{c.cls}}">{{c.text}}</div></sc-for></div></div>
+</sc-for>
+
+<div style="display: flex; flex-direction: column; gap: 4px; margin-top: 6px;">
+<h2 class="h3">{{t.ckH}}</h2>
+</div>
+
+<sc-for list="{{crit}}" as="k" hint-placeholder-count="9">
+<div class="blk"><div class="lab">{{k.lab}}<sc-if value="{{k.critical}}" hint-placeholder-val="{{ false }}"><span class="tagk">{{t.crit}}</span></sc-if></div>
+<div class="cols"><sc-for list="{{k.cells}}" as="c" hint-placeholder-count="3"><div class="c pill {{c.cls}}">{{c.text}}</div></sc-for></div></div>
+</sc-for>
+
+<div class="blk"><div class="lab">{{t.yourNotes}}</div>
+<div class="cols"><sc-for list="{{notes}}" as="c" hint-placeholder-count="3"><div class="c {{c.cls}}" style="align-items: flex-start;">{{c.text}}</div></sc-for></div></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light","section":"Rupa"},"lang":{"editor":"enum","options":["ms","en"],"default":"ms","section":"Bahasa"},"$preview":{"width":390,"height":2560}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = (this.props.theme ?? 'light') === 'dark';
+    const en = (this.props.lang ?? 'ms') === 'en';
+    const T = (m, e) => (en ? e : m);
+    const U = T('Belum diketahui', 'Not yet known');
+    // k: 'b' best, 'u' unknown, 'x' problem, '' normal, 't' plain text
+    const cell = (t, k) => {
+      if (k === 'u') return { text: U, cls: 'unk' };
+      if (k === 'b') return { text: '✓ ' + t, cls: 'best' };
+      if (k === 'x') return { text: '✕ ' + t, cls: 'bad' };
+      if (k === 't') return { text: t, cls: 'txt' };
+      return { text: t, cls: '' };
+    };
+    const row = (lab, a, b, c) => ({ lab: lab, cells: [cell(a[0], a[1]), cell(b[0], b[1]), cell(c[0], c[1])] });
+    const rows = [
+      row(T('Skor', 'Score'), ['8/9', 'b'], ['6/9', ''], [T('Perlu semakan', 'Needs review'), 'x']),
+      row(T('Jarak', 'Distance'), ['1.8 km', 'b'], ['2.6 km', ''], ['4.1 km', '']),
+      row(T('Kos setahun', 'Yearly cost'), ['RM 810', 'b'], ['RM 4,110+', ''], ['RM 2,400+', '']),
+      row(T('Yuran bulanan', 'Monthly fee'), ['RM 50', 'b'], ['RM 320', ''], ['RM 180', '']),
+      row(T('Pendaftaran', 'Registration'), ['RM 30', 'b'], ['RM 150', ''], ['', 'u']),
+      row(T('Buku, pakaian, aktiviti', 'Books, uniform, activities'), ['RM 180', ''], ['RM 120+', ''], ['', 'u']),
+      row(T('Pengangkutan', 'Transport'), ['', 'u'], ['', 'u'], [T('RM 90 / bln', 'RM 90 / mo'), '']),
+      row(T('Nisbah guru-murid', 'Teacher-to-student ratio'), ['1:12', 'b'], ['1:12', 'b'], ['1:22', 'x']),
+      row(T('Kurikulum', 'Curriculum'), ['KSPK', 't'], ['KSPK', 't'], ['', 'u']),
+      row(T('Waktu', 'Hours'), ['7:30 - 13:00', ''], ['', 'u'], ['', 'u'])
+    ];
+    const NAMES = en
+      ? [['Registered with KPM', true], ['Teacher-to-student ratio', false], ['Clear curriculum', false], ['Safety measures', true], ['Clean and orderly', false], ['Offers a trial session', false], ['Assessment records', false], ['Teachers do not change often', false], ['Food menu provided', false]]
+      : [['Berdaftar dengan KPM', true], ['Nisbah guru-murid', false], ['Kurikulum jelas', false], ['Langkah keselamatan', true], ['Bersih dan teratur', false], ['Tawarkan sesi percubaan', false], ['Rekod penilaian', false], ['Guru tidak kerap bertukar', false], ['Menu makanan disediakan', false]];
+    const S = ['oooooxooo', 'oooooouuu', 'xxouououu'];
+    const pill = (k) => k === 'o' ? { text: '✓ Ok', cls: 'o' } : k === 'x' ? { text: '✕ Red flag', cls: 'x' } : { text: T('? Belum pasti', '? Unsure'), cls: 'u' };
+    const crit = NAMES.map((n, i) => ({
+      lab: (i + 1) + '. ' + n[0],
+      critical: n[1],
+      cells: S.map((s) => pill(s[i]))
+    }));
+    return {
+      themeClass: dark ? 'dk' : '',
+      t: {
+        title: T('Banding', 'Compare'), close: T('Tutup', 'Close'), verdictA: T('Keputusan', 'Verdict'), verdict: T('KEPUTUSAN', 'VERDICT'),
+        v1b: T('Paling selamat: Tadika Permata Ilmu.', 'Safest: Tadika Permata Ilmu.'),
+        v1: T('Ia tiada bendera merah, walaupun 3 semakan masih belum pasti. Tadika Kemas Taman Bakti ada 1 bendera merah tetapi kosnya jauh lebih rendah.', 'It has no red flags, though 3 checks are still unsure. Tadika Kemas Taman Bakti has 1 red flag but costs far less.'),
+        v2: T('Tadika Cemerlang tidak dipertimbangkan kerana ada bendera merah utama. Lawati sendiri dan minta sesi percubaan sebelum mendaftar.', 'Tadika Cemerlang was not considered because it has a major red flag. Visit in person and ask for a trial session before enrolling.'),
+        diff: T('Beza kos setahun', 'Yearly cost difference'), legA: T('Petunjuk', 'Legend'),
+        leg1: T('nilai terbaik', 'best value'), leg2: T('belum pasti', 'unsure'), unk: U, leg3: T('tidak pernah menang', 'never wins'), leg4: T('jumlah separa', 'partial total'),
+        ckH: T('Senarai semak 9 tanda bahaya', '9 red-flag checklist'), crit: T('KRITIKAL', 'CRITICAL'), yourNotes: T('Catatan anda', 'Your notes')
+      },
+      heads: [
+        { name: 'Kemas Taman Bakti', sub: T('Kerajaan', 'Government') },
+        { name: 'Permata Ilmu', sub: T('Swasta · Islamik', 'Private · Islamic') },
+        { name: 'Cemerlang', sub: T('✕ Bendera merah utama', '✕ Major red flag') }
+      ],
+      rows: rows,
+      crit: crit,
+      notes: [{ text: T('Tiada catatan', 'No notes'), cls: 'unk' }, { text: T('Guru mesra. Tandas bersih. Tanya menu bulanan.', 'Friendly teachers. Clean toilets. Ask about the monthly menu.'), cls: 'txt' }, { text: T('Tiada catatan', 'No notes'), cls: 'unk' }]
+    };
+  }
+}
+</script>
+</body>
+</html>
