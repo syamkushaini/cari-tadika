@@ -7,7 +7,7 @@ import { buildReal } from "@/data/real";
 import { fmtTime } from "./format";
 import { km } from "./geo";
 import { stats, stampIsPass } from "./scoring";
-import { DEFAULT_FILTERS, search } from "./filter";
+import { ANY_DISTANCE, DEFAULT_FILTERS, search } from "./filter";
 import { buildCompare } from "./compare";
 
 const by = (id: string) => ALL.find((k) => k.id === id)!;
@@ -76,16 +76,16 @@ describe("format", () => {
 describe("search", () => {
   const label = () => "";
   it("hides major red flags by default and counts them", () => {
-    const { rows, hiddenMajor } = search(ALL, { ...DEFAULT_FILTERS, maxDist: 999 }, DEFAULT_CENTRE, {}, label);
+    const { rows, hiddenMajor } = search(ALL, { ...DEFAULT_FILTERS, maxDist: ANY_DISTANCE }, DEFAULT_CENTRE, {}, label);
     expect(hiddenMajor).toBe(2); // t4, t7
     expect(rows.find((r) => r.k.id === "t4")).toBeUndefined();
   });
   it("sorts by cost ascending", () => {
-    const { rows } = search(ALL, { ...DEFAULT_FILTERS, hideMajor: false, maxDist: 999, sort: "cost" }, DEFAULT_CENTRE, {}, label);
+    const { rows } = search(ALL, { ...DEFAULT_FILTERS, hideMajor: false, maxDist: ANY_DISTANCE, sort: "cost" }, DEFAULT_CENTRE, {}, label);
     expect(rows[0].k.id).toBe("t5");
   });
   it("needTransport excludes kindergartens without transport", () => {
-    const { rows } = search(ALL, { ...DEFAULT_FILTERS, hideMajor: false, maxDist: 999, needTransport: true }, DEFAULT_CENTRE, {}, label);
+    const { rows } = search(ALL, { ...DEFAULT_FILTERS, hideMajor: false, maxDist: ANY_DISTANCE, needTransport: true }, DEFAULT_CENTRE, {}, label);
     expect(rows.some((r) => r.k.id === "t2" || r.k.id === "t5")).toBe(false);
   });
   it("haversine is sane (~1° lat ≈ 111 km)", () => {
@@ -132,7 +132,7 @@ describe("real data (trust rules)", () => {
     const [u] = buildReal([{ ...place, placeId: "p2" }], {});
     const c = buildCompare([k, u], DEFAULT_CENTRE, {}, false);
     expect(c.best.annual).toBe(3600);
-    const { rows } = search([u], { ...DEFAULT_FILTERS, maxBudget: 2000, maxDist: 999 }, DEFAULT_CENTRE, {}, () => "");
+    const { rows } = search([u], { ...DEFAULT_FILTERS, maxBudget: 2000, maxDist: ANY_DISTANCE }, DEFAULT_CENTRE, {}, () => "");
     expect(rows).toHaveLength(1);
   });
 });
@@ -151,5 +151,14 @@ describe("osm listings", () => {
     expect(buildReal([mk("Tadika Marian")], {})[0].type).toBe("private");
     expect(buildReal([mk("Tabika Perpaduan Taman Selamat")], {})[0].type).toBe("government");
     expect(buildReal([mk("Prasekolah Sekolah Kebangsaan Tanah Merah")], {})[0].type).toBe("government");
+  });
+});
+
+describe("distance 'All'", () => {
+  it("includes places farther than 999 km (e.g. Sabah from Kedah)", () => {
+    const far = { ...by("t1"), id: "far", lat: 5.98, lng: 116.07 }; // Kota Kinabalu
+    const { rows } = search([far], { ...DEFAULT_FILTERS, maxDist: ANY_DISTANCE }, DEFAULT_CENTRE, {}, () => "");
+    expect(rows).toHaveLength(1);
+    expect(rows[0].d).toBeGreaterThan(1000);
   });
 });

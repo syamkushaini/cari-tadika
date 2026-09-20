@@ -8,6 +8,8 @@ export type Filters = {
   q: string; maxDist: number; maxBudget: number; sort: SortKey;
   onlyReg: boolean; hideMajor: boolean; onlyTrial: boolean; needTransport: boolean;
 };
+/** "All" distances. Must exceed any distance within Malaysia (Perlis to Sabah is ~2,000 km). */
+export const ANY_DISTANCE = 100000;
 export const DEFAULT_FILTERS: Filters = {
   q: "", maxDist: 10, maxBudget: 999999, sort: "score",
   onlyReg: false, hideMajor: true, onlyTrial: false, needTransport: false,

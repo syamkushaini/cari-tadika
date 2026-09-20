@@ -149,6 +149,8 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
       <FlatList
         data={rows}
         keyExtractor={(r) => r.k.id}
+        initialNumToRender={8}
+        windowSize={7}
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="on-drag"
         contentInsetAdjustmentBehavior="automatic"

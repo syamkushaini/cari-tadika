@@ -5,7 +5,7 @@ import { CRITERIA } from "@/content/criteria";
 import { I18N } from "@/content/i18n";
 import { DEFAULT_CENTRE } from "@/data/seed";
 import { annualCost } from "@/lib/cost";
-import { DEFAULT_FILTERS, search, type Filters, type SortKey } from "@/lib/filter";
+import { ANY_DISTANCE, DEFAULT_FILTERS, search, type Filters, type SortKey } from "@/lib/filter";
 import { typeLabel } from "@/lib/format";
 import { useOverrides } from "@/lib/overrides";
 import type { Kindergarten, Lang } from "@/lib/types";
@@ -15,6 +15,7 @@ import { KindergartenCard } from "./KindergartenCard";
 
 const LS_LANG = "cariTadika.lang";
 const MAX_COMPARE = 3;
+const PAGE = 50;
 type LocBtn = "useLoc" | "locating" | "locUpdate" | "locBlocked" | "locUnsupported";
 
 export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten[] }) {
@@ -25,7 +26,9 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
   const chooseLang = (l: Lang) => storeLang(l);
 
   const [f, setF] = useState<Filters>(DEFAULT_FILTERS);
-  const set = <K extends keyof Filters>(key: K, v: Filters[K]) => setF((p) => ({ ...p, [key]: v }));
+  // Rendering thousands of cards at once is slow, so the list grows in pages and resets on any filter change.
+  const [shown, setShown] = useState(PAGE);
+  const set = <K extends keyof Filters>(key: K, v: Filters[K]) => { setShown(PAGE); setF((p) => ({ ...p, [key]: v })); };
 
   const [loc, setLoc] = useState(DEFAULT_CENTRE);
   const [usingCurrent, setUsingCurrent] = useState(false);
@@ -34,7 +37,7 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
     if (!navigator.geolocation) return setLocBtn("locUnsupported");
     setLocBtn("locating");
     navigator.geolocation.getCurrentPosition(
-      (p) => { setLoc({ lat: p.coords.latitude, lng: p.coords.longitude }); setUsingCurrent(true); setLocBtn("locUpdate"); },
+      (p) => { setLoc({ lat: p.coords.latitude, lng: p.coords.longitude }); setShown(PAGE); setUsingCurrent(true); setLocBtn("locUpdate"); },
       () => setLocBtn("locBlocked"),
       { timeout: 10000 },
     );
@@ -96,7 +99,7 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
             <div className="field"><label htmlFor="dist">{t.distLabel}</label>
               <select id="dist" value={f.maxDist} onChange={(e) => set("maxDist", +e.target.value)}>
                 {[3, 5, 10, 25].map((n) => <option key={n} value={n}>{n} km</option>)}
-                <option value={999}>{t.distAll}</option>
+                <option value={ANY_DISTANCE}>{t.distAll}</option>
               </select></div>
             <div className="field"><label htmlFor="budget">{t.budgetLabel}</label>
               <select id="budget" value={f.maxBudget} onChange={(e) => set("maxBudget", +e.target.value)}>
@@ -118,11 +121,14 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
 
         <p className="count" aria-live="polite">{t.countFound(rows.length)}{hiddenMajor ? t.countHidden(hiddenMajor) : ""}</p>
         <div className="list">
-          {rows.length ? rows.map((row) => (
+          {rows.length ? rows.slice(0, shown).map((row) => (
             <KindergartenCard key={row.k.id} row={row} annual={annualCost(row.k, f.needTransport)} lang={lang} t={t}
               ov={ov.map[row.k.id]} compared={cmp.includes(row.k.id)} onOpen={() => setOpenId(row.k.id)}
               onToggleCompare={(on) => toggleCmp(row.k.id, on)} />
           )) : <div className="empty">{t.emptyMsg}</div>}
+          {rows.length > shown && (
+            <button className="btn" type="button" onClick={() => setShown((n) => n + PAGE)}>{t.showMore(Math.min(PAGE, rows.length - shown))}</button>
+          )}
         </div>
 
         <details className="guide">

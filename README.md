@@ -31,11 +31,12 @@ npm run lint && npm run build
 - **Annual cost** = registration + monthly fee × `billableMonths` + books + uniform + activities + (optional) transport × `billableMonths`. `billableMonths` defaults to 12 (spec §5.4); nothing in the UI edits it yet.
 - Parent overrides live in `localStorage` (`cariTadika.v2`). The prototype's `cariTadika.v1` data is **not** migrated (its shape used array indices, and the prototype was a demo).
 
-## Real data (around Kolej Tentera Udara, Kepala Batas, Kedah)
+## Real data (all of Malaysia)
 
-Listings come from two files, merged in `src/data/real.ts`. Default search origin is `DEFAULT_CENTRE` in `src/data/seed.ts` (also set in both fetch scripts). If `places.json` is empty the app falls back to the fictional samples.
+Listings come from two files (1,151 OpenStreetMap places as of the last fetch; OSM coverage is partial, see below), merged in `src/data/real.ts`. Default search origin is `DEFAULT_CENTRE` in `src/data/seed.ts` (also set in both fetch scripts). If `places.json` is empty the app falls back to the fictional samples.
 
-1. **Fetch listings** (name, location, phone, hours) from Google Places:
+0. **Free option, no key:** `npm run fetch:osm` pulls every named kindergarten/childcare place in Malaysia from OpenStreetMap, state by state (`SCOPE=local` limits it to 25 km around the default centre).
+1. **Or fetch from Google Places** (name, location, phone, hours) from Google Places:
    `GOOGLE_PLACES_API_KEY=... npm run fetch:places` writes `src/data/generated/places.json`.
    Needs a Google Cloud key with the *Places API (New)* enabled and billing on. Phone and opening hours are higher-priced fields.
 2. **Add what you verified** in `src/data/curated.json`, keyed by place id:
