@@ -1,0 +1,24 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": [
+        "../src/*"
+      ],
+      "~/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "../src/{content,data,lib}/**/*.ts"
+  ],
+  "exclude": [
+    "../src/lib/**/*.test.ts",
+    "../src/lib/localStore.ts",
+    "../src/lib/overrides.ts"
+  ]
+}

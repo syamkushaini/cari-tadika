@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Cari Tadika",
+    "slug": "cari-tadika",
+    "scheme": "caritadika",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "my.caritadika.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Cari Tadika uses your location to show how far each kindergarten is from you. / Cari Tadika guna lokasi anda untuk tunjuk jarak ke setiap tadika."
+      }
+    },
+    "plugins": [
+      "expo-font",
+      ["expo-splash-screen", { "backgroundColor": "#E2DDCC", "dark": { "backgroundColor": "#141E1A" }, "image": "./assets/icon.png", "imageWidth": 96 }],
+      ["expo-location", { "locationWhenInUsePermission": "Cari Tadika uses your location to show how far each kindergarten is from you." }]
+    ]
+  }
+}
