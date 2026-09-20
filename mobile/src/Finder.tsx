@@ -9,6 +9,7 @@ import { DEFAULT_CENTRE } from "@/data/seed";
 import { annualCost } from "@/lib/cost";
 import { DEFAULT_FILTERS, search, type Filters } from "@/lib/filter";
 import { typeLabel } from "@/lib/format";
+import { geocode, type Place } from "@/lib/geocode";
 import type { Kindergarten, Lang } from "@/lib/types";
 import { Card } from "./Card";
 import { CompareSheet } from "./CompareSheet";
@@ -34,6 +35,26 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
 
   const [loc, setLoc] = useState(DEFAULT_CENTRE);
   const [usingCurrent, setUsingCurrent] = useState(false);
+  // Typed location: query, matches to choose from, and the label of the chosen one.
+  const [locQuery, setLocQuery] = useState("");
+  const [locMatches, setLocMatches] = useState<Place[]>([]);
+  const [locState, setLocState] = useState<"idle" | "loading" | "none" | "error">("idle");
+  const [customLabel, setCustomLabel] = useState<string | null>(null);
+  const originName = customLabel ?? (usingCurrent ? t.currentLoc : t.defaultLoc);
+  const applyOrigin = (p: { lat: number; lng: number }, label: string | null, gps: boolean) => {
+    setLoc({ lat: p.lat, lng: p.lng }); setCustomLabel(label); setUsingCurrent(gps);
+  };
+  const findLocation = async () => {
+    if (!locQuery.trim()) return;
+    setLocState("loading"); setLocMatches([]);
+    try {
+      // Nominatim's policy asks for an identifying User-Agent.
+      const r = await geocode(locQuery, (u, init) => fetch(u, { ...init, headers: { ...init?.headers, "User-Agent": "CariTadika/1.0 (iOS app)" } }));
+      setLocMatches(r);
+      setLocState(r.length ? "idle" : "none");
+      if (r.length === 1) { applyOrigin(r[0], r[0].label, false); setLocMatches([]); }
+    } catch { setLocState("error"); }
+  };
   const [locBtn, setLocBtn] = useState<LocBtn>("useLoc");
   const useMyLocation = async () => {
     setLocBtn("locating");
@@ -41,8 +62,7 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
       const perm = await Location.requestForegroundPermissionsAsync();
       if (perm.status !== "granted") return setLocBtn("locBlocked");
       const p = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
-      setLoc({ lat: p.coords.latitude, lng: p.coords.longitude });
-      setUsingCurrent(true);
+      applyOrigin({ lat: p.coords.latitude, lng: p.coords.longitude }, null, true);
       setLocBtn("locUpdate");
     } catch { setLocBtn("locBlocked"); }
   };
@@ -97,9 +117,36 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
       <View style={{ backgroundColor: c.surface, borderWidth: 1, borderColor: c.line, borderRadius: 10, padding: 14, gap: 12 }}>
         <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
           <Text style={{ flexShrink: 1, fontFamily: font.sans, fontSize: 13, color: c.muted }}>
-            {t.distFrom} <Text style={{ fontFamily: font.mono, color: c.ink }}>{usingCurrent ? t.currentLoc : t.defaultLoc}</Text>
+            {t.distFrom} <Text style={{ fontFamily: font.mono, color: c.ink }}>{originName}</Text>
           </Text>
           <Btn small label={t[locBtn]} onPress={useMyLocation} disabled={locBtn === "locating"} />
+        </View>
+        <View style={{ gap: 4 }}>
+          <Text style={{ fontFamily: font.sansSemi, fontSize: 12, color: c.muted }}>{t.locInputLabel}</Text>
+          <View style={{ flexDirection: "row", gap: 10, alignItems: "flex-end" }}>
+            <TextInput value={locQuery} onChangeText={setLocQuery} placeholder={t.locInputPlaceholder} placeholderTextColor={c.muted}
+              autoCorrect={false} returnKeyType="search" onSubmitEditing={findLocation} clearButtonMode="while-editing" accessibilityLabel={t.locInputLabel}
+              style={{ flex: 1, minHeight: 44, borderBottomWidth: 2, borderBottomColor: c.line, fontFamily: font.sans, fontSize: 16, color: c.ink }} />
+            <Btn small label={locState === "loading" ? t.locSearching : t.locSearch} onPress={findLocation} disabled={locState === "loading"} />
+          </View>
+          {locState === "none" && <Text style={{ fontFamily: font.mono, fontSize: 11, color: c.muted }}>{t.locNone}</Text>}
+          {locState === "error" && <Text style={{ fontFamily: font.mono, fontSize: 11, color: c.muted }}>{t.locError}</Text>}
+          {locMatches.length > 1 && (
+            <View style={{ gap: 6, marginTop: 6 }}>
+              <Text style={{ fontFamily: font.mono, fontSize: 11, color: c.muted }}>{t.locPick}</Text>
+              {locMatches.map((m) => (
+                <Pressable key={`${m.lat},${m.lng}`} accessibilityRole="button" onPress={() => { tap(); applyOrigin(m, m.label, false); setLocMatches([]); }}
+                  style={{ minHeight: 44, justifyContent: "center", paddingHorizontal: 12, borderWidth: 1.5, borderColor: c.line, borderRadius: 6 }}>
+                  <Text style={{ fontFamily: font.sansMed, fontSize: 14, color: c.ink }}>{m.label}</Text>
+                </Pressable>
+              ))}
+            </View>
+          )}
+          {(customLabel || usingCurrent) && (
+            <View style={{ alignSelf: "flex-start", marginTop: 6 }}>
+              <Btn small label={t.locDefaultBtn} onPress={() => { applyOrigin(DEFAULT_CENTRE, null, false); setLocQuery(""); setLocBtn("useLoc"); }} />
+            </View>
+          )}
         </View>
         <View style={{ flexDirection: "row", gap: 10, alignItems: "flex-end" }}>
           <View style={{ flex: 1, gap: 4 }}>
