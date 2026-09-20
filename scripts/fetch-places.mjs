@@ -4,6 +4,10 @@
 //
 //   GOOGLE_PLACES_API_KEY=... npm run fetch:places
 //
+// Credential: a standard Maps API key (starts "AIza") is sent as X-Goog-Api-Key. Anything else is
+// sent as an OAuth Bearer token (e.g. `gcloud auth print-access-token`). For Bearer tokens, also set
+// GOOGLE_CLOUD_PROJECT=<project id> so the call is billed/quota'd to your project.
+//
 // Cost/terms: phone + opening hours are "Enterprise"-tier fields (billed higher than basic).
 // Google's terms limit how long place content may be cached (place IDs are exempt), so
 // re-run this regularly rather than treating the output as permanent.
@@ -11,6 +15,10 @@ import { writeFileSync, readFileSync, existsSync } from "node:fs";
 
 const KEY = process.env.GOOGLE_PLACES_API_KEY;
 if (!KEY) { console.error("Set GOOGLE_PLACES_API_KEY first."); process.exit(1); }
+
+const AUTH = KEY.startsWith("AIza")
+  ? { "X-Goog-Api-Key": KEY }
+  : { Authorization: `Bearer ${KEY}`, ...(process.env.GOOGLE_CLOUD_PROJECT ? { "X-Goog-User-Project": process.env.GOOGLE_CLOUD_PROJECT } : {}) };
 
 const CENTRE = { latitude: 6.121, longitude: 100.368 }; // Alor Setar town centre
 const RADIUS_M = Number(process.env.RADIUS_M ?? 20000); // Places caps location bias radius at 50 km
@@ -25,7 +33,7 @@ const FIELDS = [
 async function search(textQuery, pageToken) {
   const res = await fetch("https://places.googleapis.com/v1/places:searchText", {
     method: "POST",
-    headers: { "Content-Type": "application/json", "X-Goog-Api-Key": KEY, "X-Goog-FieldMask": FIELDS },
+    headers: { "Content-Type": "application/json", "X-Goog-FieldMask": FIELDS, ...AUTH },
     body: JSON.stringify({
       textQuery: `${textQuery} Alor Setar`, languageCode: "ms", regionCode: "MY", pageSize: 20,
       locationBias: { circle: { center: CENTRE, radius: RADIUS_M } },
