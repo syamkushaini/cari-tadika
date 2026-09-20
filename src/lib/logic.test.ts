@@ -136,3 +136,20 @@ describe("real data (trust rules)", () => {
     expect(rows).toHaveLength(1);
   });
 });
+
+describe("osm listings", () => {
+  const mk = (name: string) => ({ placeId: "osm:node/1", source: "openstreetmap" as const, name, area: "", address: null, lat: 6.1, lng: 100.3, phone: null, hoursOpen: null, hoursClose: null, fetchedAt: "2026-09-20T00:00:00Z" });
+  it("keeps the openstreetmap source until a registry check upgrades it", () => {
+    expect(buildReal([mk("Tadika X")], {})[0].source).toBe("openstreetmap");
+    expect(buildReal([mk("Tadika X")], { "osm:node/1": { kpmRegistered: true } })[0].source).toBe("official_registry");
+  });
+  it("infers government only for agency names; never marks registered or passes anything", () => {
+    const gov = buildReal([mk("Tabika KEMAS Tok Seron")], {})[0];
+    expect(gov.type).toBe("government");
+    expect(gov.kpmRegistered).toBeNull();
+    expect(stats(gov).y).toBe(0);
+    expect(buildReal([mk("Tadika Marian")], {})[0].type).toBe("private");
+    expect(buildReal([mk("Tabika Perpaduan Taman Selamat")], {})[0].type).toBe("government");
+    expect(buildReal([mk("Prasekolah Sekolah Kebangsaan Tanah Merah")], {})[0].type).toBe("government");
+  });
+});

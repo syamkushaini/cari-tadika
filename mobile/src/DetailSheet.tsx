@@ -34,7 +34,7 @@ export function DetailSheet({ k, lang, t, loc, ov, withTransport, compared, onCl
       {k && st && (
         <>
           <Text style={{ fontFamily: font.sans, fontSize: 14, color: c.muted, marginTop: -8 }}>
-            {k.area} · {typeLabel(k, t)} · <Text style={{ fontFamily: font.mono, color: c.ink }}>{fmtKm(km(loc, k))}</Text> {t.dariAnda}
+            {k.area ? `${k.area} · ` : ""}{typeLabel(k, t)} · <Text style={{ fontFamily: font.mono, color: c.ink }}>{fmtKm(km(loc, k))}</Text> {t.dariAnda}
           </Text>
           <View style={{ flexDirection: "row", flexWrap: "wrap", borderWidth: 1, borderColor: c.line, borderRadius: 6, overflow: "hidden" }}>
             {[

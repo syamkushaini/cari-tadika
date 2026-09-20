@@ -84,7 +84,7 @@ export function DetailDialog({ k, lang, t, loc, ov, withTransport, compared, onC
     <Dialog open={!!k} onClose={onClose} closeLabel={t.tutup}
       title={k && <>
         <h2>{k.name}</h2>
-        <div><span>{k.area} · {typeLabel(k, t)}</span><span> · <b>{fmtKm(km(loc, k))}</b> {t.dariAnda}</span></div>
+        <div><span>{k.area ? `${k.area} · ` : ""}{typeLabel(k, t)}</span><span> · <b>{fmtKm(km(loc, k))}</b> {t.dariAnda}</span></div>
       </>}>
       {body}
     </Dialog>

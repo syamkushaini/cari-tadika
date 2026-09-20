@@ -21,7 +21,7 @@ export function KindergartenCard({ row, annual, lang, t, ov, compared, onOpen, o
       <div className="file-main">
         <h2>{k.name}</h2>
         <dl className="ledger">
-          <div><dt>{t.kawasan}</dt><dd>{k.area}</dd></div>
+          <div><dt>{t.kawasan}</dt><dd>{k.area || "–"}</dd></div>
           <div><dt>{t.jarak}</dt><dd>{fmtKm(d)}</dd></div>
           <div><dt>{t.kosTahun}</dt><dd>{rmOr(annual, t)}</dd></div>
           <div><dt>{t.nisbah}</dt><dd>{ratioLabel(k, t)}</dd></div>

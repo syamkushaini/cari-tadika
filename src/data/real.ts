@@ -11,7 +11,12 @@ import curatedJson from "./curated.json";
 export type PlaceRow = {
   placeId: string; name: string; area: string; address: string | null; lat: number; lng: number;
   phone: string | null; hoursOpen: string | null; hoursClose: string | null; fetchedAt: string;
+  /** Where the listing came from; defaults to google_places. */
+  source?: DataSource;
 };
+
+/** Government agencies that run kindergartens. Only unambiguous names; everything else defaults to private. */
+export const looksGovernment = (name: string) => /\b(kemas|perpaduan)\b|prasekolah\s+(sekolah|sk\b)/i.test(name);
 
 export type Curated = Partial<{
   /** true/false only when checked against the KPM ePrasekolah registry. */
@@ -36,11 +41,11 @@ export function buildReal(places: PlaceRow[], curated: Record<string, Curated>):
     if (c.kpmRegistered != null) statuses.reg = c.kpmRegistered ? "ok" : "flag";
     if (c.teacherStudentRatio != null) statuses.ratio = ratioStatus(c.teacherStudentRatio);
     Object.assign(statuses, c.statuses);
-    const source: DataSource = c.source ?? (c.kpmRegistered != null ? "official_registry" : "google_places");
+    const source: DataSource = c.source ?? (c.kpmRegistered != null ? "official_registry" : p.source ?? "google_places");
     return [{
       id: p.placeId, placeId: p.placeId, name: c.name ?? p.name, area: c.area ?? p.area,
       address: p.address, phone: p.phone, fetchedAt: p.fetchedAt, lat: p.lat, lng: p.lng,
-      type: c.type ?? "private", modifier: c.modifier ?? "none",
+      type: c.type ?? (looksGovernment(c.name ?? p.name) ? "government" : "private"), modifier: c.modifier ?? "none",
       monthlyFee: c.monthlyFee ?? null, teacherStudentRatio: c.teacherStudentRatio ?? null,
       curriculumCode: c.curriculumCode ?? "none_stated",
       hoursOpen: p.hoursOpen, hoursClose: p.hoursClose,

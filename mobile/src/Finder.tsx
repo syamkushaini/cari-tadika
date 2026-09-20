@@ -138,6 +138,9 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
           ))}
         </View>
       )}
+      {kindergartens.some((k) => k.source === "openstreetmap") && (
+        <Text style={{ fontFamily: font.sans, fontSize: 12, color: c.muted, marginTop: 14 }}>{t.osmCredit}</Text>
+      )}
     </View>
   );
 

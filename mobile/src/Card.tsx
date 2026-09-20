@@ -38,7 +38,7 @@ export function Card({ row, annual, lang, t, ov, compared, onOpen, onToggleCompa
       <View style={{ flex: 1, gap: 10 }}>
         <Text accessibilityRole="header" style={{ fontFamily: font.serif, fontSize: 20, color: c.ink, paddingRight: st.major ? 70 : 0 }}>{k.name}</Text>
         <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8, columnGap: 16 }}>
-          {[[t.kawasan, k.area], [t.jarak, fmtKm(d)], [t.kosTahun, rmOr(annual, t)], [t.nisbah, ratioLabel(k, t)]].map(([l, v]) => (
+          {[[t.kawasan, k.area || "–"], [t.jarak, fmtKm(d)], [t.kosTahun, rmOr(annual, t)], [t.nisbah, ratioLabel(k, t)]].map(([l, v]) => (
             <View key={l}>
               <Text style={{ fontFamily: font.sansSemi, fontSize: 10.5, color: c.muted }}>{l}</Text>
               <Text style={{ fontFamily: font.mono, fontSize: 13.5, color: c.ink }}>{v}</Text>

@@ -134,6 +134,7 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
             ))}
           </ol>
         </details>
+        {kindergartens.some((k) => k.source === "openstreetmap") && <p className="credit" style={{ marginTop: 14 }}>{t.osmCredit}</p>}
       </div>
 
       <div className="bar" hidden={cmp.length === 0}>
