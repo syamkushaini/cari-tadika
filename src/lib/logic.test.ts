@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { I18N } from "@/content/i18n";
 import { CRITERIA } from "@/content/criteria";
-import { SAMPLE_KINDERGARTENS as ALL, ALOR_SETAR_CENTRE } from "@/data/seed";
+import { SAMPLE_KINDERGARTENS as ALL, DEFAULT_CENTRE } from "@/data/seed";
 import { annualCost, costLines, isPartialCost } from "./cost";
 import { buildReal } from "@/data/real";
 import { fmtTime } from "./format";
@@ -76,16 +76,16 @@ describe("format", () => {
 describe("search", () => {
   const label = () => "";
   it("hides major red flags by default and counts them", () => {
-    const { rows, hiddenMajor } = search(ALL, { ...DEFAULT_FILTERS, maxDist: 999 }, ALOR_SETAR_CENTRE, {}, label);
+    const { rows, hiddenMajor } = search(ALL, { ...DEFAULT_FILTERS, maxDist: 999 }, DEFAULT_CENTRE, {}, label);
     expect(hiddenMajor).toBe(2); // t4, t7
     expect(rows.find((r) => r.k.id === "t4")).toBeUndefined();
   });
   it("sorts by cost ascending", () => {
-    const { rows } = search(ALL, { ...DEFAULT_FILTERS, hideMajor: false, maxDist: 999, sort: "cost" }, ALOR_SETAR_CENTRE, {}, label);
+    const { rows } = search(ALL, { ...DEFAULT_FILTERS, hideMajor: false, maxDist: 999, sort: "cost" }, DEFAULT_CENTRE, {}, label);
     expect(rows[0].k.id).toBe("t5");
   });
   it("needTransport excludes kindergartens without transport", () => {
-    const { rows } = search(ALL, { ...DEFAULT_FILTERS, hideMajor: false, maxDist: 999, needTransport: true }, ALOR_SETAR_CENTRE, {}, label);
+    const { rows } = search(ALL, { ...DEFAULT_FILTERS, hideMajor: false, maxDist: 999, needTransport: true }, DEFAULT_CENTRE, {}, label);
     expect(rows.some((r) => r.k.id === "t2" || r.k.id === "t5")).toBe(false);
   });
   it("haversine is sane (~1° lat ≈ 111 km)", () => {
@@ -95,11 +95,11 @@ describe("search", () => {
 
 describe("compare", () => {
   it("verdict skips critical-flag listings", () => {
-    const { pick } = buildCompare([by("t1"), by("t7")], ALOR_SETAR_CENTRE, {}, false);
+    const { pick } = buildCompare([by("t1"), by("t7")], DEFAULT_CENTRE, {}, false);
     expect(pick.k.id).toBe("t1");
   });
   it("no verdict when all have critical flags", () => {
-    expect(buildCompare([by("t4"), by("t7")], ALOR_SETAR_CENTRE, {}, false).pick).toBeUndefined();
+    expect(buildCompare([by("t4"), by("t7")], DEFAULT_CENTRE, {}, false).pick).toBeUndefined();
   });
 });
 
@@ -130,9 +130,9 @@ describe("real data (trust rules)", () => {
     expect(isPartialCost(k)).toBe(true);
     expect(annualCost(k, false)).toBe(3600);
     const [u] = buildReal([{ ...place, placeId: "p2" }], {});
-    const c = buildCompare([k, u], ALOR_SETAR_CENTRE, {}, false);
+    const c = buildCompare([k, u], DEFAULT_CENTRE, {}, false);
     expect(c.best.annual).toBe(3600);
-    const { rows } = search([u], { ...DEFAULT_FILTERS, maxBudget: 2000, maxDist: 999 }, ALOR_SETAR_CENTRE, {}, () => "");
+    const { rows } = search([u], { ...DEFAULT_FILTERS, maxBudget: 2000, maxDist: 999 }, DEFAULT_CENTRE, {}, () => "");
     expect(rows).toHaveLength(1);
   });
 });

@@ -1,4 +1,4 @@
-// Fetches kindergarten listings around Alor Setar from Google Places API (New)
+// Fetches kindergarten listings around Kolej Tentera Udara, Kepala Batas from Google Places API (New)
 // and writes src/data/generated/places.json. Facts are NOT inferred: this only gets
 // identity, location, phone and opening hours. Verification lives in src/data/curated.json.
 //
@@ -20,7 +20,7 @@ const AUTH = KEY.startsWith("AIza")
   ? { "X-Goog-Api-Key": KEY }
   : { Authorization: `Bearer ${KEY}`, ...(process.env.GOOGLE_CLOUD_PROJECT ? { "X-Goog-User-Project": process.env.GOOGLE_CLOUD_PROJECT } : {}) };
 
-const CENTRE = { latitude: 6.121, longitude: 100.368 }; // Alor Setar town centre
+const CENTRE = { latitude: 6.19625, longitude: 100.40873 }; // Kolej Tentera Udara, Kepala Batas
 const RADIUS_M = Number(process.env.RADIUS_M ?? 20000); // Places caps location bias radius at 50 km
 const QUERIES = ["tadika", "taska", "prasekolah", "kindergarten", "tadika swasta", "tadika islam"];
 const OUT = new URL("../src/data/generated/places.json", import.meta.url);
@@ -35,7 +35,7 @@ async function search(textQuery, pageToken) {
     method: "POST",
     headers: { "Content-Type": "application/json", "X-Goog-FieldMask": FIELDS, ...AUTH },
     body: JSON.stringify({
-      textQuery: `${textQuery} Alor Setar`, languageCode: "ms", regionCode: "MY", pageSize: 20,
+      textQuery: `${textQuery} Kedah`, languageCode: "ms", regionCode: "MY", pageSize: 20,
       locationBias: { circle: { center: CENTRE, radius: RADIUS_M } },
       ...(pageToken ? { pageToken } : {}),
     }),

@@ -1,4 +1,4 @@
-// Fetches kindergartens/childcare around Alor Setar from OpenStreetMap (Overpass API)
+// Fetches kindergartens/childcare around Kolej Tentera Udara, Kepala Batas from OpenStreetMap (Overpass API)
 // and writes src/data/generated/places.json in the same shape the Google script uses.
 // No account or key needed. Only identity/location/contact is taken; verification lives in curated.json.
 //
@@ -7,7 +7,7 @@
 // Data © OpenStreetMap contributors, ODbL. The app shows this credit when OSM data is in use.
 import { writeFileSync, readFileSync, existsSync } from "node:fs";
 
-const CENTRE = { lat: 6.121, lng: 100.368 };
+const CENTRE = { lat: 6.19625, lng: 100.40873 }; // Kolej Tentera Udara, Kepala Batas
 const RADIUS_M = Number(process.env.RADIUS_M ?? 25000);
 const OUT = new URL("../src/data/generated/places.json", import.meta.url);
 const ENDPOINTS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"];

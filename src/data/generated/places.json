@@ -10,7 +10,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -24,7 +24,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -38,7 +38,7 @@
     "phone": "60197254660",
     "hoursOpen": "08:00",
     "hoursClose": "18:00",
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "childcare"
   },
   {
@@ -52,7 +52,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -66,7 +66,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -80,7 +80,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -94,7 +94,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -108,7 +108,7 @@
     "phone": "04-7305126",
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -122,7 +122,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -136,7 +136,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -150,7 +150,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -164,7 +164,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -178,7 +178,21 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
+    "amenity": "kindergarten"
+  },
+  {
+    "placeId": "osm:node/12366499352",
+    "source": "openstreetmap",
+    "name": "PASTI Al-Basyir",
+    "area": "",
+    "address": null,
+    "lat": 6.2530712,
+    "lng": 100.6034424,
+    "phone": null,
+    "hoursOpen": null,
+    "hoursClose": null,
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -192,7 +206,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -206,7 +220,7 @@
     "phone": null,
     "hoursOpen": "07:30",
     "hoursClose": "11:00",
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -220,7 +234,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -234,7 +248,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -248,7 +262,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "childcare"
   },
   {
@@ -262,7 +276,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -276,21 +290,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.049Z",
-    "amenity": "kindergarten"
-  },
-  {
-    "placeId": "osm:way/552870587",
-    "source": "openstreetmap",
-    "name": "Tabika KEMAS 2 Kampung Seberang Jaya",
-    "area": "",
-    "address": null,
-    "lat": 5.97233,
-    "lng": 100.3522511,
-    "phone": null,
-    "hoursOpen": null,
-    "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.927Z",
     "amenity": "kindergarten"
   },
   {
@@ -304,7 +304,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -318,7 +318,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -332,7 +332,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -346,7 +346,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -360,7 +360,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -374,7 +374,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -388,7 +388,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -402,7 +402,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -416,7 +416,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -430,7 +430,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -444,7 +444,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -458,7 +458,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -472,7 +472,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -486,7 +486,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -500,7 +500,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -514,7 +514,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -528,7 +528,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -542,7 +542,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -556,7 +556,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -570,7 +570,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -584,21 +584,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
-    "amenity": "kindergarten"
-  },
-  {
-    "placeId": "osm:node/3723408676",
-    "source": "openstreetmap",
-    "name": "Tadika KEMAS Batu 14 Sungai Daun",
-    "area": "",
-    "address": null,
-    "lat": 5.9295205,
-    "lng": 100.4181924,
-    "phone": null,
-    "hoursOpen": null,
-    "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -612,7 +598,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -626,7 +612,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -640,7 +626,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -654,7 +640,7 @@
     "phone": "0194440218",
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -668,7 +654,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -682,7 +668,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -696,7 +682,21 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
+    "amenity": "kindergarten"
+  },
+  {
+    "placeId": "osm:way/370743009",
+    "source": "openstreetmap",
+    "name": "Taman Bimbingan Kanak-Kanak KEMAS",
+    "area": "",
+    "address": null,
+    "lat": 6.1101524,
+    "lng": 100.6130461,
+    "phone": null,
+    "hoursOpen": null,
+    "hoursClose": null,
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -710,7 +710,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -724,7 +724,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.929Z",
     "amenity": "kindergarten"
   },
   {
@@ -738,7 +738,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -752,7 +752,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -766,7 +766,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -780,7 +780,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -794,7 +794,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -808,7 +808,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   },
   {
@@ -822,7 +822,7 @@
     "phone": null,
     "hoursOpen": null,
     "hoursClose": null,
-    "fetchedAt": "2026-09-20T11:29:08.051Z",
+    "fetchedAt": "2026-09-20T11:32:45.928Z",
     "amenity": "kindergarten"
   }
 ]

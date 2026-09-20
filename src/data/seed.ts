@@ -52,4 +52,5 @@ function expand(r: Row): Kindergarten {
 }
 
 export const SAMPLE_KINDERGARTENS: readonly Kindergarten[] = ROWS.map(expand);
-export const ALOR_SETAR_CENTRE = { lat: 6.1210, lng: 100.3680 };
+/** Default search origin: Kolej Tentera Udara, Kepala Batas (Kota Setar, Kedah). */
+export const DEFAULT_CENTRE = { lat: 6.19625, lng: 100.40873 };

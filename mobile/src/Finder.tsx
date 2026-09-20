@@ -5,7 +5,7 @@ import Svg, { Path } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { CRITERIA } from "@/content/criteria";
 import { I18N } from "@/content/i18n";
-import { ALOR_SETAR_CENTRE } from "@/data/seed";
+import { DEFAULT_CENTRE } from "@/data/seed";
 import { annualCost } from "@/lib/cost";
 import { DEFAULT_FILTERS, search, type Filters } from "@/lib/filter";
 import { typeLabel } from "@/lib/format";
@@ -32,7 +32,7 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
   const set = <K extends keyof Filters>(key: K, v: Filters[K]) => setF((p) => ({ ...p, [key]: v }));
   const [filtersOpen, setFiltersOpen] = useState(false);
 
-  const [loc, setLoc] = useState(ALOR_SETAR_CENTRE);
+  const [loc, setLoc] = useState(DEFAULT_CENTRE);
   const [usingCurrent, setUsingCurrent] = useState(false);
   const [locBtn, setLocBtn] = useState<LocBtn>("useLoc");
   const useMyLocation = async () => {

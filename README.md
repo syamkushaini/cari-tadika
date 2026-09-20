@@ -31,9 +31,9 @@ npm run lint && npm run build
 - **Annual cost** = registration + monthly fee × `billableMonths` + books + uniform + activities + (optional) transport × `billableMonths`. `billableMonths` defaults to 12 (spec §5.4); nothing in the UI edits it yet.
 - Parent overrides live in `localStorage` (`cariTadika.v2`). The prototype's `cariTadika.v1` data is **not** migrated (its shape used array indices, and the prototype was a demo).
 
-## Real data (Alor Setar / Kedah)
+## Real data (around Kolej Tentera Udara, Kepala Batas, Kedah)
 
-Listings come from two files, merged in `src/data/real.ts`. If `places.json` is empty the app falls back to the fictional samples.
+Listings come from two files, merged in `src/data/real.ts`. Default search origin is `DEFAULT_CENTRE` in `src/data/seed.ts` (also set in both fetch scripts). If `places.json` is empty the app falls back to the fictional samples.
 
 1. **Fetch listings** (name, location, phone, hours) from Google Places:
    `GOOGLE_PLACES_API_KEY=... npm run fetch:places` writes `src/data/generated/places.json`.
