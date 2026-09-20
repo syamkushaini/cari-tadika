@@ -110,9 +110,11 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
         </View>
       </View>
       <Text style={{ fontFamily: font.sans, fontSize: 16, color: c.muted }}>{t.lede}</Text>
-      <View style={{ alignSelf: "flex-start", borderWidth: 2, borderColor: c.unk, borderRadius: 3, paddingHorizontal: 9, paddingVertical: 3, transform: [{ rotate: "-2deg" }] }}>
-        <Text style={{ fontFamily: font.monoBold, fontSize: 11, letterSpacing: 0.5, color: c.unk }}>{kindergartens.every((k) => k.source === "sample") ? t.sample : t.unverified}</Text>
-      </View>
+      {kindergartens.every((k) => k.source === "sample") && (
+        <View style={{ alignSelf: "flex-start", borderWidth: 2, borderColor: c.unk, borderRadius: 3, paddingHorizontal: 9, paddingVertical: 3, transform: [{ rotate: "-2deg" }] }}>
+          <Text style={{ fontFamily: font.monoBold, fontSize: 11, letterSpacing: 0.5, color: c.unk }}>{t.sample}</Text>
+        </View>
+      )}
 
       <View style={{ backgroundColor: c.surface, borderWidth: 1, borderColor: c.line, borderRadius: 10, padding: 14, gap: 12 }}>
         <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>

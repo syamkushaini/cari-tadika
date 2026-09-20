@@ -103,7 +103,7 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
             </div>
           </div>
           <p className="lede">{t.lede}</p>
-          <span className="sample-note">{kindergartens.every((k) => k.source === "sample") ? t.sample : t.unverified}</span>
+          {kindergartens.every((k) => k.source === "sample") && <span className="sample-note">{t.sample}</span>}
         </header>
 
         <section className="controls" aria-label={t.filtersAria}>
