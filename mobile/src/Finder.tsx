@@ -99,9 +99,10 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
     () => search(kindergartens, f, loc, ov.map, (k) => typeLabel(k, t)),
     [kindergartens, f, loc, ov.map, t],
   );
-  const byId = (id: string) => kindergartens.find((k) => k.id === id)!;
-  const cmpKs = cmp.map(byId);
-  const openK = openId ? byId(openId) : null;
+  // A refreshed data file can drop a listing the user had open or selected, so never assume it exists.
+  const byId = (id: string) => kindergartens.find((k) => k.id === id);
+  const cmpKs = cmp.map(byId).filter((k): k is Kindergarten => !!k);
+  const openK = openId ? byId(openId) ?? null : null;
   const barText = cmpNotice ? t.maxCmp : cmp.length < 2 ? `${cmpKs[0]?.name ?? ""} ${t.pilihMin}` : cmpKs.map((k) => k.name).join(" vs ");
   const chips = activeFilterChips(f, t);
   const [guideOpen, setGuideOpen] = useState(false);

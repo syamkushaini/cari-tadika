@@ -53,6 +53,26 @@ Listings come from two files (1,151 OpenStreetMap places as of the last fetch; O
 
 **Terms:** Google restricts how long Places content may be stored (place IDs excepted). Treat `places.json` as a cache: re-run the fetch regularly, and check Google's current terms before publishing publicly.
 
+## Updating the data (spreadsheet workflow)
+
+You never edit JSON by hand. The spreadsheet is your working copy and `src/data/curated.json` is the saved record.
+
+```bash
+npm run data:export                       # creates data/kindergartens.xlsx (all listings, your earlier values pre-filled)
+# ...open it in Excel / Numbers / Google Sheets, fill the white columns, save...
+npm run data:import -- --dry-run          # optional: check for mistakes without saving
+npm run data:publish                      # import + tests + commit + push (website redeploys in ~2 minutes)
+```
+
+- **Sheet "Kindergartens"**: one row per listing. Grey columns are reference only. White columns are yours: type, modifier, curriculum, `kpm_registered`, the fees, `teacher_student_ratio`, hours, phone, the `check_*` statuses (dropdowns), `source_note` and `verified_on` (audit trail, not shown in the apps). `hide = yes` removes a listing.
+- **Sheet "Add new"**: kindergartens the sources missed. `name` is required. Give `lat`/`lng` (right-click in Google Maps), or just an address and the import looks it up (approximate).
+- **Blank means unknown.** It is never turned into 0, "ok" or "registered". `0` is a real value.
+- **Mistakes are caught before anything is saved.** Every bad cell is listed with its row number and the import stops. Do not rename or reorder the header row.
+- `data/*.xlsx` is git-ignored: `curated.json` and `manual-places.json` are the source of truth, and `data:export` can always rebuild the sheet from them.
+- **iPhone app:** on launch it downloads `/data/kindergartens.json` from the website (validated, cached, and ignored if the download is bad or offline), so a `data:publish` reaches the phone without rebuilding the app. Code changes still need a new Expo build or reload.
+
+**A Google Sheet works too:** upload the `.xlsx` to Google Drive, edit it in Google Sheets, then File → Download → Microsoft Excel (.xlsx) and save it over `data/kindergartens.xlsx` before importing.
+
 ### KPM registry (Kota Setar)
 
 `src/data/registry/kota-setar.psv` is the ePrasekolah "Carian Institusi" list for Kota Setar (180 rows; 179 imported, the placeholder record K5A0000 "Tadika XYZ" is skipped). It was copied by hand from a logged-in parent account, not scraped. Registry rows are marked `kpmRegistered: true` and `source: "official_registry"`; every other criterion stays Unsure.

@@ -8,6 +8,7 @@ import { ratioStatus } from "./ratio";
 import placesJson from "./generated/places.json";
 import curatedJson from "./curated.json";
 import registryJson from "./generated/registry.json";
+import manualJson from "./manual-places.json";
 import { km } from "@/lib/geo";
 
 export type PlaceRow = {
@@ -38,6 +39,10 @@ export type Curated = Partial<{
   /** Drop this place (not a kindergarten, closed, duplicate…). */
   exclude: boolean;
   name: string; area: string;
+  /** Overrides for details the listing source lacks or has wrong. */
+  phone: string; hoursOpen: string; hoursClose: string;
+  /** Audit trail, not shown in the apps: where the facts came from and when they were checked (YYYY-MM-DD). */
+  note: string; verifiedOn: string;
 }>;
 
 export function buildReal(places: PlaceRow[], curated: Record<string, Curated>): Kindergarten[] {
@@ -52,11 +57,11 @@ export function buildReal(places: PlaceRow[], curated: Record<string, Curated>):
     const source: DataSource = c.source ?? (kpm != null ? "official_registry" : p.source ?? "google_places");
     return [{
       id: p.placeId, placeId: p.placeId, name: c.name ?? p.name, area: c.area ?? p.area,
-      address: p.address, phone: p.phone, fetchedAt: p.fetchedAt, lat: p.lat, lng: p.lng,
+      address: p.address, phone: c.phone ?? p.phone, fetchedAt: p.fetchedAt, lat: p.lat, lng: p.lng,
       type: c.type ?? (looksGovernment(c.name ?? p.name) ? "government" : "private"), modifier: c.modifier ?? "none",
       monthlyFee: c.monthlyFee ?? null, teacherStudentRatio: c.teacherStudentRatio ?? null,
       curriculumCode: c.curriculumCode ?? "none_stated",
-      hoursOpen: p.hoursOpen, hoursClose: p.hoursClose,
+      hoursOpen: c.hoursOpen ?? p.hoursOpen, hoursClose: c.hoursClose ?? p.hoursClose,
       kpmRegistered: kpm,
       institutionCode: p.institutionCode ?? null, vacancies: p.vacancies ?? null, locationApprox: p.locationApprox ?? false,
       registrationFee: c.registrationFee ?? null, annualBooksCost: c.annualBooksCost ?? null,
@@ -88,5 +93,5 @@ export function mergeSources(osm: PlaceRow[], registry: PlaceRow[]): PlaceRow[] 
 }
 
 export const REAL_KINDERGARTENS: readonly Kindergarten[] = buildReal(
-  mergeSources(placesJson as PlaceRow[], registryJson as PlaceRow[]), curatedJson as Record<string, Curated>,
+  [...mergeSources(placesJson as PlaceRow[], registryJson as PlaceRow[]), ...(manualJson as PlaceRow[])], curatedJson as Record<string, Curated>,
 );

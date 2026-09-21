@@ -6,8 +6,10 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { listKindergartens } from "@/data/repository";
 import { Finder } from "~/Finder";
+import { useListings } from "~/liveData";
 
 export default function App() {
+  const listings = useListings(listKindergartens());
   const [loaded] = useFonts({
     Spectral_600SemiBold, Spectral_700Bold, IBMPlexSans_400Regular, IBMPlexSans_400Regular_Italic, IBMPlexSans_500Medium, IBMPlexSans_600SemiBold, IBMPlexSans_700Bold,
     IBMPlexMono_500Medium, IBMPlexMono_600SemiBold, IBMPlexMono_700Bold,
@@ -15,7 +17,7 @@ export default function App() {
   if (!loaded) return null; // native splash stays up until fonts are ready
   return (
     <SafeAreaProvider>
-      <Finder kindergartens={listKindergartens()} />
+      <Finder kindergartens={listings} />
       <StatusBar style="auto" />
     </SafeAreaProvider>
   );

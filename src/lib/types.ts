@@ -5,7 +5,7 @@ export type KgModifier = "none" | "montessori" | "waldorf" | "islamic";
 export type CurriculumCode =
   | "kspk" | "kspk_montessori" | "kspk_waldorf" | "kspk_tahfiz" | "kspk_fardu"
   | "none_stated" | "unclear";
-export type DataSource = "sample" | "google_places" | "openstreetmap" | "owner_submitted" | "parent_verified" | "official_registry";
+export type DataSource = "sample" | "google_places" | "openstreetmap" | "manual" | "owner_submitted" | "parent_verified" | "official_registry";
 
 export type Kindergarten = {
   id: string;

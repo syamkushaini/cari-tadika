@@ -10,6 +10,8 @@ import { stats, stampIsPass } from "./scoring";
 import { activeFilterChips, ANY_DISTANCE, DEFAULT_FILTERS, search } from "./filter";
 import { buildCompare } from "./compare";
 import { geocode } from "./geocode";
+import { parseRemoteListings } from "./remote";
+import { curatedToRow, manualId, parseRow } from "@/data/sheet";
 
 const by = (id: string) => ALL.find((k) => k.id === id)!;
 
@@ -230,5 +232,59 @@ describe("registry import", () => {
   });
   it("normName ignores prefix words and punctuation", () => {
     expect(normName("TADIKA Al-Iman (ABIM)")).toBe(normName("Taska Al Iman ABIM"));
+  });
+});
+
+describe("spreadsheet rules", () => {
+  it("a fully blank row yields nothing: blank means unknown, never 0/ok/registered", () => {
+    expect(parseRow({}).curated).toBeNull();
+    expect(parseRow({ monthly_fee: "  ", check_safe: "", kpm_registered: "" })).toEqual({ curated: null, errors: [] });
+  });
+  it("parses money, ratio, hours and statuses in friendly formats", () => {
+    const { curated, errors } = parseRow({ monthly_fee: "RM 1,200", teacher_student_ratio: "1:12", hours_open: "7:30", hours_close: "6:00 pm", check_safe: "OK", check_clean: "Red flag", kpm_registered: "Yes", type: "Swasta", modifier: "Islamik", verified_on: "2026-09-21" });
+    expect(errors).toEqual([]);
+    expect(curated).toMatchObject({ monthlyFee: 1200, teacherStudentRatio: 12, hoursOpen: "07:30", hoursClose: "18:00", statuses: { safe: "ok", clean: "flag" }, kpmRegistered: true, type: "private", modifier: "islamic", verifiedOn: "2026-09-21" });
+  });
+  it("0 is a real value (free registration), distinct from blank", () => {
+    expect(parseRow({ registration_fee: "0" }).curated).toMatchObject({ registrationFee: 0 });
+  });
+  it("reports every bad cell with its column name", () => {
+    const { curated, errors } = parseRow({ monthly_fee: "abc", teacher_student_ratio: "99", check_safe: "great", hours_open: "07:30", verified_on: "21/9/2026", kpm_registered: "maybe" });
+    const text = errors.join(" | ");
+    for (const col of ["monthly_fee", "teacher_student_ratio", "check_safe", "hours_open and hours_close", "verified_on", "kpm_registered"]) expect(text).toContain(col);
+    expect(errors).toHaveLength(6);
+    expect(curated).not.toHaveProperty("monthlyFee"); // a bad value is never half-saved
+  });
+  it("rejects absurd values", () => {
+    expect(parseRow({ monthly_fee: "999999" }).errors).toHaveLength(1);
+    expect(parseRow({ billable_months: "13" }).errors).toHaveLength(1);
+  });
+  it("curatedToRow is the inverse of parseRow", () => {
+    const row = { monthly_fee: "350", check_trial: "ok", hours_open: "07:30", hours_close: "18:00", kpm_registered: "no", verified_on: "2026-09-21", source_note: "Called them" };
+    const { curated } = parseRow(row);
+    expect(curatedToRow(curated!)).toEqual(row);
+  });
+  it("manual ids are stable and url-safe", () => {
+    expect(manualId("Tadika Baru", "12 Jalan A")).toBe("manual:tadika-baru-12-jalan-a");
+    expect(manualId("Tadika Baru", "12 Jalan A")).toBe(manualId("Tadika Baru", "12 Jalan A"));
+  });
+  it("curated hours and phone override the listing source", () => {
+    const [k] = buildReal([{ placeId: "q1", name: "X", area: "", address: null, lat: 6, lng: 100, phone: "old", hoursOpen: null, hoursClose: null, fetchedAt: "" }], { q1: { phone: "new", hoursOpen: "08:00", hoursClose: "17:00" } });
+    expect([k.phone, k.hoursOpen, k.hoursClose]).toEqual(["new", "08:00", "17:00"]);
+  });
+});
+
+describe("remote listings guard", () => {
+  const good = { id: "a", name: "A", lat: 6, lng: 100, monthlyFee: null, teacherStudentRatio: 12, billableMonths: 12, statuses: {} };
+  it("accepts a well-formed file", () => {
+    expect(parseRemoteListings({ listings: [good] })).toHaveLength(1);
+  });
+  it("rejects empty, malformed or partly broken files so the app keeps its current data", () => {
+    expect(parseRemoteListings(null)).toBeNull();
+    expect(parseRemoteListings({})).toBeNull();
+    expect(parseRemoteListings({ listings: [] })).toBeNull();
+    expect(parseRemoteListings({ listings: [good, { ...good, lat: "6" }] })).toBeNull();
+    expect(parseRemoteListings({ listings: [{ ...good, statuses: undefined }] })).toBeNull();
+    expect(parseRemoteListings({ listings: [{ ...good, monthlyFee: "300" }] })).toBeNull();
   });
 });

@@ -9,7 +9,10 @@
     "lint": "eslint",
     "fetch:places": "node scripts/fetch-places.mjs",
     "test": "vitest run",
-    "fetch:osm": "node scripts/fetch-osm.mjs"
+    "fetch:osm": "node scripts/fetch-osm.mjs",
+    "data:export": "tsx scripts/data-export.ts",
+    "data:import": "tsx scripts/data-import.ts",
+    "data:publish": "tsx scripts/data-publish.ts"
   },
   "dependencies": {
     "next": "16.3.5",
@@ -23,7 +26,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
+    "exceljs": "^4.4.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5",
     "vitest": "^5.0.1"
   }
