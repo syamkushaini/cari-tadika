@@ -2,8 +2,7 @@ import { Pressable, Text, View } from "react-native";
 import { CRITERIA } from "@/content/criteria";
 import type { Dict } from "@/content/i18n";
 import { rmTotal } from "@/lib/cost";
-import { fmtKm } from "@/lib/geo";
-import { ratioLabel, tabLabel } from "@/lib/format";
+import { distLabel, ratioLabel, tabLabel } from "@/lib/format";
 import { statusOf } from "@/lib/scoring";
 import type { Row } from "@/lib/filter";
 import type { Lang, Override, Status } from "@/lib/types";
@@ -63,7 +62,7 @@ export function Card({ row, annual, lang, t, ov, compared, onOpen, onToggleCompa
       </View>
       <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", rowGap: 12 }}>
         <Field label={t.kawasan} value={k.area || null} mono={false} />
-        <Field label={t.jarak} value={fmtKm(d)} />
+        <Field label={t.jarak} value={distLabel(k, d)} />
         <Field label={t.kosTahun} value={annual == null ? null : rmTotal(k, annual, t)} />
         <Field label={t.nisbah} value={k.teacherStudentRatio == null ? null : ratioLabel(k, t)} />
       </View>

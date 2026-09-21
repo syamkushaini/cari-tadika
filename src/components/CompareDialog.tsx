@@ -3,8 +3,8 @@ import { CRITERIA } from "@/content/criteria";
 import type { Dict } from "@/content/i18n";
 import { otherCosts, rmOr } from "@/lib/cost";
 import { buildCompare } from "@/lib/compare";
-import { currLabel, esc, hoursLabel, ratioLabel } from "@/lib/format";
-import { fmtKm, type LatLng } from "@/lib/geo";
+import { currLabel, distLabel, esc, hoursLabel, ratioLabel } from "@/lib/format";
+import { type LatLng } from "@/lib/geo";
 import { statusOf } from "@/lib/scoring";
 import type { Kindergarten, Lang, OverrideMap } from "@/lib/types";
 import { Dialog } from "./Dialog";
@@ -38,7 +38,7 @@ export function CompareDialog({ ks, open, lang, t, loc, ov, withTransport, onClo
               <thead><tr><th></th>{c.rows.map((r) => <th key={r.k.id}>{r.k.name}</th>)}</tr></thead>
               <tbody>
                 <tr><th>{t.colSkor}</th>{c.rows.map((r) => <td key={r.k.id} className={win(r.st.y === c.best.score)}>{num(`${r.st.y}/9`)}{r.st.major ? ` · ${t.kritikal}` : ""}</td>)}</tr>
-                <tr><th>{t.colJarak}</th>{c.rows.map((r) => <td key={r.k.id} className={win(r.d === c.best.dist)}>{num(fmtKm(r.d))}</td>)}</tr>
+                <tr><th>{t.colJarak}</th>{c.rows.map((r) => <td key={r.k.id} className={win(r.d === c.best.dist)}>{num(distLabel(r.k, r.d))}</td>)}</tr>
                 <tr><th>{t.colKos}{withTransport ? t.colKosTrans : ""}</th>{c.rows.map((r) => (
                   <td key={r.k.id} className={win(isBest(r.annual, c.best.annual))}>{num(rmOr(r.annual, t))}
                     {withTransport && r.k.monthlyTransportCost == null && <><br /><span className="src">{t.tiadaTransSrc}</span></>}

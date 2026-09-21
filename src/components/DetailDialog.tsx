@@ -2,8 +2,8 @@
 import { CRITERIA } from "@/content/criteria";
 import type { Dict } from "@/content/i18n";
 import { annualCost, costLines, isPartialCost, rm, rmOr } from "@/lib/cost";
-import { fmtKm, type LatLng, km } from "@/lib/geo";
-import { currLabel, hoursLabel, ratioFull, typeLabel } from "@/lib/format";
+import { type LatLng, km } from "@/lib/geo";
+import { currLabel, distLabel, hoursLabel, ratioFull, typeLabel } from "@/lib/format";
 import { stats, statusOf } from "@/lib/scoring";
 import type { Kindergarten, Lang, Override, Status } from "@/lib/types";
 import { Dialog } from "./Dialog";
@@ -84,7 +84,9 @@ export function DetailDialog({ k, lang, t, loc, ov, withTransport, compared, onC
     <Dialog open={!!k} onClose={onClose} closeLabel={t.tutup}
       title={k && <>
         <h2>{k.name}</h2>
-        <div><span>{k.area ? `${k.area} · ` : ""}{typeLabel(k, t)}</span><span> · <b>{fmtKm(km(loc, k))}</b> {t.dariAnda}</span></div>
+        <div><span>{k.area ? `${k.area} · ` : ""}{typeLabel(k, t)}</span><span> · <b>{distLabel(k, km(loc, k))}</b> {t.dariAnda}</span></div>
+        {k.institutionCode && <div className="src">{t.instCode}: {k.institutionCode}{k.vacancies != null ? ` · ${t.vacanciesLbl}: ${k.vacancies}` : ""}</div>}
+        {k.locationApprox && <div className="src">{t.approxNote}</div>}
       </>}>
       {body}
     </Dialog>

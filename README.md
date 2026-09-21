@@ -53,6 +53,15 @@ Listings come from two files (1,151 OpenStreetMap places as of the last fetch; O
 
 **Terms:** Google restricts how long Places content may be stored (place IDs excepted). Treat `places.json` as a cache: re-run the fetch regularly, and check Google's current terms before publishing publicly.
 
+### KPM registry (Kota Setar)
+
+`src/data/registry/kota-setar.psv` is the ePrasekolah "Carian Institusi" list for Kota Setar (180 rows; 179 imported, the placeholder record K5A0000 "Tadika XYZ" is skipped). It was copied by hand from a logged-in parent account, not scraped. Registry rows are marked `kpmRegistered: true` and `source: "official_registry"`; every other criterion stays Unsure.
+
+- `node scripts/geocode-registry.mjs` places rows on the map (Nominatim, cached in `kota-setar.geo.json`). 93 are neighbourhood-level; 86 are only postcode-area level and show a "≈" before the distance.
+- `node scripts/build-registry.mjs` writes `src/data/generated/registry.json`.
+- `mergeSources` in `real.ts` merges a registry row with an OpenStreetMap place of the same normalised name within 3 km, keeping the registry identity and OSM's more precise position.
+- To add another district, paste its rows into a new `.psv` in the same 7-column format and repeat the two scripts.
+
 ## Open decisions (spec §5), unchanged
 
 Auth model for overrides · how parents' verifications become trusted (`parent_verified`) · crowdsourcing fees and ratios (`sample` → `parent_verified` / `official_registry`). Until decided, everything is sample data and clearly labelled as such.

@@ -1,3 +1,4 @@
+import { fmtKm } from "./geo";
 import type { Dict } from "@/content/i18n";
 import type { CurriculumCode, Kindergarten, Lang } from "./types";
 
@@ -49,3 +50,6 @@ export const tabLabel = (k: Kindergarten, t: Dict) => {
   const mod = { none: "", montessori: t.modMontessori, waldorf: t.modWaldorf, islamic: t.modIslamik }[k.modifier];
   return (mod ? `${base} · ${mod}` : base).toUpperCase();
 };
+
+/** Distance text; "≈" when the position is only approximate. */
+export const distLabel = (k: Kindergarten, d: number) => (k.locationApprox ? "≈ " : "") + fmtKm(d);

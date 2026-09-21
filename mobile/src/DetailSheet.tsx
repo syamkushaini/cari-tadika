@@ -3,8 +3,8 @@ import { Linking, Pressable, Text, TextInput, View } from "react-native";
 import { CRITERIA } from "@/content/criteria";
 import type { Dict } from "@/content/i18n";
 import { annualCost, costLines, isPartialCost, rm, rmTotal } from "@/lib/cost";
-import { currLabel, hoursLabel, ratioLabel, tabLabel } from "@/lib/format";
-import { fmtKm, km, type LatLng } from "@/lib/geo";
+import { currLabel, distLabel, hoursLabel, ratioLabel, tabLabel } from "@/lib/format";
+import { km, type LatLng } from "@/lib/geo";
 import { stats, statusOf } from "@/lib/scoring";
 import type { Kindergarten, Lang, Override, Status } from "@/lib/types";
 import { folder, font, useColors } from "./theme";
@@ -49,8 +49,10 @@ export function DetailSheet({ k, lang, t, loc, ov, withTransport, compared, onCl
               <Text style={{ fontFamily: font.sansSemi, fontSize: 12, letterSpacing: 1.1, color: c.kraftInk }}>{tabLabel(k, t)}</Text>
             </View>
             <Text style={{ fontFamily: font.sans, fontSize: 14, color: c.muted }}>
-              {k.area ? `${k.area} · ` : ""}<Text style={{ fontFamily: font.mono, color: c.ink }}>{fmtKm(km(loc, k))}</Text> {t.dariAnda}
+              {k.area ? `${k.area} · ` : ""}<Text style={{ fontFamily: font.mono, color: c.ink }}>{distLabel(k, km(loc, k))}</Text> {t.dariAnda}
             </Text>
+            {k.institutionCode ? <Text style={{ fontFamily: font.sans, fontSize: 13, color: c.muted }}>{t.instCode}: <Text style={{ fontFamily: font.mono, color: c.ink }}>{k.institutionCode}</Text>{k.vacancies != null ? <Text>  ·  {t.vacanciesLbl}: <Text style={{ fontFamily: font.mono, color: c.ink }}>{k.vacancies}</Text></Text> : null}</Text> : null}
+            {k.locationApprox ? <Text style={{ fontFamily: font.sansItalic, fontSize: 13, color: c.muted }}>{t.approxNote}</Text> : null}
           </View>
 
           <View style={{ flexDirection: "row", flexWrap: "wrap", backgroundColor: c.surface, borderWidth: 1.5, borderColor: c.line, ...folder(4, 16), overflow: "hidden" }}>

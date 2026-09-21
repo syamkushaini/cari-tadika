@@ -1,0 +1,1262 @@
+{
+ "K5A2010": {
+  "lat": 6.14434,
+  "lng": 100.36518,
+  "matched": "Taman Pandan, Kampung Lubuk Peringgi, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN PANDAN"
+ },
+ "K5A2117": {
+  "lat": 6.14434,
+  "lng": 100.36518,
+  "matched": "Taman Pandan, Kampung Lubuk Peringgi, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN PANDAN"
+ },
+ "K5A2639": {
+  "lat": 6.11725,
+  "lng": 100.33652,
+  "matched": "Taman Desa Impiana, Kampung Kilang Tebu, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN DESA IMPIANA"
+ },
+ "K5A2013": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05300"
+ },
+ "K5A2863": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05300"
+ },
+ "K5A2774": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN BANDAR BARU"
+ },
+ "K5A2711": {
+  "lat": 6.17332,
+  "lng": 100.36999,
+  "matched": "Taman Berlian, Anak Bukit, Mentaloon",
+  "quality": "taman",
+  "query": "TAMAN BERLIAN"
+ },
+ "K5A2900": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05350"
+ },
+ "K5B2844": {
+  "lat": 6.13637,
+  "lng": 100.38849,
+  "matched": "Taman Koperasi Kedah, Taman Kenyalang, Alor Setar",
+  "quality": "postcode",
+  "query": "05460"
+ },
+ "K5A2005": {
+  "lat": 6.12798,
+  "lng": 100.37253,
+  "matched": "Taman Jayakami, Kampung Khatijah, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN JAYAKAMI"
+ },
+ "K5A2648": {
+  "lat": 6.17809,
+  "lng": 100.37175,
+  "matched": "Hentian Bas Taman Aman, Lebuhraya Darul Aman, Laman Kuda",
+  "quality": "taman",
+  "query": "TAMAN LAMAN KUDA"
+ },
+ "K5B3726": {
+  "lat": 6.13885,
+  "lng": 100.34661,
+  "matched": "Sekolah Menengah Kebangsaan Agama Kedah, Lebuhraya Sultanah Bahiyah, Taman Seri Indah",
+  "quality": "postcode",
+  "query": "TAMAN BANDAR BARU MERGONG"
+ },
+ "K5A2003": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05200"
+ },
+ "K5A2133": {
+  "lat": 6.13637,
+  "lng": 100.38849,
+  "matched": "Taman Koperasi Kedah, Taman Kenyalang, Alor Setar",
+  "quality": "postcode",
+  "query": "05460"
+ },
+ "K5A2017": {
+  "lat": 6.09734,
+  "lng": 100.35713,
+  "matched": "Jalan Kuala Kedah, Taman Gunung Angsi, Simpang Kuala",
+  "quality": "postcode",
+  "query": "05400"
+ },
+ "K5A2896": {
+  "lat": 6.07003,
+  "lng": 100.36494,
+  "matched": "Taman Rasa Sayang, Kampung Alor Terong, Kampung Selarong Lalang Kanan",
+  "quality": "taman",
+  "query": "TAMAN RASA SAYANG"
+ },
+ "K5A2123": {
+  "lat": 6.09734,
+  "lng": 100.35713,
+  "matched": "Jalan Kuala Kedah, Taman Gunung Angsi, Simpang Kuala",
+  "quality": "postcode",
+  "query": "05400"
+ },
+ "K5A2786": {
+  "lat": 6.12175,
+  "lng": 100.34791,
+  "matched": "Jalan Utama Taman Rakyat, Mergong, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN RAKYAT MERGONG"
+ },
+ "K5A2871": {
+  "lat": 6.09734,
+  "lng": 100.35713,
+  "matched": "Jalan Kuala Kedah, Taman Gunung Angsi, Simpang Kuala",
+  "quality": "postcode",
+  "query": "TAMAN SOFIAH"
+ },
+ "K5B2024": {
+  "lat": 6.10143,
+  "lng": 100.35181,
+  "matched": "Taman Anggerik, Simpang Kuala, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN ANGGERIK 2"
+ },
+ "K5A2132": {
+  "lat": 6.14499,
+  "lng": 100.38352,
+  "matched": "Taman Uda, Alor Setar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN UDA"
+ },
+ "K5B2105": {
+  "lat": 6.10579,
+  "lng": 100.35906,
+  "matched": "Taman Sultan Badlishah, Simpang Kuala, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN SULTAN BADLISHAH"
+ },
+ "K5A2125": {
+  "lat": 6.15691,
+  "lng": 100.31953,
+  "matched": "Jalan Taman Sayang, Taman Sayang, Kampung Kuala Sungai",
+  "quality": "taman",
+  "query": "TAMAN KUBANG ROTAN"
+ },
+ "K5A2143": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "06550"
+ },
+ "K5A2020": {
+  "lat": 6.14434,
+  "lng": 100.36518,
+  "matched": "Taman Pandan, Kampung Lubuk Peringgi, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN PANDAN"
+ },
+ "K5A2832": {
+  "lat": 6.1223,
+  "lng": 100.4017,
+  "matched": "Taman Derga Perdana, Kampung Pengapit Batu, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN DERGA PERDANA"
+ },
+ "K5A2708": {
+  "lat": 6.14038,
+  "lng": 100.33571,
+  "matched": "Taman Mergong Jaya, Alor Setar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN MERGONG JAYA"
+ },
+ "K5A2707": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN HIDAYAH"
+ },
+ "K5A2927": {
+  "lat": 6.14723,
+  "lng": 100.36017,
+  "matched": "Taman Seri Belida, Alor Setar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN SERI BELIDA"
+ },
+ "K5A2110": {
+  "lat": 6.14782,
+  "lng": 100.3601,
+  "matched": "Taman Seri Puyu, Taman Seri Belida, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN SERI PUYU"
+ },
+ "K5A2120": {
+  "lat": 6.14782,
+  "lng": 100.3601,
+  "matched": "Taman Seri Puyu, Taman Seri Belida, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN SERI PUYU"
+ },
+ "K5A2856": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05300"
+ },
+ "K5A2651": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN MALINJA"
+ },
+ "K5D2798": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05100"
+ },
+ "K5A2142": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05300"
+ },
+ "K5A2725": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN BAHTERA"
+ },
+ "K5B2028": {
+  "lat": 6.13885,
+  "lng": 100.34661,
+  "matched": "Sekolah Menengah Kebangsaan Agama Kedah, Jalan Tembaga, Taman Seri Indah",
+  "quality": "taman",
+  "query": "TAMAN DARUL AMAN"
+ },
+ "K5A2752": {
+  "lat": 6.14021,
+  "lng": 100.33528,
+  "matched": "Taman Mergong Jaya, Alor Setar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN MERGONG JAYA 1"
+ },
+ "K5A2021": {
+  "lat": 6.14396,
+  "lng": 100.33039,
+  "matched": "Taman Zapin, Alor Setar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN ZAPIN"
+ },
+ "K5A2023": {
+  "lat": 6.10745,
+  "lng": 100.34614,
+  "matched": "Taman Kantan, Taman Cemara, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN KANTAN"
+ },
+ "K5C2118": {
+  "lat": 6.08523,
+  "lng": 100.30561,
+  "matched": "Taman Bersatu, Kampung Batas Paip, Kuala Kedah",
+  "quality": "taman",
+  "query": "TAMAN BERSATU"
+ },
+ "K5A2709": {
+  "lat": 6.13061,
+  "lng": 100.3749,
+  "matched": "Taman Mahkota, Kampung Khatijah, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN MAHKOTA"
+ },
+ "K5B2016": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "06650"
+ },
+ "K5B2879": {
+  "lat": 6.11493,
+  "lng": 100.39932,
+  "matched": "Perumahan Polis Diraja Malaysia Taman Derga Jaya, Kampung Pecah Periuk, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN MALAYSIA"
+ },
+ "K5B2119": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05050"
+ },
+ "K5C2961": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN BANDAR BARU"
+ },
+ "K5B2034": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN BAHTERA"
+ },
+ "K5A2103": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "06200"
+ },
+ "K5A2113": {
+  "lat": 6.07425,
+  "lng": 100.35586,
+  "matched": "Taman Desa Kiara, Kampung Hujung Alor, Kampung Teluk Bagan",
+  "quality": "taman",
+  "query": "TAMAN DESA KIARA"
+ },
+ "K5A2934": {
+  "lat": 6.18997,
+  "lng": 100.41012,
+  "matched": "Perbadanan Kemajuan Kraftangan Malaysia Cawangan Kedah, Jalan Gurun - Kepala Batas, Taman Nabira Jaya",
+  "quality": "postcode",
+  "query": "TAMAN PINANG EMAS"
+ },
+ "K5B2033": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN BANDAR BARU"
+ },
+ "K5A2819": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN CHENGAL"
+ },
+ "K5A2100": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05350"
+ },
+ "K5B2941": {
+  "lat": 6.09376,
+  "lng": 100.34456,
+  "matched": "Taman Seri Kota, Taman Merpati Fasa 3, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN SERI KOTA"
+ },
+ "K5B2005": {
+  "lat": 6.13885,
+  "lng": 100.34661,
+  "matched": "Sekolah Menengah Kebangsaan Agama Kedah, Lebuhraya Sultanah Bahiyah, Taman Seri Indah",
+  "quality": "postcode",
+  "query": "TAMAN DELIMA"
+ },
+ "K5B2104": {
+  "lat": 6.09734,
+  "lng": 100.35713,
+  "matched": "Jalan Kuala Kedah, Taman Gunung Angsi, Simpang Kuala",
+  "quality": "postcode",
+  "query": "TAMAN PADI EMASJALAN"
+ },
+ "K5A2019": {
+  "lat": 6.10978,
+  "lng": 100.35023,
+  "matched": "Taman Sri Bandar, Kampung Kilang Tebu, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN SRI BANDAR 3A"
+ },
+ "K5B2843": {
+  "lat": 6.10852,
+  "lng": 100.34516,
+  "matched": "Taman Setia 1C, Taman Cemara, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN SETIA"
+ },
+ "K5A2106": {
+  "lat": 6.09254,
+  "lng": 100.35708,
+  "matched": "Taman Gunung Bayu, Kampung Batu 2 Sungai Korok, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN GUNUNG BAYU"
+ },
+ "K5A2810": {
+  "lat": 6.16874,
+  "lng": 100.40164,
+  "matched": "Taman Nabira Jaya, Kampung Bohor, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN NABIRA"
+ },
+ "K5A2724": {
+  "lat": 6.10278,
+  "lng": 100.35472,
+  "matched": "Taman Berjaya, Simpang Kuala, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN BERJAYA"
+ },
+ "K5A2129": {
+  "lat": 6.09357,
+  "lng": 100.35404,
+  "matched": "Taman Dahlia, Simpang Kuala, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN DAHLIA"
+ },
+ "K5B2678": {
+  "lat": 6.11725,
+  "lng": 100.33652,
+  "matched": "Taman Desa Impiana, Kampung Kilang Tebu, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN DESA IMPIANA"
+ },
+ "K5B2019": {
+  "lat": 6.11936,
+  "lng": 100.40166,
+  "matched": "Taman Derga Jaya, Kampung Pengapit Batu, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN DERGA JAYA"
+ },
+ "K5A2119": {
+  "lat": 6.13981,
+  "lng": 100.38879,
+  "matched": "Taman Desa Aman, Lebuhraya Sultanah Bahiyah, Taman Mutiara",
+  "quality": "taman",
+  "query": "TAMAN AMAN"
+ },
+ "K5B2107": {
+  "lat": 6.13885,
+  "lng": 100.34661,
+  "matched": "Sekolah Menengah Kebangsaan Agama Kedah, Jalan Tembaga, Taman Seri Indah",
+  "quality": "postcode",
+  "query": "05250"
+ },
+ "K5B2880": {
+  "lat": 6.14654,
+  "lng": 100.37898,
+  "matched": "Kedah Digital Library, 1, Jalan Menteri",
+  "quality": "taman",
+  "query": "TAMAN SRI MENTALOON"
+ },
+ "K5B2109": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN VISTANA INDAH"
+ },
+ "K5B2013": {
+  "lat": 6.15443,
+  "lng": 100.37143,
+  "matched": "Darussyifa' Kedah, 299, Jalan Lumba Kuda",
+  "quality": "taman",
+  "query": "TAMAN LUMBA KUDA"
+ },
+ "K5B2825": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN BUNGA SENA"
+ },
+ "K5A2115": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN KEMUDI"
+ },
+ "K5B2117": {
+  "lat": 6.13885,
+  "lng": 100.34661,
+  "matched": "Sekolah Menengah Kebangsaan Agama Kedah, Jalan Tembaga, Taman Seri Indah",
+  "quality": "postcode",
+  "query": "05250"
+ },
+ "K5A2107": {
+  "lat": 6.16723,
+  "lng": 100.4998,
+  "matched": "Taman Jabi, Kampung Kolon, Pokok Sena",
+  "quality": "taman",
+  "query": "TAMAN SENA"
+ },
+ "K5A2007": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN BERSATU"
+ },
+ "K5A2943": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05350"
+ },
+ "K5A2951": {
+  "lat": 6.11684,
+  "lng": 100.37588,
+  "matched": "Persatuan Peniaga-Peniaga Motosikal Negeri Kedah, Lorong Tanjung, Taman Seri Cendana",
+  "quality": "taman",
+  "query": "TAMAN SIMPANG JAYA"
+ },
+ "K5A2105": {
+  "lat": 6.00302,
+  "lng": 100.3915,
+  "matched": "Kompleks PAS Kedah, Jalan Butterworth-Alor Setar, Taman Saderi",
+  "quality": "postcode",
+  "query": "06800"
+ },
+ "K5B2100": {
+  "lat": 6.09689,
+  "lng": 100.35694,
+  "matched": "Taman Gunung Indah, Simpang Kuala, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN GUNUNG INDAH"
+ },
+ "K5C2754": {
+  "lat": 6.09284,
+  "lng": 100.38078,
+  "matched": "Taman Saga, Kampung Tok Seron, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN SAGA"
+ },
+ "K5B2897": {
+  "lat": 6.09216,
+  "lng": 100.3539,
+  "matched": "Taman Dahlia Fasa VI, Simpang Kuala, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN RIA II"
+ },
+ "K5C2842": {
+  "lat": 6.10505,
+  "lng": 100.34123,
+  "matched": "Taman Rafflesia, Taman Cemara, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN RAFFLESIA"
+ },
+ "K5A2816": {
+  "lat": 6.12589,
+  "lng": 100.3479,
+  "matched": "Taman Rakyat, Alor Setar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN RAKYAT"
+ },
+ "K5C2962": {
+  "lat": 6.13885,
+  "lng": 100.34661,
+  "matched": "Sekolah Menengah Kebangsaan Agama Kedah, Lebuhraya Sultanah Bahiyah, Taman Seri Indah",
+  "quality": "postcode",
+  "query": "05150"
+ },
+ "K5B2035": {
+  "lat": 6.10745,
+  "lng": 100.34614,
+  "matched": "Taman Kantan, Taman Cemara, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN KANTAN"
+ },
+ "K5A2104": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN SULTAN BADLISHAH PERSIARAN SULTAN ABDUL HAMID"
+ },
+ "K5A2139": {
+  "lat": 6.12968,
+  "lng": 100.34319,
+  "matched": "Persiaran Bandar Baru Mergong, Taman Mergong Jaya, Kampung Mempelam",
+  "quality": "taman",
+  "query": "BANDAR BARU MERGONG"
+ },
+ "K5B2868": {
+  "lat": 6.09704,
+  "lng": 100.34582,
+  "matched": "Taman Pelangi, Taman Merpati Fasa 3, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN PELANGI"
+ },
+ "K5A2127": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05350"
+ },
+ "K5A2122": {
+  "lat": 6.09704,
+  "lng": 100.34582,
+  "matched": "Taman Pelangi, Taman Merpati Fasa 3, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN PELANGI"
+ },
+ "K5C2828": {
+  "lat": 6.07769,
+  "lng": 100.35649,
+  "matched": "Taman Desa Seraya Fasa 7, Taman Desa Kiara Fasa 1, Kampung Teluk Bagan",
+  "quality": "taman",
+  "query": "TAMAN DESA SERAYA"
+ },
+ "K5B2101": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05350"
+ },
+ "K5B2102": {
+  "lat": 6.09734,
+  "lng": 100.35713,
+  "matched": "Jalan Kuala Kedah, Taman Gunung Angsi, Simpang Kuala",
+  "quality": "postcode",
+  "query": "TAMAN TUNKU YAAKOB"
+ },
+ "K5B2111": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN GANDING"
+ },
+ "K5B2116": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN GANDING"
+ },
+ "K5B2103": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN GANDING"
+ },
+ "K5A2926": {
+  "lat": 6.13637,
+  "lng": 100.38849,
+  "matched": "Taman Koperasi Kedah, Taman Kenyalang, Alor Setar",
+  "quality": "postcode",
+  "query": "05460"
+ },
+ "K5A2001": {
+  "lat": 6.13637,
+  "lng": 100.38849,
+  "matched": "Taman Koperasi Kedah, Taman Kenyalang, Alor Setar",
+  "quality": "postcode",
+  "query": "05460"
+ },
+ "K5B2025": {
+  "lat": 6.14452,
+  "lng": 100.35556,
+  "matched": "Taman Wira, Taman Seri Belida, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN WIRA"
+ },
+ "K5B2738": {
+  "lat": 6.10993,
+  "lng": 100.35614,
+  "matched": "Taman Setar, Simpang Kuala, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN SETAR"
+ },
+ "K5B2031": {
+  "lat": 6.10143,
+  "lng": 100.35181,
+  "matched": "Taman Anggerik, Simpang Kuala, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN ANGGERIK"
+ },
+ "K5B2905": {
+  "lat": 6.09975,
+  "lng": 100.34485,
+  "matched": "Taman Mega Fasa 2, Taman Merpati Fasa 3, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN MEGA"
+ },
+ "K5B2112": {
+  "lat": 6.1514,
+  "lng": 100.50471,
+  "matched": "06400, Pokok Sena, Kedah",
+  "quality": "postcode",
+  "query": "TAMAN ANGSANA"
+ },
+ "K5A2121": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05300"
+ },
+ "K5B2877": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05050"
+ },
+ "K5A2908": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN VISTANA INDAH"
+ },
+ "K5B2110": {
+  "lat": 6.10583,
+  "lng": 100.29229,
+  "matched": "Jalan Kuala Kedah, Kampung Cina, Kuala Kedah",
+  "quality": "postcode",
+  "query": "06600"
+ },
+ "K5A2108": {
+  "lat": 6.13885,
+  "lng": 100.34661,
+  "matched": "Sekolah Menengah Kebangsaan Agama Kedah, Jalan Tembaga, Taman Seri Indah",
+  "quality": "postcode",
+  "query": "TAMAN BANDAR BARU MERGONG"
+ },
+ "K5B2106": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN MAS INDAH"
+ },
+ "K5A2114": {
+  "lat": 6.17315,
+  "lng": 100.37309,
+  "matched": "Taman Rusa Fasa 4, Anak Bukit, Mentaloon",
+  "quality": "taman",
+  "query": "TAMAN RUSA"
+ },
+ "K5B2023": {
+  "lat": 6.13885,
+  "lng": 100.34661,
+  "matched": "Sekolah Menengah Kebangsaan Agama Kedah, Jalan Tembaga, Taman Seri Indah",
+  "quality": "postcode",
+  "query": "TAMAN SERI MAKMUR"
+ },
+ "K5B2114": {
+  "lat": 6.10199,
+  "lng": 100.34326,
+  "matched": "Taman Samudera, Taman Sri Merpati, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN SAMUDERA"
+ },
+ "K5A2873": {
+  "lat": 6.15043,
+  "lng": 100.40964,
+  "matched": "Taman Satria, Kampung Masjid Luar, Telaga Bata",
+  "quality": "taman",
+  "query": "TAMAN SATRIA"
+ },
+ "K5B2007": {
+  "lat": 6.12559,
+  "lng": 100.38,
+  "matched": "Taman Lam Sun, Alor Setar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN LAM SUN"
+ },
+ "K5B2950": {
+  "lat": 6.12589,
+  "lng": 100.3479,
+  "matched": "Taman Rakyat, Alor Setar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN RAKYAT"
+ },
+ "K5A2646": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "KG. SUNGAI DURIAN"
+ },
+ "K5B2001": {
+  "lat": 6.13637,
+  "lng": 100.38849,
+  "matched": "Taman Koperasi Kedah, Taman Kenyalang, Alor Setar",
+  "quality": "postcode",
+  "query": "05460"
+ },
+ "K5C2011": {
+  "lat": 6.1514,
+  "lng": 100.50471,
+  "matched": "06400, Pokok Sena, Kedah",
+  "quality": "postcode",
+  "query": "TAMAN BANDAR BARU"
+ },
+ "K5A2706": {
+  "lat": 6.09423,
+  "lng": 100.38368,
+  "matched": "Kampung Ganding, Kampung Alor Mengkudu Dalam, Alor Setar",
+  "quality": "taman",
+  "query": "KG. GANDING"
+ },
+ "K5B2002": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05100"
+ },
+ "K5B2008": {
+  "lat": 6.16958,
+  "lng": 100.46154,
+  "matched": "Masjid Kampung Baru Telaga Mas, Jalan Kampung Bonggol Chegal, Jabi",
+  "quality": "taman",
+  "query": "KAMPUNG BARU"
+ },
+ "K5B2808": {
+  "lat": 6.07769,
+  "lng": 100.35649,
+  "matched": "Taman Desa Seraya Fasa 7, Taman Desa Kiara Fasa 1, Kampung Teluk Bagan",
+  "quality": "taman",
+  "query": "TAMAN DESA SERAYA"
+ },
+ "K5A2016": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN SINARAN"
+ },
+ "K5A2102": {
+  "lat": 6.12183,
+  "lng": 100.40685,
+  "matched": "Taman Kemuning (Arif Jaya), Kampung Pengapit Batu, Kampung Alor Buluh",
+  "quality": "taman",
+  "query": "TAMAN ARIF JAYA"
+ },
+ "K5A2131": {
+  "lat": 6.13637,
+  "lng": 100.38849,
+  "matched": "Taman Koperasi Kedah, Taman Kenyalang, Alor Setar",
+  "quality": "postcode",
+  "query": "TAMAN VISTANA INDAH"
+ },
+ "K5C2904": {
+  "lat": 6.10278,
+  "lng": 100.35472,
+  "matched": "Taman Berjaya, Simpang Kuala, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN BERJAYA"
+ },
+ "K5B2022": {
+  "lat": 6.10396,
+  "lng": 100.35809,
+  "matched": "Taman Purnama, Simpang Kuala, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN PURNAMA"
+ },
+ "K5A2920": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "06600"
+ },
+ "K5A2881": {
+  "lat": 6.08639,
+  "lng": 100.36852,
+  "matched": "Taman Budiman Fasa 2, Kampung Batu 2 Sungai Korok, Kampung Keriang Pulau",
+  "quality": "taman",
+  "query": "TAMAN BUDIMAN"
+ },
+ "K5A2116": {
+  "lat": 6.09766,
+  "lng": 100.29031,
+  "matched": "Taman Desarena Indah, Kampung Cina, Kuala Kedah",
+  "quality": "taman",
+  "query": "TAMAN DESARENA"
+ },
+ "K5A2800": {
+  "lat": 6.16862,
+  "lng": 100.30964,
+  "matched": "Taman Aroma, Kampung Alor Janggus, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN AROMA"
+ },
+ "K5A2857": {
+  "lat": 6.15052,
+  "lng": 100.41538,
+  "matched": "Taman Lelasari, Pekan Langgar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN LELASARI 2"
+ },
+ "K5B2020": {
+  "lat": 6.11936,
+  "lng": 100.40166,
+  "matched": "Taman Derga Jaya, Kampung Pengapit Batu, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN DERGA JAYA"
+ },
+ "K5B2026": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "PEKAN SIMPANG EMPAT"
+ },
+ "K5A2135": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN SERI MARINA"
+ },
+ "K5A2112": {
+  "lat": 6.1514,
+  "lng": 100.50471,
+  "matched": "06400, Pokok Sena, Kedah",
+  "quality": "postcode",
+  "query": "TAMAN DESA ILMU"
+ },
+ "K5A2995": {
+  "lat": 6.13765,
+  "lng": 100.38387,
+  "matched": "Taman PKNK, Taman Kenyalang, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN PKNK"
+ },
+ "K5A2751": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "06500"
+ },
+ "K5A2128": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05000"
+ },
+ "K5A2996": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05050"
+ },
+ "K5B2884": {
+  "lat": 6.144,
+  "lng": 100.39664,
+  "matched": "Taman Kelana, Alor Setar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN KELANA"
+ },
+ "K5A2134": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05350"
+ },
+ "K5B2901": {
+  "lat": 6.13885,
+  "lng": 100.34661,
+  "matched": "Sekolah Menengah Kebangsaan Agama Kedah, Lebuhraya Sultanah Bahiyah, Taman Seri Indah",
+  "quality": "postcode",
+  "query": "05150"
+ },
+ "K5B2041": {
+  "lat": 6.12175,
+  "lng": 100.34791,
+  "matched": "Jalan Utama Taman Rakyat, Mergong, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN RAKYAT MERGONG"
+ },
+ "K5B2118": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN AISHAH"
+ },
+ "K5C6973": {
+  "lat": 6.1514,
+  "lng": 100.50471,
+  "matched": "06400, Pokok Sena, Kedah",
+  "quality": "postcode",
+  "query": "TAMAN BANDAR SEJAHTERA"
+ },
+ "K5B2011": {
+  "lat": 6.13885,
+  "lng": 100.34661,
+  "matched": "Sekolah Menengah Kebangsaan Agama Kedah, Lebuhraya Sultanah Bahiyah, Taman Seri Indah",
+  "quality": "postcode",
+  "query": "05150"
+ },
+ "K5B2018": {
+  "lat": 6.09704,
+  "lng": 100.34582,
+  "matched": "Taman Pelangi, Taman Merpati Fasa 3, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN PELANGI"
+ },
+ "K5C2875": {
+  "lat": 6.17537,
+  "lng": 100.36875,
+  "matched": "Taman Tunku Bendahara, Anak Bukit, Mentaloon",
+  "quality": "taman",
+  "query": "TAMAN TUNKU BENDAHARA"
+ },
+ "K5A2671": {
+  "lat": 6.11725,
+  "lng": 100.33652,
+  "matched": "Taman Desa Impiana, Kampung Kilang Tebu, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN DESA IMPIANA"
+ },
+ "K5C2929": {
+  "lat": 6.09284,
+  "lng": 100.38078,
+  "matched": "Taman Saga, Kampung Tok Seron, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN SAGA"
+ },
+ "K5B2036": {
+  "lat": 6.09284,
+  "lng": 100.38078,
+  "matched": "Taman Saga, Kampung Tok Seron, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN SAGA"
+ },
+ "K5B2040": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN SEPAKAT"
+ },
+ "K5B2039": {
+  "lat": 6.09734,
+  "lng": 100.35713,
+  "matched": "Jalan Kuala Kedah, Taman Gunung Angsi, Simpang Kuala",
+  "quality": "postcode",
+  "query": "05400"
+ },
+ "K5B2029": {
+  "lat": 6.09152,
+  "lng": 100.34515,
+  "matched": "Taman Sri Kota, Taman Merpati Fasa 3, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN SRI KOTA"
+ },
+ "K5A2710": {
+  "lat": 6.14039,
+  "lng": 100.36533,
+  "matched": "Taman Utama, Kampung Lubuk Peringgi, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN UTAMA"
+ },
+ "K5B2108": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05000"
+ },
+ "K5B2113": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05000"
+ },
+ "K5B2115": {
+  "lat": 6.12559,
+  "lng": 100.38,
+  "matched": "Taman Lam Sun, Alor Setar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN LAM SUN"
+ },
+ "K5B2006": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05200"
+ },
+ "K5B2037": {
+  "lat": 6.07769,
+  "lng": 100.35649,
+  "matched": "Taman Desa Seraya Fasa 7, Taman Desa Kiara Fasa 1, Kampung Teluk Bagan",
+  "quality": "taman",
+  "query": "TAMAN DESA SERAYA"
+ },
+ "K5A2118": {
+  "lat": 6.17809,
+  "lng": 100.37175,
+  "matched": "Hentian Bas Taman Aman, Lebuhraya Darul Aman, Laman Kuda",
+  "quality": "taman",
+  "query": "TAMAN LAMAN KUDA ANAK BUKIT"
+ },
+ "K5A2140": {
+  "lat": 6.1514,
+  "lng": 100.50471,
+  "matched": "06400, Pokok Sena, Kedah",
+  "quality": "postcode",
+  "query": "TAMAN DAMAI"
+ },
+ "K5A2111": {
+  "lat": 6.13885,
+  "lng": 100.34661,
+  "matched": "Sekolah Menengah Kebangsaan Agama Kedah, Jalan Tembaga, Taman Seri Indah",
+  "quality": "postcode",
+  "query": "TAMAN SERI MENTALOON INDAH"
+ },
+ "K5A2101": {
+  "lat": 6.12482,
+  "lng": 100.38782,
+  "matched": "Taman Asuhan Kanak-kanak Islam TASKI ABIM Taman Shahab, Jalan Bayan, Taman Serindit",
+  "quality": "taman",
+  "query": "TAMAN SHAHAB"
+ },
+ "K5A2138": {
+  "lat": 6.1514,
+  "lng": 100.50471,
+  "matched": "06400, Pokok Sena, Kedah",
+  "quality": "postcode",
+  "query": "TAMAN BANDAR SEJAHTERA"
+ },
+ "K5A2124": {
+  "lat": 6.19477,
+  "lng": 100.38663,
+  "matched": "Taman Mas Maju, Anak Bukit, Kampung Alor Madi",
+  "quality": "taman",
+  "query": "TAMAN MAS MAJU"
+ },
+ "K5A2015": {
+  "lat": 6.14859,
+  "lng": 100.41533,
+  "matched": "Taman Amira, Telaga Bata, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN AMIRA"
+ },
+ "K5A2130": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "TAMAN SIMPANG PERDANA"
+ },
+ "K5A2928": {
+  "lat": 6.13637,
+  "lng": 100.38849,
+  "matched": "Taman Koperasi Kedah, Taman Kenyalang, Alor Setar",
+  "quality": "postcode",
+  "query": "TAMAN TERATAI PERMAI"
+ },
+ "K5C2788": {
+  "lat": 6.09061,
+  "lng": 100.36076,
+  "matched": "Taman Gunung Perak, Kampung Batu 2 Sungai Korok, Alor Setar",
+  "quality": "taman",
+  "query": "TAMAN GUNUNG PERAK"
+ },
+ "K5A2850": {
+  "lat": 6.11151,
+  "lng": 100.34385,
+  "matched": "Taman Cemara, Alor Setar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN CEMARA"
+ },
+ "K5A2793": {
+  "lat": 6.13885,
+  "lng": 100.34661,
+  "matched": "Sekolah Menengah Kebangsaan Agama Kedah, Lebuhraya Sultanah Bahiyah, Taman Seri Indah",
+  "quality": "postcode",
+  "query": "05150"
+ },
+ "K5A2126": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lorong Wat Siam, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05100"
+ },
+ "K5A2136": {
+  "lat": 6.13553,
+  "lng": 100.36882,
+  "matched": "Muzium Negeri Kedah Darul Aman, Lebuhraya Darul Aman, Kampung Lubuk Peringgi",
+  "quality": "postcode",
+  "query": "05000"
+ },
+ "K5A2004": {
+  "lat": 6.12589,
+  "lng": 100.3479,
+  "matched": "Taman Rakyat, Alor Setar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN RAKYAT"
+ },
+ "K5A2018": {
+  "lat": 6.11684,
+  "lng": 100.37588,
+  "matched": "Persatuan Peniaga-Peniaga Motosikal Negeri Kedah, Lorong Tanjung, Taman Seri Cendana",
+  "quality": "taman",
+  "query": "TAMAN SERI SIMPANG JAYA"
+ },
+ "K5A2137": {
+  "lat": 6.12589,
+  "lng": 100.3479,
+  "matched": "Taman Rakyat, Alor Setar, Kota Setar",
+  "quality": "taman",
+  "query": "TAMAN RAKYAT"
+ },
+ "K5A2022": {
+  "lat": 6.14342,
+  "lng": 100.35592,
+  "matched": "Dewan JKKK Blok E Taman Wira Mergong, Lorong Puyu 4/2, Taman Wira",
+  "quality": "taman",
+  "query": "TAMAN WIRA MERGONG"
+ },
+ "K5A0000": {
+  "lat": 6.10722,
+  "lng": 100.29349,
+  "matched": "Kuala Kedah, Kota Setar, Kedah",
+  "quality": "postcode",
+  "query": "31400"
+ },
+ "K5A2638": {
+  "lat": 6.11684,
+  "lng": 100.37588,
+  "matched": "Persatuan Peniaga-Peniaga Motosikal Negeri Kedah, Lorong Tanjung, Taman Seri Cendana",
+  "quality": "taman",
+  "query": "TAMAN SIMPANG JAYA"
+ }
+}

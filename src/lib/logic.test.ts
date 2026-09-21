@@ -3,7 +3,7 @@ import { I18N } from "@/content/i18n";
 import { CRITERIA } from "@/content/criteria";
 import { SAMPLE_KINDERGARTENS as ALL, DEFAULT_CENTRE } from "@/data/seed";
 import { annualCost, costLines, isPartialCost, rmTotal } from "./cost";
-import { buildReal } from "@/data/real";
+import { buildReal, mergeSources, normName } from "@/data/real";
 import { fmtTime, tabLabel } from "./format";
 import { km } from "./geo";
 import { stats, stampIsPass } from "./scoring";
@@ -200,5 +200,35 @@ describe("filter chips & labels", () => {
     expect(rmTotal(k, annualCost(k, false), I18N.en)).toBe("RM 3,600+");
     expect(rmTotal({ ...k, monthlyFee: null }, null, I18N.en)).toBe("Not yet known");
     expect(tabLabel({ ...k, type: "private", modifier: "islamic" }, I18N.en)).toBe("PRIVATE · ISLAMIC");
+  });
+});
+
+describe("registry import", () => {
+  const reg = { placeId: "kpm:K5A2010", institutionCode: "K5A2010", source: "official_registry" as const, kpmRegistered: true, name: "Tadika Abyad", area: "Taman Pandan", address: "9, Taman Pandan", lat: 6.10, lng: 100.36, locationApprox: true, phone: "010-4284272", hoursOpen: null, hoursClose: null, vacancies: 25, fetchedAt: "2026-09-21T00:00:00Z" };
+  const osm = (id: string, name: string, lat: number, lng: number) => ({ placeId: id, source: "openstreetmap" as const, name, area: "", address: null, lat, lng, phone: null, hoursOpen: "07:30", hoursClose: "18:00", fetchedAt: "2026-09-20T00:00:00Z" });
+
+  it("a registry row is KPM-registered (reg ok) but nothing else passes", () => {
+    const [k] = buildReal([reg], {});
+    expect(k.kpmRegistered).toBe(true);
+    expect(k.source).toBe("official_registry");
+    expect(k.institutionCode).toBe("K5A2010");
+    expect(k.vacancies).toBe(25);
+    expect(stats(k)).toMatchObject({ y: 1, n: 0, q: 8, major: false });
+    expect(k.statuses.safe).toBe("unsure");
+  });
+  it("curated data can still override the registry (e.g. deregistered)", () => {
+    expect(buildReal([reg], { "kpm:K5A2010": { kpmRegistered: false } })[0].statuses.reg).toBe("flag");
+  });
+  it("merges an OSM twin (same name, <3 km): registry identity + OSM position and hours", () => {
+    const out = mergeSources([osm("osm:node/1", "Tadika Abyad", 6.1012, 100.3611)], [reg]);
+    expect(out).toHaveLength(1);
+    expect(out[0]).toMatchObject({ placeId: "kpm:K5A2010", lat: 6.1012, lng: 100.3611, locationApprox: false, hoursOpen: "07:30" });
+  });
+  it("does not merge different names or same names that are far apart", () => {
+    expect(mergeSources([osm("osm:node/2", "Tadika Lain", 6.10, 100.36)], [reg])).toHaveLength(2);
+    expect(mergeSources([osm("osm:node/3", "Tadika Abyad", 5.5, 100.9)], [reg])).toHaveLength(2);
+  });
+  it("normName ignores prefix words and punctuation", () => {
+    expect(normName("TADIKA Al-Iman (ABIM)")).toBe(normName("Taska Al Iman ABIM"));
   });
 });

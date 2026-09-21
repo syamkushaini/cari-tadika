@@ -3,8 +3,8 @@ import { CRITERIA } from "@/content/criteria";
 import type { Dict } from "@/content/i18n";
 import { buildCompare } from "@/lib/compare";
 import { otherCosts, rm, rmTotal } from "@/lib/cost";
-import { currLabel, hoursLabel, ratioLabel, tabLabel } from "@/lib/format";
-import { fmtKm, type LatLng } from "@/lib/geo";
+import { currLabel, distLabel, hoursLabel, ratioLabel, tabLabel } from "@/lib/format";
+import { type LatLng } from "@/lib/geo";
 import { statusOf } from "@/lib/scoring";
 import type { Kindergarten, Lang, OverrideMap } from "@/lib/types";
 import { folder, font, useColors } from "./theme";
@@ -97,7 +97,7 @@ export function CompareSheet({ ks, visible, lang, t, loc, ov, withTransport, onC
 
           <View style={{ gap: 16 }}>
             <Block name={t.colSkor} cells={cmp.rows.map((r) => r.st.major ? { text: t.needsReview, kind: "bad" } : { text: `${r.st.y}/9`, kind: r.st.y === cmp.best.score ? "best" : "" })} />
-            <Block name={t.colJarak} cells={cmp.rows.map((r) => ({ text: fmtKm(r.d), kind: r.d === cmp.best.dist ? "best" : "" }))} />
+            <Block name={t.colJarak} cells={cmp.rows.map((r) => ({ text: distLabel(r.k, r.d), kind: r.d === cmp.best.dist ? "best" : "" }))} />
             <Block name={t.colKos + (withTransport ? t.colKosTrans : "")} cells={cmp.rows.map((r) => r.annual == null ? { kind: "unk" } : { text: rmTotal(r.k, r.annual, t), kind: isBest(r.annual, cmp.best.annual) ? "best" : "" })} />
             <Block name={t.colYuran} cells={cmp.rows.map((r) => r.k.monthlyFee == null ? { kind: "unk" } : { text: rm(r.k.monthlyFee), kind: isBest(r.k.monthlyFee, cmp.best.fee) ? "best" : "" })} />
             <Block name={t.colDaftar} cells={cmp.rows.map((r) => val(r.k.registrationFee == null ? null : rm(r.k.registrationFee)))} />

@@ -38,6 +38,12 @@ export type Kindergarten = {
   /** Spec §5.4: some centres bill 11 months. Defaults to 12. */
   billableMonths: number;
   source: DataSource;
+  /** KPM institution code from ePrasekolah (e.g. "K5A2010"), when known. */
+  institutionCode?: string | null;
+  /** Places open for enrolment, as listed in the registry. */
+  vacancies?: number | null;
+  /** True when the map position is neighbourhood/area level, not the exact building. */
+  locationApprox?: boolean;
   /** Base/official status per criterion key. */
   statuses: Record<string, Status>;
 };

@@ -1,8 +1,7 @@
 import { CRITERIA } from "@/content/criteria";
 import type { Dict } from "@/content/i18n";
 import { rmOr } from "@/lib/cost";
-import { fmtKm } from "@/lib/geo";
-import { ratioLabel, tagTypeLabel } from "@/lib/format";
+import { distLabel, ratioLabel, tagTypeLabel } from "@/lib/format";
 import { statusOf } from "@/lib/scoring";
 import type { Row } from "@/lib/filter";
 import type { Lang, Override } from "@/lib/types";
@@ -22,7 +21,7 @@ export function KindergartenCard({ row, annual, lang, t, ov, compared, onOpen, o
         <h2>{k.name}</h2>
         <dl className="ledger">
           <div><dt>{t.kawasan}</dt><dd>{k.area || "–"}</dd></div>
-          <div><dt>{t.jarak}</dt><dd>{fmtKm(d)}</dd></div>
+          <div><dt>{t.jarak}</dt><dd>{distLabel(k, d)}</dd></div>
           <div><dt>{t.kosTahun}</dt><dd>{rmOr(annual, t)}</dd></div>
           <div><dt>{t.nisbah}</dt><dd>{ratioLabel(k, t)}</dd></div>
         </dl>
