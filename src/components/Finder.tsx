@@ -87,15 +87,10 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
 
   return (
     <>
-      <div className="wrap">
-        <header className="masthead">
+      <header className="hero">
+        <div className="hero-in">
           <div className="brand-row">
-            <div className="brand">
-              <div className="seal" aria-hidden="true">
-                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 14 16 7l10 7" /><path d="M9 14v9h14v-9" /><path d="M13 23v-6h6v6" /></svg>
-              </div>
-              <h1>Cari Tadika</h1>
-            </div>
+            <h1>Cari Tadika</h1>
             <div className="langsw" role="group" aria-label={t.langAria}>
               {(["ms", "en"] as const).map((l) => (
                 <button key={l} type="button" aria-pressed={lang === l} onClick={() => chooseLang(l)}>{l.toUpperCase()}</button>
@@ -104,65 +99,81 @@ export function Finder({ kindergartens }: { kindergartens: readonly Kindergarten
           </div>
           <p className="lede">{t.lede}</p>
           {kindergartens.every((k) => k.source === "sample") && <span className="sample-note">{t.sample}</span>}
-        </header>
+          <div className="searchbox">
+            <label htmlFor="q" className="sr-only">{t.qLabel}</label>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4 4" /></svg>
+            <input id="q" type="search" value={f.q} placeholder={t.qLabel} onChange={(e) => set("q", e.target.value)} />
+          </div>
+        </div>
+      </header>
 
+      <div className="wrap">
         <section className="controls" aria-label={t.filtersAria}>
-          <div className="loc">
-            <div className="loc-label">{t.distFrom} <b>{originName}</b></div>
-            <button className="btn small" type="button" onClick={useMyLocation}>
-              <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M12 21s7-6.8 7-12.4A7 7 0 1 0 5 8.6C5 14.2 12 21 12 21Z" /><circle cx="12" cy="8.6" r="2.4" /></svg>
-              <span>{t[locBtn]}</span>
-            </button>
-          </div>
-          <form className="loc-form" onSubmit={findLocation}>
-            <div className="field q">
-              <label htmlFor="locq">{t.locInputLabel}</label>
-              <div className="loc-row">
-                <input id="locq" type="search" value={locQuery} placeholder={t.locInputPlaceholder} enterKeyHint="search"
-                  onChange={(e) => setLocQuery(e.target.value)} />
-                <button className="btn small" type="submit" disabled={locState === "loading"}>{locState === "loading" ? t.locSearching : t.locSearch}</button>
-              </div>
+          <details className="panel origin">
+            <summary>
+              <span className="loc-label">{t.distFrom} <b>{originName}</b></span>
+              <svg className="ico chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </summary>
+            <div className="loc">
+              <button className="btn small" type="button" onClick={useMyLocation}>
+                <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M12 21s7-6.8 7-12.4A7 7 0 1 0 5 8.6C5 14.2 12 21 12 21Z" /><circle cx="12" cy="8.6" r="2.4" /></svg>
+                <span>{t[locBtn]}</span>
+              </button>
             </div>
-            <div aria-live="polite">
-              {locState === "none" && <p className="src">{t.locNone}</p>}
-              {locState === "error" && <p className="src">{t.locError}</p>}
-              {locMatches.length > 1 && (
-                <div className="loc-results" role="group" aria-label={t.locPick}>
-                  <p className="src">{t.locPick}</p>
-                  {locMatches.map((m) => (
-                    <button key={`${m.lat},${m.lng}`} type="button" className="btn small loc-pick"
-                      onClick={() => { applyOrigin(m, m.label, false); setLocMatches([]); }}>{m.label}</button>
-                  ))}
+            <form className="loc-form" onSubmit={findLocation}>
+              <div className="field">
+                <label htmlFor="locq">{t.locInputLabel}</label>
+                <div className="loc-row">
+                  <input id="locq" type="search" value={locQuery} placeholder={t.locInputPlaceholder} enterKeyHint="search"
+                    onChange={(e) => setLocQuery(e.target.value)} />
+                  <button className="btn small primary" type="submit" disabled={locState === "loading"}>{locState === "loading" ? t.locSearching : t.locSearch}</button>
                 </div>
-              )}
-              {(customLabel || usingCurrent) && (
-                <button className="btn small" type="button" onClick={() => { applyOrigin(DEFAULT_CENTRE, null, false); setLocQuery(""); setLocBtn("useLoc"); }}>{t.locDefaultBtn}</button>
-              )}
+              </div>
+              <div aria-live="polite">
+                {locState === "none" && <p className="src">{t.locNone}</p>}
+                {locState === "error" && <p className="src">{t.locError}</p>}
+                {locMatches.length > 1 && (
+                  <div className="loc-results" role="group" aria-label={t.locPick}>
+                    <p className="src">{t.locPick}</p>
+                    {locMatches.map((m) => (
+                      <button key={`${m.lat},${m.lng}`} type="button" className="btn small loc-pick"
+                        onClick={() => { applyOrigin(m, m.label, false); setLocMatches([]); }}>{m.label}</button>
+                    ))}
+                  </div>
+                )}
+                {(customLabel || usingCurrent) && (
+                  <button className="btn small" type="button" onClick={() => { applyOrigin(DEFAULT_CENTRE, null, false); setLocQuery(""); setLocBtn("useLoc"); }}>{t.locDefaultBtn}</button>
+                )}
+              </div>
+            </form>
+          </details>
+
+          <div className="grp">
+            <span className="grp-label" id="g-dist">{t.jarak}</span>
+            <div className="pillrow scroll" role="radiogroup" aria-labelledby="g-dist">
+              {[3, 5, 10, 25, ANY_DISTANCE].map((n) => (
+                <button key={n} type="button" role="radio" aria-checked={f.maxDist === n} className="pill" onClick={() => set("maxDist", n)}>{n === ANY_DISTANCE ? t.distAll : `${n} km`}</button>
+              ))}
             </div>
-          </form>
-          <div className="filters">
-            <div className="field q"><label htmlFor="q">{t.qLabel}</label>
-              <input id="q" type="search" value={f.q} placeholder={t.qPlaceholder} onChange={(e) => set("q", e.target.value)} /></div>
-            <div className="field"><label htmlFor="dist">{t.distLabel}</label>
-              <select id="dist" value={f.maxDist} onChange={(e) => set("maxDist", +e.target.value)}>
-                {[3, 5, 10, 25].map((n) => <option key={n} value={n}>{n} km</option>)}
-                <option value={ANY_DISTANCE}>{t.distAll}</option>
-              </select></div>
-            <div className="field"><label htmlFor="budget">{t.budgetLabel}</label>
-              <select id="budget" value={f.maxBudget} onChange={(e) => set("maxBudget", +e.target.value)}>
-                {[2000, 4000, 6000, 10000].map((n) => <option key={n} value={n}>RM {n.toLocaleString("en-MY")}</option>)}
-                <option value={999999}>{t.distAll}</option>
-              </select></div>
-            <div className="field"><label htmlFor="sort">{t.sortLabel}</label>
-              <select id="sort" value={f.sort} onChange={(e) => set("sort", e.target.value as SortKey)}>
-                <option value="score">{t.sortScore}</option><option value="dist">{t.sortDist}</option><option value="cost">{t.sortCost}</option>
-              </select></div>
           </div>
-          <div className="toggles">
-            <label className="tog"><input type="checkbox" checked={f.onlyReg} onChange={(e) => set("onlyReg", e.target.checked)} /><span>{t.onlyReg}</span></label>
-            <label className="tog"><input type="checkbox" checked={f.hideMajor} onChange={(e) => set("hideMajor", e.target.checked)} /><span>{t.hideMajor}</span></label>
-            <label className="tog"><input type="checkbox" checked={f.onlyTrial} onChange={(e) => set("onlyTrial", e.target.checked)} /><span>{t.onlyTrial}</span></label>
-            <label className="tog"><input type="checkbox" checked={f.needTransport} onChange={(e) => set("needTransport", e.target.checked)} /><span>{t.needTrans}</span></label>
+          <div className="grp">
+            <span className="grp-label" id="g-bud">{t.budgetShort}</span>
+            <div className="pillrow scroll" role="radiogroup" aria-labelledby="g-bud">
+              {[2000, 4000, 6000, 10000, 999999].map((n) => (
+                <button key={n} type="button" role="radio" aria-checked={f.maxBudget === n} className="pill" onClick={() => set("maxBudget", n)}>{n === 999999 ? t.distAll : `< RM ${(n / 1000)}k`}</button>
+              ))}
+            </div>
+          </div>
+          <div className="pillrow">
+            <label htmlFor="sort" className="grp-label">{t.sortLabel}</label>
+            <select id="sort" className="sortsel" value={f.sort} onChange={(e) => set("sort", e.target.value as SortKey)}>
+              <option value="score">{t.sortScore}</option><option value="dist">{t.sortDist}</option><option value="cost">{t.sortCost}</option>
+            </select>
+          </div>
+          <div className="pillrow">
+            {([["onlyReg", t.onlyReg], ["hideMajor", t.hideMajor], ["onlyTrial", t.onlyTrial], ["needTransport", t.needTrans]] as const).map(([key, label]) => (
+              <button key={key} type="button" className="pill toggle" aria-pressed={f[key]} onClick={() => set(key, !f[key])}>{label}</button>
+            ))}
           </div>
         </section>
 

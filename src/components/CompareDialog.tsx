@@ -16,7 +16,7 @@ export function CompareDialog({ ks, open, lang, t, loc, ov, withTransport, onClo
   const c = show ? buildCompare(ks, loc, ov, withTransport) : null;
   const win = (cond: boolean) => (cond ? "win" : "");
   const isBest = (v: number | null, best: number | null) => v != null && best != null && v === best;
-  const num = (v: string) => <span className="num">{v}</span>;
+  const num = (v: string) => <span className={v === t.unknown ? "num unknown" : "num"}>{v}</span>;
   const label = { ok: t.statusY, flag: t.statusN, unsure: t.statusQ };
 
   // Verdict copy contains <b> markup; the name is escaped before injection.

@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans, Spectral } from "next/font/google";
+import { DM_Mono, Fraunces, Outfit } from "next/font/google";
 import "./globals.css";
 
-const spectral = Spectral({ variable: "--font-spectral", subsets: ["latin"], weight: ["500", "600", "700"] });
-const plexSans = IBM_Plex_Sans({ variable: "--font-plex-sans", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
-const plexMono = IBM_Plex_Mono({ variable: "--font-plex-mono", subsets: ["latin"], weight: ["500", "600", "700"] });
+const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"], weight: ["500", "600", "700"] });
+const outfit = Outfit({ variable: "--font-outfit", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
+const dmMono = DM_Mono({ variable: "--font-dm-mono", subsets: ["latin"], weight: ["400", "500"] });
 
 export const metadata: Metadata = {
   title: "Cari Tadika",
@@ -16,7 +16,7 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1, view
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ms" className={`${spectral.variable} ${plexSans.variable} ${plexMono.variable}`}>
+    <html lang="ms" className={`${fraunces.variable} ${outfit.variable} ${dmMono.variable}`}>
       <body>{children}</body>
     </html>
   );

@@ -1,7 +1,7 @@
 "use client";
 import { CRITERIA } from "@/content/criteria";
 import type { Dict } from "@/content/i18n";
-import { annualCost, costLines, isPartialCost, rm, rmOr } from "@/lib/cost";
+import { annualCost, costLines, isPartialCost, rm, rmOr, rmTotal } from "@/lib/cost";
 import { type LatLng, km } from "@/lib/geo";
 import { currLabel, distLabel, hoursLabel, ratioFull, typeLabel } from "@/lib/format";
 import { stats, statusOf } from "@/lib/scoring";
@@ -23,11 +23,11 @@ export function DetailDialog({ k, lang, t, loc, ov, withTransport, compared, onC
       <>
         <dl className="facts">
           <div className="fact"><dt>{t.skorLbl}</dt><dd>{st.y}/9 {t.lulus}{st.major ? ` · ${t.kritikal}` : ""}</dd></div>
-          <div className="fact"><dt>{t.yuran}</dt><dd>{k.monthlyFee == null ? t.unknown : `${rm(k.monthlyFee)} ${t.perBulan}`}</dd></div>
-          <div className="fact"><dt>{t.kosSetahun}</dt><dd>{rmOr(annual, t)}</dd></div>
-          <div className="fact"><dt>{t.nisbah}</dt><dd>{ratioFull(k, t)}</dd></div>
-          <div className="fact"><dt>{t.kurikulum}</dt><dd>{currLabel(k.curriculumCode, t)}</dd></div>
-          <div className="fact"><dt>{t.waktu}</dt><dd>{hoursLabel(k, lang, t)}</dd></div>
+          <div className="fact"><dt>{t.yuran}</dt><dd className={k.monthlyFee == null ? "unknown" : ""}>{k.monthlyFee == null ? t.unknown : `${rm(k.monthlyFee)} ${t.perBulan}`}</dd></div>
+          <div className="fact"><dt>{t.kosSetahun}</dt><dd className={annual == null ? "unknown" : ""}>{rmTotal(k, annual, t)}</dd></div>
+          <div className="fact"><dt>{t.nisbah}</dt><dd className={k.teacherStudentRatio == null ? "unknown" : ""}>{ratioFull(k, t)}</dd></div>
+          <div className="fact"><dt>{t.kurikulum}</dt><dd className="text">{currLabel(k.curriculumCode, t)}</dd></div>
+          <div className="fact"><dt>{t.waktu}</dt><dd className={k.hoursOpen ? "" : "unknown"}>{hoursLabel(k, lang, t)}</dd></div>
         </dl>
         <div className="row-actions">
           {k.phone && <a className="btn small" href={`tel:${k.phone.replace(/[^+\d]/g, "")}`}>{t.call} · {k.phone}</a>}
@@ -38,10 +38,10 @@ export function DetailDialog({ k, lang, t, loc, ov, withTransport, compared, onC
         <div className="costs">
           {costLines(k, withTransport, t).map((l) => (
             <div key={l.label} className={`cost-row${l.off ? " off" : ""}`}>
-              <span className="lbl">{l.label}</span><span className="num">{l.off ? "–" : rmOr(l.value, t)}</span>
+              <span className="lbl">{l.label}</span><span className={`num${!l.off && l.value == null ? " unknown" : ""}`}>{l.off ? "–" : rmOr(l.value, t)}</span>
             </div>
           ))}
-          <div className="cost-row total"><span className="lbl">{t.jumlahSetahun}</span><span className="num">{rmOr(annual, t)}</span></div>
+          <div className="cost-row total"><span className="lbl">{t.jumlahSetahun}</span><span className={`num${annual == null ? " unknown" : ""}`}>{rmTotal(k, annual, t)}</span></div>
         </div>
         <p className="monthly">{annual == null ? t.noVerdictData : t.purataSebulan(rm(annual / k.billableMonths))}{isPartialCost(k) ? ` ${t.costPartial}` : ""}</p>
         <div className="sec-title">{t.failSemakan} <small>{t.tekanKemaskini}</small></div>
@@ -71,7 +71,7 @@ export function DetailDialog({ k, lang, t, loc, ov, withTransport, compared, onC
         </div>
         <div className="row-actions">
           <button className="btn small" type="button" onClick={() => onReset(k.id)}>{t.setSemula}</button>
-          <label className="cmp">
+          <label className="cmp-inline">
             <input type="checkbox" checked={compared} onChange={(e) => onToggleCompare(k.id, e.target.checked)} />
             <span>{t.tambahBanding}</span>
           </label>
