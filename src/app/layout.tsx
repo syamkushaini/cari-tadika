@@ -9,6 +9,8 @@ const plexMono = IBM_Plex_Mono({ variable: "--font-plex-mono", subsets: ["latin"
 export const metadata: Metadata = {
   title: "Cari Tadika",
   description: "Find nearby kindergartens, check them against 9 red flags, and compare before you enrol.",
+  // Lets iPhone Safari "Add to Home Screen" open it full-screen like an app.
+  appleWebApp: { capable: true, title: "Cari Tadika", statusBarStyle: "default" },
 };
 export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
 
